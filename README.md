@@ -9,9 +9,9 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
 
 <table>
  <tr>
-  <td><img src="images/cnda-dev-docs.png"> CNDA Documentation</td>
-  <td><img src="images/cnda-services-scanner.png">Services</td>
-  <td><img src="images/cnda-user-help.png">CNDA News</td>
+  <td><img src="images/cnda-dev-docs.png"> <h3>CNDA Documentation</h3></td>
+  <td><img src="images/cnda-services-scanner.png"><h3>Services</h3></td>
+  <td><img src="images/cnda-user-help.png"><h3>CNDA News</h3></td>
  </tr>
  <tr>
   <td><p>About the CNDA</p>
