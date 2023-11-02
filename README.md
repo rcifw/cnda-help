@@ -18,7 +18,27 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
       <p>CNDA User Guide and Tutorials</p>
       <p>Troubleshooting Issues in CNDA</p>
   </td>
-  <td> More Stuff</td>
+  <td>
+   <table>
+    <tr>
+     <td><img src="images/cnda-service-data-hosting.png"></td>
+     <td>Image Storage</td>
+    </tr>
+    <tr>
+     <td><img src="images/cnda-service-development.png"></td>
+     <td>Scripting, Development, and User Manuals</td>
+    </tr>
+    <tr>
+     <td><img src="images/cnda-service-clinical-data.png"></td>
+     <td>Clinical Data Transfer</td>
+    </tr>
+    <tr>
+     <td><img src="images/cnda-service-anonymization.png"></td>
+     <td>Image Anonymization</td>
+    </tr>
+   </table>
+   See all CNDA Services and Rates
+  </td>
   <td>Blog Posts</td>
  </tr>
 
