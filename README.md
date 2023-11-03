@@ -43,7 +43,7 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
      <td>Image Anonymization</td>
     </tr>
    </table>
-   <a href="/CNDA_Services_and_Rates">See all CNDA Services and Rates</a>
+   <a href="CNDA_Services_and_Rates">See all CNDA Services and Rates</a>
   </td>
   <td>Blog Posts</td>
  </tr>
