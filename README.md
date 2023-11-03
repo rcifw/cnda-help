@@ -1,6 +1,5 @@
 # cnda-help
 <p align=center>
-Welcome to the CNDA Help site, home of documentation and information to help you get the most out of CNDA. 
 </p>
 
 <p align=center>
@@ -9,14 +8,21 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
 
 <table>
  <tr>
-  <td><img src="images/cnda-dev-docs.png"> <h3>CNDA Documentation</h3></td>
-  <td><img src="images/cnda-services-scanner.png"><h3>Services</h3></td>
-  <td><img src="images/cnda-user-help.png"><h3>CNDA News</h3></td>
+  <td><img src="images/cnda-dev-docs.png"></td>
+  <td><img src="images/cnda-services-scanner.png"></td>
+  <td><img src="images/cnda-user-help.png"></td>
  </tr>
  <tr>
-  <td><p>About the CNDA</p>
+  <td><h3 align="center">CNDA Documentation</h3></td>
+  <td><h3 align="center">Services</h3></td>
+  <td><h3 align="center">CNDA News</h3></td>
+ </tr>
+ <tr>
+  <td><p><a href="/About_the_CNDA">About the CNDA</a></p>
       <p>CNDA User Guide and Tutorials</p>
       <p>Troubleshooting Issues in CNDA</p>
+      <h3 align="center">Imaging Center Documentation</h3>
+      <p>CCIR Imaging Center User Guide</p>
   </td>
   <td>
    <table>
@@ -37,7 +43,7 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
      <td>Image Anonymization</td>
     </tr>
    </table>
-   See all CNDA Services and Rates
+   <a href="/CNDA_Services_and_Rates">See all CNDA Services and Rates</a>
   </td>
   <td>Blog Posts</td>
  </tr>
