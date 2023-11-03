@@ -6,7 +6,7 @@
 Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@wustl.edu.
 </p>
 
-<table>
+<table border="0">
  <tr>
   <td><img src="images/cnda-dev-docs.png"></td>
   <td><img src="images/cnda-services-scanner.png"></td>
@@ -18,7 +18,7 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
   <td><h3 align="center">CNDA News</h3></td>
  </tr>
  <tr>
-  <td><p><a href="/About_the_CNDA">About the CNDA</a></p>
+  <td><p><a href="About_the_CNDA">About the CNDA</a></p>
       <p>CNDA User Guide and Tutorials</p>
       <p>Troubleshooting Issues in CNDA</p>
       <h3 align="center">Imaging Center Documentation</h3>
