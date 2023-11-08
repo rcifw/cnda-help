@@ -15,8 +15,11 @@ It can denote the project's affiliation to a larger group (ex. CCIR, NP).
 Open the **Project**.
 Click Edit **Details**.
 
+![new subject](images/AddAlias1.jpg)
 
 The **Edit Project Details form** will open.
 Click in a **text box to the right of Alias(es)**. If all are full, erase the text from one box -- this will not remove that alias from the project.
 Enter the alias you wish to use.
 Click **Save Changes**.
+
+![new subject](images/AddAlias2.jpg)
