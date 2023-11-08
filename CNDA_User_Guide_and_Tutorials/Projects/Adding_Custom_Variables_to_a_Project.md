@@ -6,14 +6,17 @@
 1. Open the **Project**.
 2. From the **Details** tab, click on **Manage Custom Variables**.
 
+![new subject](images/AddCustVariable1.jpg)
 
 3. Click in the **Add Variables To** selection box to select the type to add the variable set to. 
 
+![new subject](images/AddCustVariable2.jpg)
 
 4. Click **Done**.
 5. A list opens with options to add to a variable set by clicking **Editor** you can create an entirely new one by selecting the **Add a Custom Variable Set** link just below the pre-existing list. Both of these options will expand the form for adding more information.
 6. Fill in desired information as shown in the picture below.
-   
+
+   ![new subject](images/AddCustVariable3.jpg)
 
 7. Click **Save**.
 8. Click **Done** when finished.
@@ -24,6 +27,7 @@
 2. Click **Add a Custom Variable Set** above the **Done** button.
 3. The **Custom Variable Set form** will display.
 
+![new subject](images/AddCustVariable4.jpg)
 
 4. Fill in the **Name and Description**.
 5. Add data fields.
@@ -32,9 +36,11 @@
 8. Then click **Done**.
 9. Open a **Subject Details page** in the project.
 
+![new subject](images/AddCustVariable5.jpg)
 
 10. A table for the new variable set is available. To add data for that set, click **Edit** in the **Actions** box.
 11. Enter your information in the table that will appear.
 
+![new subject](images/AddCustVariable6.jpg)
 
 12. Fill out the form, then click **Submit**.
