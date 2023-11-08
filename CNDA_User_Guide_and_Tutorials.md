@@ -2,9 +2,9 @@
 
 Pages in this section
 
- - [Getting started](Getting_started.md)
+ - [Getting Started](Getting_Started.md)
  - Access
- - Projects
+ - [Projects](CNDA_User_Guide_and_Tutorials/Projects.md)
  - Subjects
  - Experiments
  - Searching CNDA

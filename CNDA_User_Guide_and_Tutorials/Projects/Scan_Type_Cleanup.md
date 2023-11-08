@@ -1,0 +1,2 @@
+# Scan Type Cleanup
+
