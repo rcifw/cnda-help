@@ -19,7 +19,7 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
  </tr>
  <tr>
   <td><p><a href="About_the_CNDA">About the CNDA</a></p>
-      <p><a href="CNDA_User_Guide_and_Tutorials.md">CNDA User Guide and Tutorials</a></p>
+      <p><a href="CNDA_User_Guide_and_Tutorials">CNDA User Guide and Tutorials</a></p>
       <p>Troubleshooting Issues in CNDA</p>
       <h3 align="center">Imaging Center Documentation</h3>
       <p>CCIR Imaging Center User Guide</p>
