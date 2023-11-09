@@ -19,15 +19,15 @@ If your study does not meet any of the above conditions, you are free to create 
 
 1. Click the **New** menu at the top of the screen
 
-![new subject](images/CreateProj1.jpg)
+![new drop down](images/CreateProj1.jpg)
 
 2. Select **Project**.
 
-![new subject](images/CreateProj2.jpg)
+![project selected](images/CreateProj2.jpg)
 
 3. Enter **Project Details**.
 
-![new subject](images/CreateProj3.jpg)
+![new project page](images/CreateProj3.jpg)
 
   a. **Title: REQUIRED**: Enter the full name of your project here. This will show up on project listings.
   
