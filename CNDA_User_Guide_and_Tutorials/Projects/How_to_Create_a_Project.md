@@ -46,15 +46,15 @@ If your study does not meet any of the above conditions, you are free to create 
      
   g. **Investigators**: **Optional**: The people who will be investigators for the project. They do not need to be XNAT users and can be added dynamically.
   
-  **Primary Investigator**      
-  **Other Investigator**
+   - **Primary Investigator**      
+   - **Other Investigator**
        
   h. Define **Project Accessibility**.
   
-  **Private**: Only you and study members will be able to access study data.
+   - **Private**: Only you and study members will be able to access study data.
   
-  **Protected**: All users will be able to see your study title and description, but only collaborators you approve will be able to analyze and download data. Selecting Protected on a project makes it easy for a             user to request access from project owners.
+   - **Protected**: All users will be able to see your study title and description, but only collaborators you approve will be able to analyze and download data. Selecting Protected on a project makes it easy for a             user to request access from project owners.
   
-  **Public**: All users will be able to access study data for analysis and download.
+ - **Public**: All users will be able to access study data for analysis and download.
        
    i. Click the **Create Project** button.
