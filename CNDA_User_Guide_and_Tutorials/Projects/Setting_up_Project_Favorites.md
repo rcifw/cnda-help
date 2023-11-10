@@ -16,4 +16,4 @@
 
 3. You should see your **Favorite Projects** listed.
 
-![favorite projects display](images/SetupFavorites3.jpg)
+![favorite projects](images/SetupFavorites3.jpg)
