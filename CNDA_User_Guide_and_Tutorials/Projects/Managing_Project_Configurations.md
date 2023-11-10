@@ -13,9 +13,10 @@
  - Store in project prearchive - (Option 1 in pic above)
  - Archive automatically - (Option 2 in pic above) This option does not overwrite any files. If the session label already exists, the image data will be sent to prearchive.
  - Archive automatically - overwrite - (Option 3 in pic above) This option **DOES OVERWRITE** existing files in your archive. If the session label already exists, the previous image data will be erased and new data will be stored.
+   
 **NOTE**: With all of these options, any image data that doesn't match a pre-existing project will go in to an Unassigned project.
  
- b. **Anonymization Script** - The script for anonymizing sessions as they are uploaded to the project will be stored in the large text box. Use o the script can be enabled or disabled by clicking on the appropriate action.
+ b. **Anonymization Script** - The script for anonymizing sessions as they are uploaded to the project will be stored in the large text box. Use of the script can be enabled or disabled by clicking on the appropriate action.
  
  c. **AutoRun Configuration** - Notifications should initially be set up for the project by the CNDA Help Desk. Users listed here will receive email notices any time a new scan is archived in the project.
  
