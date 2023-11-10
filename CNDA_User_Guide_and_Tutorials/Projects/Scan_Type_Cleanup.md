@@ -22,7 +22,7 @@ This feature, new in CNDA 1.6, addresses this issue for project owners by lettin
 5. Enter the **new name** in the **Scan Type** column.
 6. Click **Submit** when complete.
 
-**Example: Changing Scan label T1SPINEECHO**
+### **Example: Changing Scan label T1SPINEECHO**
 
 1. From the **Scan Type Cleanup table**, click the **checkboxes** for the T1SPINEECHO entries.
 2. Enter a **new label** in the box under **Scan Type** -- we are changing the label to T1SP.
