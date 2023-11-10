@@ -3,15 +3,17 @@
 ## **Instructions**
 ### **Add a Project to Your Favorites List**
 
-Open the **Project** you would like to make a favorite.
-Click on **Add to Favorites** from the **Actions** box near the top right of the screen.
+1. Open the **Project** you would like to make a favorite.
+2. Click on **Add to Favorites** from the **Actions** box near the top right of the screen.
 
-
+![action box add to favorites](images/SetupFavorites1.jpg)
 
 ### **View Your Favorites list**
-Click **Browse** located on the top menu.
-Click **Favorite Projects**.
+1. Click **Browse** located on the top menu.
+2. Click **Favorite Projects**.
 
+![browse drop down](images/SetupFavorites2.jpg)
 
+3. You should see your **Favorite Projects** listed.
 
-You should see your **Favorite Projects** listed.
+![favorite projects display](images/SetupFavorites3.jpg)
