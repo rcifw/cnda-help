@@ -14,5 +14,5 @@
  - Birth date if over 89
  - Photo
 
-HIPAA PHI article 
-https://www.hipaa.com/2009/09/01/hipaa-protected-health-information-what-does-phi-include/
+HIPAA PHI article (need to add link to article)
+
