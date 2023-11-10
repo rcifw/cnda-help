@@ -15,5 +15,4 @@
 ![browse drop down](images/SetupFavorites2.jpg)
 
 3. You should see your **Favorite Projects** listed.
-
 ![favorite projects](images/SetupFavorites3.jpg)
