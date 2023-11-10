@@ -7,12 +7,12 @@ A new project can be created in CNDA by users with the proper privileges. There 
 ## OPTION 1 - Fill out CNDA Boarding Form
 If your study meets any of the following criteria fill out the CNDA Boarding form and submit to the CNDA Help desk.
 
-Multi-site study
-Any ongoing study acquiring data outside WU/BJC
-Study requiring customized data type, pipeline, or report development
-Studies wishing to share blinded data with outside investigators
-Studies requiring protocol validation
-Studies wishing CNDA to provide customized user training
+ - Multi-site study
+ - Any ongoing study acquiring data outside WU/BJC
+ - Study requiring customized data type, pipeline, or report development
+ - Studies wishing to share blinded data with outside investigators
+ - Studies requiring protocol validation
+ - Studies wishing CNDA to provide customized user training
 
 ## OPTION 2 - Create own project
 If your study does not meet any of the above conditions, you are free to create your own project in the CNDA (with a valid owner level CNDA account).
@@ -56,5 +56,5 @@ If your study does not meet any of the above conditions, you are free to create 
    - **Protected**: All users will be able to see your study title and description, but only collaborators you approve will be able to analyze and download data. Selecting Protected on a project makes it easy for a             user to request access from project owners.
   
  - **Public**: All users will be able to access study data for analysis and download.
-       
-   i. Click the **Create Project** button.
+
+i. Click the **Create Project** button.
