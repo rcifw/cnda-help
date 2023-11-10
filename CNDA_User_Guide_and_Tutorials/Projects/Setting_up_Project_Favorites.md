@@ -1,5 +1,7 @@
 # Setting up Project Favorites
 
+Links to projects can be saved in the Favorites area for ease of access.
+
 ## **Instructions**
 ### **Add a Project to Your Favorites List**
 
