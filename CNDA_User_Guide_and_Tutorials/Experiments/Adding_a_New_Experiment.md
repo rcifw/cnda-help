@@ -6,9 +6,11 @@ There are two ways an experiment can be added to a subject in CNDA. Adding an ex
 ### **Adding an experiment from the subject details screen**
  1. Click on the **Add Experiment** link listed in the **Actions** box to the right hand side of the subject details.
 
+![action box](images/AddExperiment1.jpg)
+
  2. A list of available types displays. Select the **experiment type** to be added. To narrow down the list, you can type all or part of the name in the **Filter** text box.
 
-
+![type of experiment](images/AddExperiment2.jpg)
 
 A full list of Non-Image experiments currently available to add to a CNDA project can be found here.
 
@@ -19,13 +21,21 @@ A full list of Non-Image experiments currently available to add to a CNDA projec
 ### **Adding an experiment from the main menu**
  1. Click on the **New** button on the **main menu** at the top of the CNDA home page and select **Experiment**.
 
+![New experiment drop down](images/AddExperiment3.jpg)
+
  2. Select the **Project** the experiment is for.
+
+ ![Project drop down](images/AddExperiment4.jpg)   
 
  3. Select the **Subject**.
 
  4. Select the **experiment type**. If the experiment to be entered is listed, click the appropriate name. You can also start typing in the name of the experiment in the **Filter** field for faster selection.
 
+![experiment type](images/AddExperiment5.jpg)
+
  5. A creation form will display.
+
+![add session](images/AddExperiment6.jpg)
 
  6. Enter a unique **Session label**.
 
