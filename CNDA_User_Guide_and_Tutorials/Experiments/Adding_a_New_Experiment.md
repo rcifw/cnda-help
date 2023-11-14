@@ -45,23 +45,23 @@ A full list of Non-Image experiments currently available to add to a CNDA projec
 
 ### Examples
 ### Adding an experiment from the subject details screen
- 1. Click on the **Add Experiment link listed in the Actions box to the right hand side of the subject details.
+ 1. Click on the **Add Experiment** link listed in the **Actions** box to the right hand side of the subject details.
 
- 2. Select the NIH Stroke Survey as the type of experiment to be added.
+ 2. Select the **NIH Stroke Survey** as the type of experiment to be added.
 
  3. Fill in the form that will open.
 
- 4. Click Submit when complete.
+ 4. Click **Submit** when complete.
 
 ### Adding an experiment from the main menu
- 1. Click on the New button on the main menu at the top of the CNDA home page.
+ 1. Click on the **New** button on the **main menu** at the top of the CNDA home page.
 
- 2. Select the Project the experiment is for.
+ 2. Select the **Project** the experiment is for.
 
- 3. Select the Subject.
+ 3. Select the **Subject**.
 
- 4. Select Visit as the experiment type to be added.
+ 4. Select **Visit** as the experiment type to be added.
 
  5. Fill in the form that will open.
 
- 6. Click Submit when complete.
+ 6. Click **Submit** when complete.
