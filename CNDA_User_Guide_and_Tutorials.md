@@ -3,12 +3,12 @@
 Pages in this section
 
  - [Getting Started](Getting_Started.md)
- - Access
+ - [Access](Access.md)
  - [Projects](CNDA_User_Guide_and_Tutorials/Projects.md)
  - Subjects
- - Experiments
- - Searching CNDA
- - Prearchive & Archive
+ - [Experiments](Experiments.md)
+ - [Searching CNDA](Searching_CNDA.md)
+ - [Prearchive & Archive](Prearchive_and_Archive.md)
  - Data Sharing
  - Downloading Data
  - Uploading Data
