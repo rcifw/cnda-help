@@ -50,4 +50,6 @@ There are two ways to add a user to a project. Both ways are outlined below.
 
   6. Click **Submit**.
 
+![access level](images/AddUserProject4.jpg)
+
   7. After you have submitted your request, you will be given an option to send an email to the added user.
