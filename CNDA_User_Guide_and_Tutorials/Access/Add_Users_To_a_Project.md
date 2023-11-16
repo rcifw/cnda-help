@@ -47,9 +47,8 @@ There are two ways to add a user to a project. Both ways are outlined below.
   4. A window will pop open that will show a list of users.
 
   5. In this list, select the **access level under the Group column** next to the names of the users you want to have access to this project.
-
-  6. Click **Submit**.
-
+ 
 ![access level](images/AddUserProject4.jpg)
 
+  6. Click **Submit**.
   7. After you have submitted your request, you will be given an option to send an email to the added user.
