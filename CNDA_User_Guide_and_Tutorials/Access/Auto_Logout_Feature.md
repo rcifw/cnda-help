@@ -7,7 +7,7 @@ A **Counter** is displayed at the **top right corner of the CNDA Session**.
 
 It displays the following information:
 
-
+![auto logout](images/autologout.jpg)
 
 1. Username link: Opens the form for updating the email and password associated with the account.
 2. Countdown for Auto-logout: Displays the time left until the user is logged out automatically.
