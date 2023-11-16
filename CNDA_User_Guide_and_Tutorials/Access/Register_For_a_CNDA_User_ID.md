@@ -9,14 +9,15 @@ To be able to access CNDA, a form must be submitted to the CNDA Help Desk. Once 
 1. Using any web browser, open up the CNDA website at https://cnda.wustl.edu/.
 2. Click on the **Register** link below the password field.
 
-
+![register](images/Reg1.jpg)
 
 3. Fill out the **New User Registration form** that will open. Required fields are shown in the red box below.
 
-
+![register form](images/Reg2.jpg)
 
 4. Click the **Register** button to submit your request.
 
+![comment box](images/Reg3.jpg)
 
 **NOTE**: If a red check-mark appears on any fields after registering, modify them and click the **Register** button again.
 
