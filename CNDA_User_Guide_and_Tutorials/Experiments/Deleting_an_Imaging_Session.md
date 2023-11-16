@@ -10,7 +10,7 @@
 
 ![action box](images/DelSess1.jpg)
 
-5. The Deletion Manager window will open.
+5. The **Deletion Manager** window will open.
 
 ![delete manager](images/DelSess2.jpg)
 
