@@ -8,7 +8,7 @@ For a current user of the CNDA, there are some steps that can be taken to reques
 1. Log into the CNDA.
 2. On the main screen, search for the project by typing part or all of its name in the ID box.
 
-
+![enter project id](images/RAtoProj1.jpg)
 
 3. Click **Submit**.
 
@@ -19,7 +19,7 @@ For a current user of the CNDA, there are some steps that can be taken to reques
 4. Type part or all of the name of the project in the search box in the upper right corner of the screen.
 5. Click **Go**.
 
-
+![search box](images/RAtoProj2.jpg)
 
  a. If you were able to find your project by searching with this field proceed to **Step 5**.
  
@@ -27,16 +27,17 @@ For a current user of the CNDA, there are some steps that can be taken to reques
  
 6. Click on the **project ID** you want to request access to.
 
+![search display](images/RAtoProj3.jpg)
 
 7. A Security Warning appears in pink -- This is normal. See the example below.
 
-
+![security warning](images/RAtoProj4.jpg)
 
 Alternatively, if you see a warning that reads "We are unable to provide the requested data. Either you have encountered a link to erroneous data, or this user account does not have access to this data ...", proceed to **Option 2**.
 
 8. Click on the **Request Access** link at the bottom of the Security Warning box.
 
-
+![request access](images/RAtoProj5.jpg)
 
 9. Fill out the Access Request form.
 10. Select the **level of access** you require in the drop down list(descriptions of access levels can be found here)
