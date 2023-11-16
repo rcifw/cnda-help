@@ -13,7 +13,7 @@ Every subject in CNDA belongs to a Primary Project. However, these subjects can 
 4. Click **Share**.
 5. Verify that everything is correct in the Sharing Manager window.
   - Any or all sessions can be unchecked to avoid sharing them.
-6. Click Share to commit the share.
+6. Click **Share** to commit the share.
 
 
 ### Remove Sharing
