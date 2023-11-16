@@ -5,11 +5,11 @@
 1. Log in to CNDA.
 2. Click the link for your username to the right of **Logged in as**:
 
-
+![user name](images/ChgPw1.jpg)
 
 3. Fill out the password information on the bottom part of the form that opens.
 
-
+![change password](images/ChgPw2.jpg)
 
 4. Click Submit.
 
