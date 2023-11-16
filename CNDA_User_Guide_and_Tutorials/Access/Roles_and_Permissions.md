@@ -3,7 +3,7 @@
 ## **Description**
 There are three common project roles in CNDA: Owners, Members, and Collaborators. As a project owner, you have the ability to add specific users to your project within these roles. These users will then have the permissions associated with their defined role.
 
-
+![role descriptions](images/RP1.jpg)
 
 The "CRUD" model of permissions
 
@@ -16,7 +16,7 @@ The "CRUD" model of permissions
 ## **Managing User Access**
 Users can be added to the different roles using the Access tab within the Project Details Screen.
 
-
+![acccess tab](images/RP2.jpg)
 
 **NOTE**: The **Project Accessibility setting** at the bottom of the **Access** screen in this example is set to **Private**. If you define a **Public** project, it in effect provides Collaborator permissions to your project data for **ALL** logged in users of your XNAT instance.
 
