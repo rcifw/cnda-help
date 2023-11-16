@@ -8,10 +8,11 @@
 3. Open the **Session** to be deleted.
 4. From the **Actions** box, click **Delete**.
 
+![action box](images/DellSess1.jpg)
 
 5. The Deletion Manager window will open.
 
-
+![delete manager](images/DellSess2.jpg)
 
 6. Verify that the Session(s) to be deleted is listed and only that Session(s).
    
