@@ -14,7 +14,7 @@ There are two ways to add a user to a project. Both ways are outlined below.
 
   2. Click on the **Access** tab.
 
-
+![access tab](images/AddUserProject1.jpg)
     
   3. In the text box under **Add/Invite User**, enter in the **email address of the user** you would like to add.
 
@@ -32,6 +32,8 @@ There are two ways to add a user to a project. Both ways are outlined below.
 
   6. A popup message will display with an option to send an email to the added user.
 
+![popup message](images/AddUserProject2.jpg)
+
 ### **Add user to project by selecting user from list**
 
   1. Open the **Project**.
@@ -39,6 +41,8 @@ There are two ways to add a user to a project. Both ways are outlined below.
   2. Click on the **Access** tab
 
   3. Click on the **Show List** button under the **Add Users from List menu** located in the upper middle part of the page.
+
+![show list](images/AddUserProject3.jpg)
 
   4. A window will pop open that will show a list of users.
 
