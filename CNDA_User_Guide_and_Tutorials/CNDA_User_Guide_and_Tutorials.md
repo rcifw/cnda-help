@@ -12,7 +12,7 @@ Pages in this section
  - Data Sharing
  - [Downloading Data](Downloading_Data/Downloading_Data.md)
  - [Uploading Data](Uploading_Data/Uploading_Data.md)
- - [Docker_Containers_on_CNDA](Docker_Containers_on_CNDA/Docker_Containers_on_CNDA.md)
+ - [Docker Containers on CNDA](Docker_Containers_on_CNDA/Docker_Containers_on_CNDA.md)
  - Pipelines in CNDA
  - Scripting
  - Additional Tools for CNDA
