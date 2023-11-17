@@ -9,7 +9,7 @@ Pages in this section
  - [Experiments](ExperimentsExperiments.md)
  - [Searching CNDA](Searching_CNDA/Searching_CNDA.md)
  - [Prearchive & Archive](Prearchive_and_Archive/Prearchive_and_Archive.md)
- - Data Sharing
+ - [Data Sharing](Data_Sharing/Data_Sharing.md)
  - [Downloading Data](Downloading_Data/Downloading_Data.md)
  - [Uploading Data](Uploading_Data/Uploading_Data.md)
  - [Docker Containers on CNDA](Docker_Containers_on_CNDA/Docker_Containers_on_CNDA.md)
