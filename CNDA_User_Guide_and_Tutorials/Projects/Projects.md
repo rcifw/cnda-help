@@ -1,6 +1,6 @@
 # Projects
 
- - [How project data is organized in the CNDA](How_project_data_is_organized_in_the_CNDA.md)
+ - [How project data is organized in the CNDA](How_Project_Data_is_Organized_in_the_CNDA.md)
    -  [No PHI in the CNDA](No_PHI_in_the_CNDA.md)
    -  [Finding data in the CNDA (Search Tutorials)]
  - [How to Create a Project](How_to_Create_a_Project.md)
