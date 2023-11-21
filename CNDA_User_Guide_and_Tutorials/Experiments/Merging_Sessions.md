@@ -16,8 +16,7 @@ Sometimes there are scenarios that will keep the CNDA from being able to automat
 
 **Example**: Session has the same label and series number as a session in the archive, but the study and series IUD's are different. This scenario will cause Fail warnings like the ones shown below.
 
-
-
+![fail message](images/MergingSessions1.jpg)
 
 ## **Instructions**
 ### **Merging During an Upload**
@@ -52,7 +51,7 @@ Sometimes there are scenarios that will keep the CNDA from being able to automat
 
   a. Select the first duplicate series number, and change it to a unique number. **Series number** is Tag **(0020,0011)**.
 
-
+![dicom browser](images/MergingSessions2.jpg)
 
   b. Select by double clicking on **Value field**.
 
@@ -76,7 +75,7 @@ Sometimes there are scenarios that will keep the CNDA from being able to automat
 
  8. Fill in the following information in on the box that will appear, if not already filled in:
 
-
+![send files](images/MergingSessions3.jpg)
 
 Remote Host: **cnda.wustl.edu**
 
