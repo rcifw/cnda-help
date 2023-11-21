@@ -17,7 +17,7 @@ If you check the CNDA option on the CCIR Registration Form, then the CCIR will g
 
 ## Your Data
 
-By default, your new project will be set to “autoarchive merge” (option 3 in Archive & Prearchive Settings). This means that your data will be sent to and made available automatically in your project archive (as opposed to being held in the prearchive).
+One of the project settings described in [Managing Project Configurations](../CNDA_User_Guide_and_Tutorials/Projects/Managing_Project_Configurations.md) controls the archive procedures for your project. You can consult with the CNDA Help Desk during project creation to pick the setting that best servers your needs.
 
 Any project [Owner](../CNDA_User_Guide_and_Tutorials/Access/Roles_and_Permissions.md) may change this setting. Typically imaging sessions are sent by the scanner operator to the CNDA on the same day as acquisition. If you cannot find your data within 24 hours of acquisition, please contact the CNDA Help Desk (cnda-help@wustl.edu).
 
