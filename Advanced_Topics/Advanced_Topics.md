@@ -32,10 +32,10 @@
     - [Sharing a Session Between Projects](../CNDA_User_Guide_and_Tutorials/Experiments/Sharing_a_Session_Between_Projects.md)
 
  - Stored Searches
-    - [Working With Stored Searches](Working_With_Stored_Searches.md)
-    - [Generating a Quick Search](Generating_a_Quick_Search.md)
-    - [Generate an Advanced Search](Generating_an_Advanced_Search.md)
-    - [Manipulating Search Results and Data Tables](Manipulating_Search_Results_and_Data_Tables.md)
+    - [Working With Stored Searches](../CNDA_User_Guide_and_Tutorials/Searching_CNDA/Working_With_Stored_Searches.md)
+    - [Generating a Quick Search](../CNDA_User_Guide_and_Tutorials/Searching_CNDA/Generating_a_Quick_Search.md)
+    - [Generate an Advanced Search](../CNDA_User_Guide_and_Tutorials/Searching_CNDA/Generating_an_Advanced_Search.md)
+    - [Manipulating Search Results and Data Tables](../CNDA_User_Guide_and_Tutorials/Searching_CNDA/Manipulating_Search_Results_and_Data_Tables.md)
 
  - Downloading 
     - [Downloading From Search Results](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_From_Search_Results.md)

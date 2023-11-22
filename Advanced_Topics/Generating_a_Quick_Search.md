@@ -1,2 +1,0 @@
-# Generating a Quick Search
-

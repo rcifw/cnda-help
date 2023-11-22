@@ -1,3 +1,0 @@
-# Generating an Advanced Search
-
-
