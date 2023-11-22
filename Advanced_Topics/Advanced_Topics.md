@@ -26,10 +26,10 @@
     - [Viewing DICOM Headers](Viewing_DICOM_Headers.md)
     - Running DICOM Browser From CNDA
 
- - [Data Sharing](Data_Sharing.md)
-    - [Requesting Clinical Imaging Data from BJC](Requesting_Clinical_Imaging_Data_from_BJC.md)
-    - [Sharing a Subject Between Projects](Sharing_a_Subject_Between_Projects.md)
-    - [Sharing a Session Between Projects](Sharing_a_Session_Between_Projects.md)
+ - [Data Sharing](../CNDA_User_Guide_and_Tutorials/Data_Sharing/Data_Sharing.md)
+    - [Requesting Clinical Imaging Data from BJC](CNDA_User_Guide_and_Tutorials/Data_Sharing/Requesting_Clinical_Imaging_Data_From_BJC.md)
+    - [Sharing a Subject Between Projects](../CNDA_User_Guide_and_Tutorials/Subjects/Sharing_a_Subject_Between_Projects.md)
+    - [Sharing a Session Between Projects](../CNDA_User_Guide_and_Tutorials/Experiments/Sharing_a_Session_Between_Projects.md)
 
  - Stored Searches
     - [Working With Stored Searches](Working_With_Stored_Searches.md)
