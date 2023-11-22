@@ -1,3 +1,0 @@
-# Viewing DICOM Headers
-
-

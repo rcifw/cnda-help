@@ -23,7 +23,7 @@
     - [Deleting an Imaging Session](../CNDA_User_Guide_and_Tutorials/Experiments/Deleting_an_Imaging_Session.md)
 
  - DICOM
-    - [Viewing DICOM Headers](Viewing_DICOM_Headers.md)
+    - [Viewing DICOM Headers](../CNDA_User_Guide_and_Tutorials/Experiments/Viewing_DICOM_Headers.md)
     - Running DICOM Browser From CNDA
 
  - [Data Sharing](../CNDA_User_Guide_and_Tutorials/Data_Sharing/Data_Sharing.md)
