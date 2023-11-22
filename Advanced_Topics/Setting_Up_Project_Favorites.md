@@ -1,2 +1,0 @@
-# Setting Up Project Favorites
-

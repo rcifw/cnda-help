@@ -1,7 +1,7 @@
 # Advanced Topics
 
- - [Resetting Internet Browser](Resetting_Internet_Browser.md)
- - [Setting Up Project Favorites](Setting_Up_Project_Favorites.md)
+ - [Resetting Internet Browser](../Troubleshooting_Issues_in_CNDA/Resetting_Internet_Browser.md)
+ - [Setting Up Project Favorites](../Advanced_Topics/Setting_Up_Project_Favorites.md)
 
 
  - Uploading and Prearchive

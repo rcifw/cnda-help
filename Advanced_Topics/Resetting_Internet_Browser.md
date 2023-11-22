@@ -1,2 +1,0 @@
-# Resetting Internet Browser
-
