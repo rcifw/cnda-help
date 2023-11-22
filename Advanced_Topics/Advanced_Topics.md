@@ -5,16 +5,16 @@
 
 
  - Uploading and Prearchive
-    - [Uploading Data](Uploading_Data.md)
+    - [Uploading Data](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Data.md)
     - Upload using the XNAT UploadAssistant tool (Retired)
-    - [Uploading Data Using the Zip Uploader](Uploading_Data_Using_the_Zip_Uploader.md)
+    - [Uploading Data Using the Zip Uploader](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Data_Using_the_Zip_Uploader.md)
     - [Uploading from Bay3](../Imaging_Center_User_Guides/Uploading_Sessions_from_Bay3.md)
-    - [Uploading ECAT Data to the CNDA](Uploading_ECAT_Data_to_the_CNDA.md)
-    - [Upload a Document Using Manage Files](Upload_a_Document_Using_Manage_Files.md)
-    - [Uploading a Spreadsheet to CNDA](Uploading_a_Spreadsheet_to_CNDA.md)
-    - [Uploading Data via DICOM Browser](Uploading_Data_Via_DICOM_Browser.md)
+    - [Uploading ECAT Data to the CNDA](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_ECAT_Data_to_the_CNDA.md)
+    - [Upload a Document Using Manage Files](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Upload_a_Document_Using_Manage_Files.md)
+    - [Uploading a Spreadsheet to CNDA](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_a_Spreadsheet_to_CNDA.md)
+    - [Uploading Data via DICOM Browser](../CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Data_via_DICOM_Browser.md)
     - [Accessing & Using the Prearchive](../CNDA_User_Guide_and_Tutorials/Prearchive_and_Archive/Accessing_and_Using_the_Prearchive.md)
-    - [Unable to Find Upload in Prearchive](Unable_to_Find_Upload_in_Prearchive.md)
+    - [Unable to Find Upload in Prearchive](../CNDA_User_Guide_and_Tutorials/Searching_CNDA/Unable_to_Find_Upload_in_Prearchive.md)
 
  - Editing Data Within CNDA
     - [Session Editing](../CNDA_User_Guide_and_Tutorials/Experiments/Session_Editing.md)
