@@ -1,3 +1,0 @@
-# Deleting an Imaging Session
-
-

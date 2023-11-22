@@ -17,10 +17,10 @@
     - [Unable to Find Upload in Prearchive](Unable_to_Find_Upload_in_Prearchive.md)
 
  - Editing Data Within CNDA
-    - [Session Editing](Session_Editing.md)
-    - [Merging Sessions](Merging_Sessions.md)
-    - [Scan Type Cleanup](Scan_Type_Cleanup.md)
-    - [Deleting an Imaging Session](Deleting_an_Imaging_Session.md)
+    - [Session Editing](../CNDA_User_Guide_and_Tutorials/Experiments/Session_Editing.md)
+    - [Merging Sessions](../CNDA_User_Guide_and_Tutorials/Experiments/Merging_Sessions.md)
+    - [Scan Type Cleanup](../CNDA_User_Guide_and_Tutorials/Projects/Scan_Type_Cleanup.md)
+    - [Deleting an Imaging Session](../CNDA_User_Guide_and_Tutorials/Experiments/Deleting_an_Imaging_Session.md)
 
  - DICOM
     - [Viewing DICOM Headers](Viewing_DICOM_Headers.md)
