@@ -54,14 +54,14 @@
  - Click **Submit**.
  - An alert box will appear as shown below.
 
-![subject alert box](images/EditingSession11jpg)
+![third alert box](images/EditingSession11jpg)
 
  c. **For Label**:
  - Type in the new label.
  - Click **Modify**.
  - An alert box will appear as shown below.
 
-![label alert box](images/EditingSession12jpg)
+![fourth alert box](images/EditingSession12jpg)
 
 7. When complete, you will be returned to the **Modify Session form**.
 8. **DO NOT hit submit.**
@@ -78,10 +78,10 @@
 1. Go to the scans section on the **Modify Session form**.
 2. Click the **scissors** icon to the left of the scan to be removed.
 
-![scans list](images/EditingSession141jpg)
+![scan list](images/EditingSession14jpg)
 
 3. Click **Delete** in the dialog box that appears.
 
-![scan delete box](images/EditingSession15jpg)
+![delete box](images/EditingSession15jpg)
 
 4. Click **Submit**.
