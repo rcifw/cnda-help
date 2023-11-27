@@ -20,13 +20,13 @@ A session belongs to one Primary Project, but can be shared into many additional
  
  b. If you **DO NOT** want to share the subject remove the check in the **Share column** for the subject and then proceed to step 6. 
 
- ![share manager](images/ShareSessBtwnProjs3.jpg)
+ ![share manager](images/ShareSessBtwnProjs2.jpg)
  
 6. Click **Share**.
    
 7. On the **Session details page**, the Projects tab will now reflect that the session is shared.
 
-![project tab](images/ShareSessBtwnProjs1.jpg)
+![project tab](images/ShareSessBtwnProjs3.jpg)
 
 ### **To Remove Sharing**
 
