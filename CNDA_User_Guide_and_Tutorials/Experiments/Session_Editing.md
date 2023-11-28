@@ -54,20 +54,20 @@
  - Click **Submit**.
  - An alert box will appear as shown below.
 
-![third alert box](images/EditingSession11jpg)
+![third alert box](images/EditingSession11.jpg)
 
  c. **For Label**:
  - Type in the new label.
  - Click **Modify**.
  - An alert box will appear as shown below.
 
-![fourth alert box](images/EditingSession12jpg)
+![fourth alert box](images/EditingSession12.jpg)
 
 7. When complete, you will be returned to the **Modify Session form**.
 8. **DO NOT hit submit.**
 9. Click the **Back** button at the bottom of the form.
 
-![back button](images/EditingSession13jpg)
+![back button](images/EditingSession13.jpg)
 
 ### **Editing Date, Visit ID and Other Fields**
 1. Click inside the text box and type in the changes.
@@ -78,10 +78,10 @@
 1. Go to the scans section on the **Modify Session form**.
 2. Click the **scissors** icon to the left of the scan to be removed.
 
-![scan list](images/EditingSession14jpg)
+![scan list](images/EditingSession14.jpg)
 
 3. Click **Delete** in the dialog box that appears.
 
-![delete box](images/EditingSession15jpg)
+![delete box](images/EditingSession15.jpg)
 
 4. Click **Submit**.
