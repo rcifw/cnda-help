@@ -125,7 +125,19 @@ Before archiving a session that is located in the prearchive you can review it a
 
 
 
-3. Click Review File Details button OR Click Download All Files to download session (skip 4 and 5 below) and follow directions.
-4. 
-5. 
-6. 
+3. Click **Review File Details** button OR Click **Download All Files** to download session (skip 4 and 5 below) and follow directions.
+
+
+
+4. A window will open with Session information.
+5. Click View Image to display session images.
+
+### View Dicom Data
+To view DICOM data for a session:
+
+1. Click the **checkbox for the session**.
+2. Click **Details** button that displays.
+3. Click **Review DICOM Tags** button.
+4. A window will open displaying the DICOM data.
+
+
