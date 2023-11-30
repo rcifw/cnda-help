@@ -17,7 +17,9 @@ After completing a quick search or an advanced search , you can save that search
 ![save search](images/StoredSearch2.jpg)
 
 5. In the **Save Search Window**, enter an **identical search name** in the **Brief Description** and **Full Description** fields.
+   
 **NOTE**: Brief Description will be used as the name of the search.
+
 6. Click **Submit**.
    
 ### Running Stored Search
