@@ -11,7 +11,7 @@ There are three options for archiving your uploaded image data, as shown in the 
 - DOES overwrite existing files in your archive.
 - If the session label already exists, the previous image data will be erased and new data stored.
 
-
+![manage tab](images/ProjectArchiveOptions1.jpg)
 
 **NOTE**: With all options above, any image data that doesn't match a pre-existing project will go into an Unassigned project area that can be access by CNDA administrators.
 
@@ -42,9 +42,9 @@ To choose your setting for your project:
 
  3. Select the desired option.
 
+![prearchive settings](images/ProjectArchiveOptions2.jpg)
 
-
-4. Click **Save**.
+ 4. Click **Save**.
 
 ### Finding a Session that has been Auto-Archived
 Sessions that have been auto-archived will be listed within the **Project** under the **Subjects** tab, sorted by subject label.
@@ -52,3 +52,5 @@ Sessions that have been auto-archived will be listed within the **Project** unde
 **Note**: For quicker access to sessions, click the down arrow on the **Add** tab and pick the type of session to view.
 
 In the example below, MR Sessions was selected.
+
+![project details](images/ProjectArchiveOptions3.jpg)
