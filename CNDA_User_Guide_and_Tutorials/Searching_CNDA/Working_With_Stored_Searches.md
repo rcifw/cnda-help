@@ -21,7 +21,7 @@ After completing a quick search or an advanced search , you can save that search
 6. Click **Submit**.
    
 ### Running Stored Search
-1. You can locate and run your stored search at the top of the CNDA main page by clicking on the drop down box that says Stored Searches.
+1. You can locate and run your stored search at the top of the CNDA main page by clicking on the **drop down box that says Stored Searches**.
 
 ![stored searches drop down](images/StoredSearch3.jpg)
 
