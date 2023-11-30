@@ -17,24 +17,25 @@ There are two ways to access the prearchive:
    
    a. Click on **Upload** from the main CNDA home page.
 
-
+![upload drop down](images/AccessUsePrearchive1.jpg)
    
     b. Click on **Go to prearchive**.
 
-
+![go to prearchive](images/AccessUsePrearchive2.jpg)
    
-3. Access from a **project details** page.
+2. Access from a **project details** page.
 
    a. Open a project.
 
     b. Click on **View Prearchive** in the **Actions** box on the right side of the screen.
 
+![view prearchive](images/AccessUsePrearchive3.jpg)
 
 ### **Using the Prearchive**
 1. Navigate to the prearchive by Step 1 or 2 above.
 2. The prearchive screen will display. The **Actions** that can be performed from the prearchive screen are listed below as well as noting their descriptions/locations on this image.
 
-
+![prearchive](images/AccessUsePrearchive4.jpg)
 
 1.  **View**: You can change the view setting to show ALL prearchived sessions, just ones you have checked or if you have opened the prearchive from a project the default view will be filtered to just that project's prearchive.
 
@@ -85,7 +86,7 @@ Before archiving a session that is located in the prearchive you can review it a
 
 2. Click **Review and Archive**.
 
-
+![review and archive](images/AccessUsePrearchive5.jpg)
 
 3. An **Image Session Creation Form** will display. Changes can be made to many fields on this form.
    
@@ -109,7 +110,7 @@ Before archiving a session that is located in the prearchive you can review it a
        
     h. **Notes**: You can add notes to your session on this page.
 
-
+![notes box](images/AccessUsePrearchive6.jpg)
 
 4. Once all necessary changes have been made, click **Submit**.
 
@@ -123,11 +124,11 @@ Before archiving a session that is located in the prearchive you can review it a
 
 2. Click **Details** button that displays on the right side of the screen.
 
-
+![details button](images/AccessUsePrearchive7.jpg)
 
 3. Click **Review File Details** button OR Click **Download All Files** to download session (skip 4 and 5 below) and follow directions.
 
-
+![review or download buttons](images/AccessUsePrearchive8.jpg)
 
 4. A window will open with Session information.
 5. Click View Image to display session images.
@@ -140,4 +141,4 @@ To view DICOM data for a session:
 3. Click **Review DICOM Tags** button.
 4. A window will open displaying the DICOM data.
 
-
+![dicom tags](images/AccessUsePrearchive9.jpg)
