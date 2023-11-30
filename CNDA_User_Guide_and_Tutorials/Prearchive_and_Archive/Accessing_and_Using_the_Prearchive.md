@@ -104,7 +104,7 @@ Before archiving a session that is located in the prearchive you can review it a
    
     g. **Scans**:
    
-     - **Type**: Specifies what type of scan it is. The type of scan has to be selected before the form can be submitted.
+     - **Type**: Specifies what type of scan it is. **The type of scan has to be selected before the form can be submitted**.
      - **Quality**: Specifies the quality of the scan.
      - **Note**: Any note regarding the session can be input here.
        
@@ -131,7 +131,7 @@ Before archiving a session that is located in the prearchive you can review it a
 ![review or download buttons](images/AccessUsePrearchive8.jpg)
 
 4. A window will open with Session information.
-5. Click View Image to display session images.
+5. Click **View Image** to display session images.
 
 ### View Dicom Data
 To view DICOM data for a session:
