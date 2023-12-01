@@ -14,7 +14,9 @@
    a. Choosing **Download Images (zip)** will take you to a page to select what individual files you want to download as shown below.
    - You can expand each + to show more detail and be able to select/deselect.
    - Choose the scans to be downloaded.
-   - Uncheck any unwanted types or formats: Assessments, Additional Resources, and Misc Files. Usually Snapshots are not needed. 
+   - Uncheck any unwanted types or formats: Assessments, Additional Resources, and Misc Files. Usually Snapshots are not needed.
+     
+ **NOTE**: Unchecking these will speed up download time and reduce file size.
 
 ![download images page](images/DwnldOneIMgFromSess3.jpg)
 
