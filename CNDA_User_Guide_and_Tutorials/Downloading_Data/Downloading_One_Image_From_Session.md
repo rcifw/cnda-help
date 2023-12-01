@@ -27,7 +27,7 @@
 
    - Select the **Session**.
    - Select **Image Data**.
-   - Choose** how to download the data**.
+   - Choose **how to download the data**.
    - Click **Submit**.
    - You will receive a pop up message to confirm downloading the files. Click **Download**.
    - It will then download the zip file.
