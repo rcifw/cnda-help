@@ -19,6 +19,7 @@ export default defineUserConfig({
     sidebar: [
       {
         text: 'About the CNDA',
+        collapsible: true,
         children: [
           '/About_the_CNDA/CNDA_Services_and_Rates',
           '/About_the_CNDA/People_of_the_CNDA',
