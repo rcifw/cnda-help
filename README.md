@@ -1,54 +1,16 @@
-# cnda-help
-<p align=center>
-</p>
+# CNDA-Help
+This repository contains the source files for the CNDA Help documentation. The documentation is written in markdown and is built using [vuepress](https://v2.vuepress.vuejs.org/).
 
-<p align=center>
-Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@wustl.edu.
-</p>
+## Local Development
+To run the documentation locally, you will need to have [Node.js](https://nodejs.org/en/) installed as well as [pnpm](https://pnpm.io/).
 
-<table border="0">
- <tr>
-  <td><img src="images/cnda-dev-docs.png"></td>
-  <td><img src="images/cnda-services-scanner.png"></td>
-  <td><img src="images/cnda-user-help.png"></td>
- </tr>
- <tr>
-  <td><h3 align="center">CNDA Documentation</h3></td>
-  <td><h3 align="center">Services</h3></td>
-  <td><h3 align="center">CNDA News</h3></td>
- </tr>
- <tr>
-  <td><p><a href="About_the_CNDA/About_the_CNDA">About the CNDA</a></p>
-      <p><a href="CNDA_User_Guide_and_Tutorials/CNDA_User_Guide_and_Tutorials">CNDA User Guide and Tutorials</a></p>
-      <p><a href="Advanced_Topics/Advanced_Topics">Advanced Topics</a></p>
-      <p><a href="Troubleshooting_Issues_in_CNDA/Troubleshooting_Issues_in_CNDA">Troubleshooting Issues in CNDA</a></p>
-      <h3 align="center">Imaging Center Documentation</h3>
-      <p><a href="Imaging_Center_User_Guides/Imaging_Center_User_Guides">CCIR Imaging Center User Guides</a></p>
-  </td>
-  <td>
-   <table>
-    <tr>
-     <td><img src="images/cnda-service-data-hosting.png"></td>
-     <td>Image Storage</td>
-    </tr>
-    <tr>
-     <td><img src="images/cnda-service-development.png"></td>
-     <td>Scripting, Development, and User Manuals</td>
-    </tr>
-    <tr>
-     <td><img src="images/cnda-service-clinical-data.png"></td>
-     <td>Clinical Data Transfer</td>
-    </tr>
-    <tr>
-     <td><img src="images/cnda-service-anonymization.png"></td>
-     <td>Image Anonymization</td>
-    </tr>
-   </table>
-   <a href="CNDA_Services_and_Rates">See all CNDA Services and Rates</a>
-  </td>
-  <td>Blog Posts</td>
- </tr>
+Once you have these installed, you can run the following commands to start the documentation server:
 
+```bash
+pnpm dev
+```
 
+This will start a local server at `http://localhost:8080/` where you can view the documentation. Changes made to the markdown files will be reflected in real time.
 
-</table>
+## Contributing
+If you would like to contribute to the documentation, please fork the repository and make a pull request with your changes. Once the pull request is approved, the changes will be merged into the main branch and the documentation will be updated.
