@@ -235,6 +235,7 @@ export default defineUserConfig({
       git: false,
     },
   }),
+  pagePatterns: ['**/*.md', '!README.md', '!.vuepress', '!node_modules'],
   bundler: viteBundler(),
   plugins: [
     searchPlugin({
