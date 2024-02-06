@@ -8,9 +8,9 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
 
 <table border="0">
  <tr>
-  <td><img src="images/cnda-dev-docs.png"></td>
-  <td><img src="images/cnda-services-scanner.png"></td>
-  <td><img src="images/cnda-user-help.png"></td>
+  <td><img src="./images/cnda-dev-docs.png"></td>
+  <td><img src="./images/cnda-services-scanner.png"></td>
+  <td><img src="./images/cnda-user-help.png"></td>
  </tr>
  <tr>
   <td><h3 align="center">CNDA Documentation</h3></td>
@@ -28,19 +28,19 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
   <td>
    <table>
     <tr>
-     <td><img src="images/cnda-service-data-hosting.png"></td>
+     <td><img src="./images/cnda-service-data-hosting.png"></td>
      <td>Image Storage</td>
     </tr>
     <tr>
-     <td><img src="images/cnda-service-development.png"></td>
+     <td><img src="./images/cnda-service-development.png"></td>
      <td>Scripting, Development, and User Manuals</td>
     </tr>
     <tr>
-     <td><img src="images/cnda-service-clinical-data.png"></td>
+     <td><img src="./images/cnda-service-clinical-data.png"></td>
      <td>Clinical Data Transfer</td>
     </tr>
     <tr>
-     <td><img src="images/cnda-service-anonymization.png"></td>
+     <td><img src="./images/cnda-service-anonymization.png"></td>
      <td>Image Anonymization</td>
     </tr>
    </table>
