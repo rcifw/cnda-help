@@ -1,5 +1,14 @@
 # People of the CNDA
 
+<style>
+.page img {
+    float: right;
+    margin: 0 0 10px 10px;
+    border: 0px solid #333;
+    border-radius: 05px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+}
+</style>
 
 ## Jenny Gurney
 
