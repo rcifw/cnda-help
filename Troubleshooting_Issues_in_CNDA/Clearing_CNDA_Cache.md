@@ -5,7 +5,7 @@ If you were given access to a project but can not log in or perform certain task
 
 ## Instructions
 ### Clear Cache in CNDA
-1.  **Log in to the system**: Click the link where it says "Logged in as <userid>" in the top right-hand corner.
+1.  **Log in to the system**: Click the link where it says "Logged in as userid" in the top right-hand corner.
    
 2. **Access Cached Resources**: Click the “Manage Cached Resources” tab.
 
