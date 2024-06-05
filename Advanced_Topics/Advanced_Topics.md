@@ -44,10 +44,11 @@
     - [Downloading Multiple Images From Project Page](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Multiple_Images_From_Project_Page.md)
     - [Bulk Downloads from CNDA to Windows PC](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Bulk_Downloads_from_CNDA_to_Windows_PC.md)
 
- - Misc
-    - [CTP - Generic Interface](CTP_-_Generic_Interface.md)
-    - [Secure File Zipping](Secure_File_Zipping.md)
-    - [REST API FAQs](REST_API_FAQs.md)
-    - [Generating crlReports](Generating_crlReports.md)
-    - [Useful Scripts](Useful_Scripts.md)
-    - CNDA Pipelines Overview(Retired)
+- Misc
+  - [CTP - Generic Interface](CTP_-_Generic_Interface.md)
+  - [Secure File Zipping](Secure_File_Zipping.md)
+  - [REST API FAQs](REST_API_FAQs.md)
+  - [Generating crlReports](Generating_crlReports.md)
+  - [Useful Scripts](Useful_Scripts.md)
+  - CNDA Pipelines Overview (Retired)
+
