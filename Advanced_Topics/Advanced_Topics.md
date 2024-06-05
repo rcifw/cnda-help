@@ -48,7 +48,6 @@
   - [CTP - Generic Interface](CTP_-_Generic_Interface.md)
   - [Secure File Zipping](Secure_File_Zipping.md)
   - [REST API FAQs](REST_API_FAQs.md)
-  - [Generating crlReports](Generating_crlReports.md)
   - [Useful Scripts](Useful_Scripts.md)
   - CNDA Pipelines Overview (Retired)
 
