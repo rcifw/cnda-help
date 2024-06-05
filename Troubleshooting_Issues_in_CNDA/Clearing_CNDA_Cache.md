@@ -1,11 +1,14 @@
 # Clearing CNDA Cache
 
-To clear CNDA Cache, follow these steps:
+## Description
+If you were given access to a project but can not log in or perform certain tasks in the project, you may need to clear your CNDA Cache.
 
-    Log in to the system: Click the link where it says "Logged in as <userid>" in the top right-hand corner.
+## Instructions
+### Clear Cache in CNDA
+1.  **Log in to the system**: Click the link where it says "Logged in as <userid>" in the top right-hand corner.
+   
+2. **Access Cached Resources**: Click the “Manage Cached Resources” tab.
 
-    Access Cached Resources: Click the “Manage Cached Resources” tab.
+3. **Reset the Cache**: Click the “Reset Access Cache” button.
 
-    Reset the Cache: Click the “Reset Access Cache” button.
-
-    Close and Reopen Browser: Close the browser window. Open a new browser and try again.
+4. **Close and Reopen Browser**: Close the browser window. Open a new browser and try again.
