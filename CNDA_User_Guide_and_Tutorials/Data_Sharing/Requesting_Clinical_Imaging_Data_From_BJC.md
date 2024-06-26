@@ -43,9 +43,10 @@ The fee for this service is $6 per imaging session. You will be invoiced after y
 
 4. Once you have filled the template out you will need to upload the data file in to the private folder for this project in **WUSTL BOX**.
 
-**NOTE:** **You can email the data spreadsheet to the CNDA Help Desk via email sent to "CNDA Help" cnda-help@wustl.edu.** You also can upload the data spreadsheet in to the **WUSTL BOX** folder.  
+**NOTE:** **You can email the data spreadsheet to the CNDA Help Desk via email sent to "CNDA Help" cnda-help@wustl.edu.** 
+You also can upload the data spreadsheet in to the **WUSTL BOX** folder.  
 
-  a. If using **WUSTL BOX**, Log into WUSTL BOX with your WUSTL key.
+  a. If using **WUSTL BOX**, log into WUSTL BOX with your WUSTL key.
   
   b. Click on the folder that pertains to the project you are sending data.
   
