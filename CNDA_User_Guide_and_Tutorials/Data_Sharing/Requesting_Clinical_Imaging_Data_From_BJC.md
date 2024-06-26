@@ -31,7 +31,7 @@ The fee for this service is $6 per imaging session. You will be invoiced after y
 2. Email the IRB Detail and Approval Memo files to the CNDA help desk at **cnda-help@wustl.edu**. After the CNDA Help Desk receives this information they will invite you to upload your data to a private folder in the **WUSTL BOX**. In your email, please provide the contact and department number to whom the invoice should be directed. If there are any special instructions for invoicing, please include them.
 3. To submit your data to the CNDA Help Desk you will need to download and fill out the **CNDA Clinical Pull Template**.  You will fill out the following information:
    
-  a. **Query Type**: What type of format the session information is in. (See Table A below for examples.)
+  a. **Query Type**: What type of format the session information is in. 
   
   b. **CNDA Project ID**: The CNDA project the uploaded information will be stored in.
   
@@ -39,7 +39,7 @@ The fee for this service is $6 per imaging session. You will be invoiced after y
   
   d. **CNDA Session Label**: The CNDA session label to be used for the session being uploaded.
   
-  e. **PACS Query Information**: The session to be uploaded. (See Table A below for examples.)
+  e. **PACS Query Information**: The session to be uploaded.
 
 4. Once you have filled the template out you will need to upload the data file in to the private folder for this project in **WUSTL BOX**.
 
