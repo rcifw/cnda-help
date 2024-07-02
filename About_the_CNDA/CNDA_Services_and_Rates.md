@@ -29,7 +29,7 @@
 
 
 ## Rates: July 1, 2024
-The rates posted below apply to CNDA products and services as of Jan 1, 2023. In the case of sessions acquired at the CCIR, the East Building's MR Facility, or the Cortex MR Facility, scans are automatically imported to the CNDA at no direct cost to investigators. The posted rates apply to studies led by and invoiced directly to Washington University investigators. Rates for external institutions are available upon request. For questions about CNDA rates, please contact the CNDA help desk (cnda-help@wustl.edu).
+The rates posted below apply to CNDA products and services as of July 1, 2024. In the case of sessions acquired at the CCIR, the East Building's MR Facility, or the Cortex MR Facility, scans are automatically imported to the CNDA at no direct cost to investigators. The posted rates apply to studies led by and invoiced directly to Washington University investigators. Rates for external institutions are available upon request. For questions about CNDA rates, please contact the CNDA help desk (cnda-help@wustl.edu).
 
 | Service or Product  | CNDA Rate* |
 |---------------------|------------|
