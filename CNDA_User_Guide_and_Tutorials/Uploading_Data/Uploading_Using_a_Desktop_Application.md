@@ -62,7 +62,9 @@ If the XNAT Desktop Client is not already running, launch it from the shortcut c
 4.	Click in that text box, delete the number, and type in a 1 and click Save.
 5.	You will now be uploading from one stream instead of multiple at the same time. Your upload should no longer freeze.
 
+
 ![freeze](images/Freeze.jpeg)
+
 
 ### Uploading Images
 
