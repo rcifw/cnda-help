@@ -51,6 +51,7 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 
 ![xnat desktop client logon](images/UploadUsingDesktopClient4.jpg)
 
+
 ### Important: Configuring Settings so that this upload does not freeze on you
 
 If the XNAT Desktop Client is not already running, launch it from the shortcut created during installation and pinned to your desktop. 
@@ -60,6 +61,8 @@ If the XNAT Desktop Client is not already running, launch it from the shortcut c
 3.	At the bottom you will see Upload Concurrency and a text box which has the number 6 in that.
 4.	Click in that text box, delete the number 6, and type in a 1 and click Save.
 5.	You will now be uploading from one stream instead of 6 at the same time. Your upload should no longer freeze.
+
+![freeze](images/Freeze.jepg)
 
 ### Uploading Images
 
