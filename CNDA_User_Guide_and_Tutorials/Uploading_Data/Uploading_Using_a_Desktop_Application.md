@@ -64,6 +64,7 @@ If the XNAT Desktop Client is not already running, launch it from the shortcut c
 
 ![prevent_the upload_freeze](images/Freeze.jpeg)
 
+
 ### Uploading Images
 
 If the XNAT Desktop Client is for any reason no longer running, launch it from the shortcut created during installation and pinned to your desktop. 
