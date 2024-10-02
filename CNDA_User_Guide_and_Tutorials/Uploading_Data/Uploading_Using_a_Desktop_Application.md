@@ -58,9 +58,9 @@ If the XNAT Desktop Client is not already running, launch it from the shortcut c
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
 2.	In the center, you will see a button that says User Settings. Click on that button.
-3.	At the bottom you will see Upload Concurrency and a text box which has the number 6 in that.
-4.	Click in that text box, delete the number 6, and type in a 1 and click Save.
-5.	You will now be uploading from one stream instead of 6 at the same time. Your upload should no longer freeze.
+3.	At the bottom you will see Upload Concurrency and a text box which has a number greater than one in it (usually a 6).
+4.	Click in that text box, delete the number, and type in a 1 and click Save.
+5.	You will now be uploading from one stream instead of multiple at the same time. Your upload should no longer freeze.
 
 ![freeze](images/Freeze.jpeg)
 
