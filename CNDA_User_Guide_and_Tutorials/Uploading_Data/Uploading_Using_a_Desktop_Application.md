@@ -54,7 +54,7 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 
 ### Important: Configuring Settings so that this upload does not freeze on you
 
-If the XNAT Desktop Client is not already running, launch it from the shortcut created during installation and pinned to your desktop. 
+If the XNAT Desktop Client is not already running, launch it from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
 2.	In the center, you will see a button that says User Settings. Click on that button.
