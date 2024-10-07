@@ -54,13 +54,17 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 
 ### Important: Configuring Settings so that this upload does not freeze on you
 
+**Note**: This application runs the smoother when it is being run as an Administator. Therefore, the best way to launch this application is to right click on the Desktop icon, and click on the 
+**Run As Administrator** button.
+
 If the XNAT Desktop Client is not already running, launch it from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
 2.	In the center, you will see a button that says User Settings. Click on that button.
 3.	At the bottom you will see Upload Concurrency and a text box which has a number greater than one in it (usually a 6).
 4.	Click in that text box, delete the number, and type in a 1 and click Save.
-5.	You will now be uploading from one stream instead of multiple at the same time. Your upload should no longer freeze.
+5.	You will now be uploading from one stream instead of multiple at the same time. This should help keep your upload from freezing.
+
 
 ![prevent_the upload_freeze](images/Freeze.jpeg)
 
