@@ -57,6 +57,7 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 **VERY IMPORTANT**: This application runs the best when it is being run as an Administator. 
 Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the **Run As Administrator** button. While we fully understand that not everyone may have this level of access at their institution, this admin method of logging in is higly recommended for anyone who can.
 
+**Upload Concurrency**:
 If the XNAT Desktop Client is not already running at this point, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
