@@ -54,11 +54,11 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 
 ### Important: Configuring Settings so that this upload does not freeze on you
 
-**VERY IMPORTANT**: This application runs the best when it is being run as an Administator. Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the 
-**Run As Administrator** button.
-
+**VERY IMPORTANT**: This application runs the best when it is being run as an Administator. 
 
 ![run_as_administrator](images/Admin.jpg)
+
+Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the **Run As Administrator** button.
 
 
 If the XNAT Desktop Client is not already running, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
