@@ -66,7 +66,7 @@ If the XNAT Desktop Client is not already running, launch it (ideally as Adminis
 5.	You will now be uploading from one stream instead of multiple at the same time. This should help keep your upload from freezing.
 
 
-![prevent_the upload_freeze](images/Freeze.jpeg)
+![prevent_the upload_freeze](images/Freeze.jpg)
 
 
 ### Uploading Images
