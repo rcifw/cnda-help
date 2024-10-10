@@ -55,13 +55,11 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 ### Important: Configuring Settings so that this upload does not freeze on you
 
 **VERY IMPORTANT**: This application runs the best when it is being run as an Administator. 
+Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the **Run As Administrator** button. This is higly recommended.
 
-![run_as_administrator](images/Admin.jpg)
+**Proxy Heavy Systems**: This application uploads data to CNDA via a POST request to https://cnda.wustl.edu. Ideally, this request should be made directly. However, if your institution uses proxies or other intermediaries, these can sometimes interfere with the request, potentially causing the upload to freeze. If you encounter such issues, we recommend checking with your IT team to ensure that requests to cnda.wustl.edu can bypass the proxy and be made directly if possible.
 
-Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the **Run As Administrator** button.
-
-
-If the XNAT Desktop Client is not already running, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
+If the XNAT Desktop Client is not already running at this point, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
 2.	In the center, you will see a button that says User Settings. Click on that button.
