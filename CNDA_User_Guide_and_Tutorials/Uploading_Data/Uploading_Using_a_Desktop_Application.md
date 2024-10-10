@@ -57,6 +57,10 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 **VERY IMPORTANT**: This application runs the best when it is being run as an Administator. Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the 
 **Run As Administrator** button.
 
+
+![run_as_administrator](images/Admin.jpg)
+
+
 If the XNAT Desktop Client is not already running, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
 
 1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
@@ -66,7 +70,7 @@ If the XNAT Desktop Client is not already running, launch it (ideally as Adminis
 5.	You will now be uploading from one stream instead of multiple at the same time. This should help keep your upload from freezing.
 
 
-![prevent_the upload_freeze](images/Freeze.jpg)
+![adjust_the concurrency](images/Concurrency.jpg)
 
 
 ### Uploading Images
