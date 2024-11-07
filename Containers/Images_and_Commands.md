@@ -117,5 +117,5 @@
 | Command | Data Type | Actions | Version  |
 |---------|-----------|---------|----------|
 | manual-wmh-calcs | manwmh:manwmhData | Run Manual WMH Thresholding final calculations on a Manual WMH assessor | 1.0 |
-| manual-wmh-preproc | xnat:imageSessionData: Run Manual WMH Thresholding preprocessing on a session that has a FLAIR scan in it | 1.0 |
+| manual-wmh-preproc | xnat:imageSessionData | Run Manual WMH Thresholding preprocessing on a session that has a FLAIR scan in it | 1.0 |
 
