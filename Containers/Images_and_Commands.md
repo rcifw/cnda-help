@@ -56,11 +56,11 @@
 
 ## xnat/xnat_file_reports:0.1
 
-| Command | Data Type | Actions | Version  |
-|---------|-----------|---------|----------|
-| Dump Project | xnat:projectData | Run (dcm4che) dcmdump on a Project | 2024.11.06 |
-| Dump Session | xnat:imageSessionData | Run dcmdump on a Session | 2024.11.06 |
-| Project Manifest | xnat:projectData | List files or folders in a Project folder | 2024.11.06 |
+| Command | Data Type | Actions | Version  | Other |
+|---------|-----------|---------|----------|-------|
+| Dump Project | xnat:projectData | Run (dcm4che) dcmdump on a Project | 2024.11.06 | [Documentation](xnat_file_reports) |
+| Dump Session | xnat:imageSessionData | Run dcmdump on a Session | 2024.11.06 | [Documentation](xnat_file_reports) |
+| Project Manifest | xnat:projectData | List files or folders in a Project folder | 2024.11.06 | [Documentation](xnat_file_reports) |
 
 ## sharmaatul11/hosseinclassifier1_prod:latest
 | Command | Data Type | Actions | Version  |
