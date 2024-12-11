@@ -1,37 +1,49 @@
 # Register For a CNDA User ID
 
 ## **Description**
-To be able to access CNDA, a form must be submitted to the CNDA Help Desk. Once the form is submitted the CNDA Help Desk will review the submission.
+To be able to access CNDA, a form must be submitted to the CNDA Help Desk. Once the form is submitted, the CNDA Help Desk will review the submission.
 
-**NOTE**: You will not be able to login to CNDA until after you have been notified that your new user account has been approved by the CNDA Help Desk.
+**NOTE**: You will not be able to log in to CNDA until you have been notified that your new user account has been approved by the CNDA Help Desk.
+
+---
 
 ## **Instructions**
-1. Using any web browser, open up the CNDA website at https://cnda.wustl.edu/.
-2. Click on the **Register** link below the password field.
 
-![register](images/Reg1.jpg)
+### Step 1: Open the CNDA Website
+Using any web browser, go to [https://cnda.wustl.edu/](https://cnda.wustl.edu/).
 
-3. Fill out the **New User Registration form** that will open. Required fields are shown in the red box below.
+### Step 2: Click the Register Link
+Click on the **Register** link located below the password field.
 
-![register form](images/Reg2.jpg)
+![Register link](images/Reg1.jpg)
 
-4. Click the **Register** button to submit your request.
+---
 
-![comment box](images/Reg3.jpg)
+### Step 3: Fill Out the Registration Form
+Fill out the **New User Registration form** that will open. Required fields are highlighted in the red box below.
 
-**NOTE**: If a red check-mark appears on any fields after registering, modify them and click the **Register** button again.
+![Registration form example](images/Reg2.jpg)
 
-5. A message will appear stating that an email verification was sent to you when registration is successful.
-   
-6. Go to your email and respond to the verification email.
- 
-7. Your account will then be reviewed by the CNDA Help Desk and you will be notified when it is available for use. You may be contacted by the CNDA Help Desk prior to your account being approved if more information is needed.
-   
+---
+
+### Step 4: Submit Your Request
+Click the **Register** button to submit your request.
+
+![Comment box example](images/Reg3.jpg)
+
+**NOTE**: If a red check-mark appears on any fields after registering, modify the fields and click the **Register** button again.
+
+---
+
+### Step 5: Check Your Email
+Once registration is successful, a message will appear stating that an email verification has been sent to you. Check your email and respond to the verification email.
+
+---
+
+### Step 6: Wait for Approval
+Your account will be reviewed by the CNDA Help Desk. You will be notified when your account is available for use. The CNDA Help Desk may contact you for additional information before approval.
+
+---
+
 ## **Things to Remember**
-
-1. After six months of inactivity, usernames are disabled. Users can contact the CNDA Help Desk to have their accounts re-enabled.
-
-2. Users are required to change their password once a year.
-
-
- 
+- After six months of inactivity, usernames are disabled. Contact the CNDA Help Desk to have your account re-enabled.
