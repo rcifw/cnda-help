@@ -1,5 +1,15 @@
 # Container Images and Commands
 
+We have organized the containers by the categories listed below.
+We are open to suggestions for better organization.
+
+ * [Quantitivate Imaging (operates on pixels)](#quantitative-imaging)
+ * Transforms (e.g., DICOM to NIFTI)
+ * Metadata Analysis (flavors of DICOM header dumps)
+ * Other
+
+## Quantitative Imaging
+
 ## registry.nrg.wustl.edu/docker/nrg-repo/mrfree-pet-xnat:1.0.5
 
 | Command | Data Type | Actions | Version  |
