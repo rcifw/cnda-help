@@ -83,3 +83,6 @@ This operates at the project level. It generates a list of files in the project 
 * folder-verbose: List of all folders using *ls -ld*.
 
 In the current version, timestamps are based on UTC time. They will be offset from the time in your timezone.
+
+### DICOM Tag Sniffer
+https://moore-dicom-tools.github.io/dicom-tag-sniffer.github.io/
