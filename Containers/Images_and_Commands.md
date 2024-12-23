@@ -3,7 +3,7 @@
 We have organized the containers by the categories listed below.
 We are open to suggestions for better organization.
 
- * FreeSurfer
+ * [FreeSurfer](#freesurfer)
  * [Quantitivate Imaging (e.g., Free Surfer)](#quantitative-imaging)
  * [Classification](#classification)
  * [Transforms (e.g., DICOM to NIFTI)](#transforms)
