@@ -75,7 +75,7 @@ This operates at the session level. The user selects values for Scope and Output
 * Output Format: Same as *Dump Project*
 
 ### Project Manifest
-This operates at the session level. It generates a list of files in the project by running the Linux *find* command. The user selects a value for Scope:
+This operates at the project level. It generates a list of files in the project by running the Linux *find* command. The user selects a value for Scope:
 
 * file: Simple list of all files.
 * file-verbose: List of all files using *ls -l*.
