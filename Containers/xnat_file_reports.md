@@ -24,7 +24,10 @@ This could be visited again.
 These commands are available and rely on the *xnat/xnat_file_reports* image:
 
 ### Dump Project
-This operates at the project level. The user specifies values for Scope and Output Format.
+This operates at the project level.
+It dumps DICOM metadata from files in the project (per scope) the Container Service build folder.
+You can download the build folder and review the output after the container completes the process. 
+The user specifies values for Scope and Output Format.
 
 * Scope: The user will select one of
   * all: Review all files in the project.
@@ -33,6 +36,34 @@ This operates at the project level. The user specifies values for Scope and Outp
 * Output Format:
   * dcm4che_dump: Full output from the (dcm4che) dcmdump program.
   * csv: CSV file of selected DICOM elements. The list of elements is hard coded in the software.
+
+### Grep Project
+This operates at the project level and is closely related to the Dump Project command.
+This command dumps DICOM metadata for files identified by Scope (see Dump Project) to a temporary file.
+The command then executes the *grep* command against that file using an argument provided by the user.
+The full grep output is recorded in the build folder.
+
+A second process is applied to the grep output to reduce the size of the output.
+That process strips the file names but retains folder information from each output line.
+It then sorts the output by folder and retains only the unique values.
+This has the effect of keeping unique values at the scan level.
+
+Both the full grep output and reduced output are stored in the build folder.
+
+#### Notes on *grep* regular expression
+
+The string specified by the user is passed to the grep command without change.
+Please note that the hexadecimal values for DICOM tags are expressed as **gggg,eeee**; the group and element values are separated by a comma. Here are some examples:
+
+ * 0010,00[1-2]0
+   * This expression will extract the Patient Name (0010,0010) and Patient ID (0010,0020) elements
+*  -e 0010,00[1-2]0 -e 0008,002[0-1]
+   * Note the use of -e. This is direct input to the grep command and instructs grep to scan for both arguments.
+   * This pattern will extract: Patient Name (0010,0010), Patient ID (0010,0020), Study Date (0008,0020), Series Date (0008,0021)
+* -e PatientName -e PatientID
+   * This is equivalent to the first pattern (0010,00[1-2]0). It relies on the DICOM names of the elements rather than the DICOM tag values.
+* ).DA.#
+   * This is an obscure pattern, but can be an example of a powerful operator. It relies on the formatted output produced by the dcmdump program. This pattern picks up the right ) at the end of the DICOM tag and the DA value representation. The # further helps with specifying the pattern. The two periods are used to match a single character. We use this because the software does not yet handle " " characters in the pattern.
 
 ### Dump Session
 This operates at the session level. The user selects values for Scope and Output Format.
