@@ -3,7 +3,7 @@
 </p>
 
 <p align=center>
-Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@wustl.edu.
+Need help or want to schedule training? Contact us at cnda-help@wustl.edu.
 </p>
 
 <table border="0">
@@ -23,6 +23,7 @@ Need help or want to schedule training? Contact us at 314-286-0549 or cnda-help@
       <p><a href="Advanced_Topics/Advanced_Topics">Advanced Topics</a></p>
       <p><a href="Containers/Images_and_Commands">Container Images and Commands</a></p>
       <p><a href="Troubleshooting_Issues_in_CNDA/Troubleshooting_Issues_in_CNDA">Troubleshooting Issues in CNDA</a></p>
+      <p><a href="Computation/Computation">Computation and Data Access Topics</a></p>
       <h3 align="center">Imaging Center Documentation</h3>
       <p><a href="Imaging_Center_User_Guides/Imaging_Center_User_Guides">CCIR Imaging Center User Guides</a></p>
   </td>
