@@ -13,7 +13,7 @@ Notes:
 1. Files are mounted read only to protect the integrity of the data on the CNDA. Mechanisms exist to programatically write results back to your CNDA project.
 2. Send an email to support@rcif.wustl.edu to request this service. There is no fee involved.
 3. The CHPC has both free and subscription services.
-Find out more about the charges by sending an email to support@rcif.wustl.edu.
+Find out more about the charges at the [CHPC Accounting FAQs](https://docs.chpc.wustl.edu/rates/), or you can contact support@rcif.wustl.edu with specific questions.
 
 ## Container Jobs from CNDA Web UI
 The CNDA offers a limited set of Docker Containers that can be launched
@@ -43,5 +43,5 @@ Notes:
 The RCIF manages a [Globus](https://www.globus.org/data-transfer) system that
 is suited for transferring large amounts of data from the RCIF servers.
 This can be leveraged by those that have access to a Globus system.
-Send email to support@rcif.wustl.edu to find out more.
+Please see [our documentation](https://docs.chpc.wustl.edu/getting-started/globus/) or specific questions can be emailed to support@rcif.wustl.edu.
 
