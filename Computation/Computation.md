@@ -1,21 +1,15 @@
 # Computation
-Your image data has been stored in a project in the CNDA archive.
+
+You have stored image data in a CNDA project or you are considering using the CNDA to manage your image data.
 The articles indexed below will help you determine the best mechanism
 to run analysis software on your images.
 
-  - [Overview: Methods for Data Access / Image Analysis](#overview-methods-for-data-access-image-analysis)
   - [Direct SSH Access to Center for High Performance Computing](#direct-ssh-access-to-center-for-high-performance-computing-chpc)
   - [Container Jobs from CNDA Web UI](#container-jobs-from-cnda-web-ui)
   - [Web Download to Your Desktop](#web-download-to-your-desktop)
   - [Script Download to Your Desktop or Server](#script-download-to-your-desktop-or-server)
   - [High Speed Transfer Using Globus](#high-speed-transfer-using-globus)
   - [Brief History of CNDA Computational Job Support](./Brief_Computation_History.md)
-
-
-# Overview: Methods for Data Access / Image Analysis
-
-You have stored image data in a CNDA project or you are considering using the CNDA to manage your image data.
-These methods will provide access to your data and computational resources.
 
 ## Direct SSH Access to Center for High Performance Computing (CHPC)
 The Research Computing and Informatics Facility (RCIF) supports a [High Performance Computing](https://www.mir.wustl.edu/research/core-resources/research-computing-and-informatics-facility/services-equipment/) environment.
