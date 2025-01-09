@@ -118,10 +118,10 @@ To manage duplicates:
 Merge conflicts occur when:
 
 - **Duplicate Session Labels**: Sessions in the prearchive share labels with archived sessions.
-- **New DICOM Series**: Additional series are sent separately from the original session.
-- **Overlapping Metadata**: Conflicts in session attributes like acquisition time or subject information.
+- **New DICOM Series**: Sessions are sent a second time with additional series that were not included in the first transmission.
+- **Overlapping Metadata**: Two sessions have the same key identifiers (e.g., session label, project ID) but differ in other metadata, such as acquisition time or subject information. We have also seen cases where the scanner only sends new series and does not resend the previously sent images.
 - **Inconsistent Files**: Files with the same name but different data.
-- **Manual Edits**: Changes that create inconsistencies with existing data.
+- **Manual Edits**: Users manually edit session attributes or attempt to upload a new session that conflicts with existing data in the archive.
 
 ### Resolving Merge Conflicts:
 
