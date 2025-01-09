@@ -31,7 +31,9 @@ In the prearchive section, you can select a session by checking the box to the l
   This page will show you the details of what is inside your session.  
   On this page, you can rename the session as well as the subject.  
   This renaming helps to resolve merge conflicts.  
-  At the bottom of the page is a Submit button, which allows you to archive the session.
+  At the bottom of the page is a Submit button, which allows you to archive the session.  
+  
+  **Note:** The merging together of a prearchive session and an archived session with the same name also happens on this page. After you hit submit, the system will inform you of the duplicate scan series' that are causing a conflict. If it is possible to rename some of the scan series numbers and merge the two series together, a **Continue** button will appear after pressing Submit   
 
 - **Delete**:  
   Use the **Delete** button (on the far right) to delete a session if it is not needed.
