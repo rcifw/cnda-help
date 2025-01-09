@@ -89,7 +89,7 @@ CNDA staff review Unassigned sessions by examining:
    - **Study Comments (0032,4000)**
    - **Patient Comments (0010,4000)**
 
-2. Investigator names or project IDs in other DICOM tags or comments.
+2. Investigator names or project IDs in other DICOM Tags or comments.
 
 3. The CNDA system using similar session labels for additional clues.
 
