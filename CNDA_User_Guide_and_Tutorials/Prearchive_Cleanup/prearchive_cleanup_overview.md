@@ -150,4 +150,4 @@ For sessions in the wrong project in the **archive**, email **cnda-help@wustl.ed
 
 ## Next Steps
 
-[Continue PART 2: HoW Do I Perform a Prearchive Cleanup?](Prearchive_Cleanup/prearchive_cleanup_instructions.md)
+[Continue to PART 2: How Do I Perform a Prearchive Cleanup?](prearchive_cleanup_instructions.md)
