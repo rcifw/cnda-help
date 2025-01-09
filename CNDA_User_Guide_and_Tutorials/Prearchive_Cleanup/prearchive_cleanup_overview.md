@@ -1,14 +1,14 @@
 # What Exactly Is A Prearchive Cleanup?
 
-## What Is the CNDA Archive?
-
-The CNDA archive is the normal place in CNDA where you see your image data online and available. Images are not stored in a separate system that requires extra steps to retrieve the data. "Archive" simply refers to the standard location for managing and processing your image data.
-
----
-
 ## What Is the CNDA Prearchive?
 
 The CNDA prearchive is a staging area where images are uploaded and stored temporarily before being formally archived into the main archive. It serves as a holding space, allowing researchers to review, organize, and manage their data before archiving. This ensures that only relevant and properly vetted data is moved into the main archive.
+
+---
+
+## What Is the CNDA Archive?
+
+The CNDA archive is the normal place in CNDA where you see your image data online and available. Images are not stored in a separate system that requires extra steps to retrieve the data. "Archive" simply refers to the standard location for managing and processing your image data.
 
 ---
 
