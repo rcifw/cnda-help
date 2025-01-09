@@ -33,7 +33,7 @@ In the prearchive section, you can select a session by checking the box to the l
   This renaming helps to resolve merge conflicts.  
   At the bottom of the page is a Submit button, which allows you to archive the session.  
   
-  **Note:** If a prearchive session and an archived session have the same name, they can be merged on this page if the cause of the conflict is duplicate scan series numbers. After you press submit, the system will check for duplicate scan series numbers, if they have been found. If a merge is possible, you can press the Continue button to proceed, and the system will automatically rename the duplicate scan series numbers and complete the merge.   
+  **Note:** If a prearchive session and an archived session have the same name, they can be merged on this page if the cause of the conflict is duplicate scan series numbers. After you press submit, the system will check for duplicate scan series numbers. If they have been found and a merge is possible, you can press the Continue button to proceed, and the system will automatically rename the duplicate scan series numbers and complete the merge.   
 
 - **Delete**:  
   Use the **Delete** button (on the far right) to delete a session if it is not needed.
