@@ -27,7 +27,7 @@ In the prearchive section, you can select a session by checking the box to the l
   This process takes about 5 minutes, and you will receive an email once it is complete.
 
 - **Review and Archive**:  
-  Clicking the **Review and Archive** button takes you to the Review and Archive page.
+  Clicking the **Review and Archive** button takes you to the Review and Archive page.  
   This page will show you the details of what is inside your session.  
   On this page, you can rename the session as well as the subject.  
   This renaming helps to resolve merge conflicts.  
