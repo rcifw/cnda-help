@@ -45,7 +45,7 @@ The CNDA prearchive will continue to serve as a staging area for new data.
 
 Archiving a session means transferring it from the prearchive to the main archive within your CNDA project. Once archived, the session becomes part of the primary dataset and is fully visible alongside other archived sessions. 
 
-> **Note:** The term "archive" has connotations about a storage area that is designed for cheap, long-term storage and is difficult to access. That is not the case with the CNDA archive; It provides the standard mechanism for managing and processing your image data.
+**Note:** The term "archive" has connotations about a storage area that is designed for cheap, long-term storage and is difficult to access. That is not the case with the CNDA archive; It provides the standard mechanism for managing and processing your image data.
 
 ---
 
