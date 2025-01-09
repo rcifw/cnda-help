@@ -144,7 +144,8 @@ In the prearchive, users can view image data from all projects they have access 
 If this happens in the **prearchive**, contact CNDA staff via email at **cnda-help@wustl.edu** to move it to the correct project.  
 
 ## What If a Session Ends Up In the Wrong Project in the Archive?
-For sessions in the wrong project in the **archive**, email **cnda-help@wustl.edu** for assistance.
+
+If this happens in the **archive**, contact CNDA staff via email at **cnda-help@wustl.edu** to move it to the correct project.
 
 ---
 
