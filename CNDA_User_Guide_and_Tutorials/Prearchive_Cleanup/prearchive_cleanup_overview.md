@@ -58,13 +58,13 @@ The Unassigned area contains sessions uploaded to CNDA but not automatically mat
 ## Why Do Sessions End Up in the Unassigned Area?
 
 ### **For CCIR Sessions:**
-Sessions are assigned to a project based on a text string in the Study Description DICOM Tag, which includes the CCIR Project Number (e.g., `CCIR_00123`). Errors like missing project numbers or typos can cause sessions to end up in the Unassigned area.
+Sessions are assigned to a project based on a text string in the Study Description DICOM Tag, which includes the CCIR Project Number (e.g., `CCIR_00123`). The string for each project is entered and saved by CCIR staff at the console, often during the initial creation of the project. Errors like missing project numbers in the Study Description DICOM Tag or typos can cause sessions to end up in the Unassigned area. We have seen cases where the CCIR project number was not communicated to the CCIR staff before scanning. Notes in the Study Description element help us understand that case.
 
 ### **For MR Facility Sessions:**
 Assignment is managed via RIIS, where scan operators log in and associate a project number with the scanning session. Communication failures between RIIS and CNDA can lead to unassigned sessions.
 
 ### **For NRB Sessions:**
-Similar to CCIR, data entry errors at the console or missing project numbers can result in unassigned sessions.
+Similar to CCIR, data entry errors at the console or missing project numbers in the Study Description DICOM Tag can result in unassigned sessions.
 
 ---
 
@@ -91,7 +91,7 @@ CNDA staff review Unassigned sessions by examining:
 
 2. Investigator names or project IDs in other fields or comments.
 
-3. The CNDA system using session labels for additional clues.
+3. The CNDA system using similar session labels for additional clues.
 
 If no clear assignment is found, further manual checks are conducted to place the session correctly.
 
@@ -108,7 +108,7 @@ If no clear assignment is found, further manual checks are conducted to place th
 
 To manage duplicates:
 
-1. Review the sessions to identify the correct and most up-to-date data.
+1. Review the sessions to identify the correct and most up-to-date image data.
 2. Delete any unnecessary duplicate sessions.
 
 ---
@@ -139,11 +139,13 @@ In the prearchive, users can view image data from all projects they have access 
 
 ## What If the CNDA Staff Places a Session in the Wrong Project?
 
-If this happens in the **prearchive**, contact CNDA staff to move it to the correct project.  
-For issues in the **archive**, email **cnda-help@wustl.edu** for assistance.
+If this happens in the **prearchive**, contact CNDA staff via email at **cnda-help@wustl.edu** to move it to the correct project.  
+
+## What If a Session Ends Up In the Wrong Project in the Archive?
+For sessions in the wrong project in the **archive**, email **cnda-help@wustl.edu** for assistance.
 
 ---
 
 ## Next Steps
 
-[Continue to FAQs PART 2: HOW Exactly Are We Supposed to Do This Cleanup?](Prearchive_Cleanup/prearchive_cleanup_instructions.md)
+[Continue PART 2: HoW Do I Perform a Prearchive Cleanup?](Prearchive_Cleanup/prearchive_cleanup_instructions.md)
