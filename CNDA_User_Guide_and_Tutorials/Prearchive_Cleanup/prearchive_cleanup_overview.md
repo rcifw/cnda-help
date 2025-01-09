@@ -89,9 +89,11 @@ CNDA staff review Unassigned sessions by examining:
    - **Study Comments (0032,4000)**
    - **Patient Comments (0010,4000)**
 
-2. Investigator names or project IDs in other fields or comments.
+2. Investigator names or project IDs in other DICOM tags or comments.
 
 3. The CNDA system using similar session labels for additional clues.
+
+For example, if the label is XX12345_4mo (for a 4 month follow up), we might search for XX12345. This prefix might yield a match that takes us to the proper project/subject.
 
 If no clear assignment is found, further manual checks are conducted to place the session correctly.
 
