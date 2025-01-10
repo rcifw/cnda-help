@@ -151,4 +151,4 @@ If this happens in the **archive**, contact CNDA staff via email at **cnda-help@
 
 ## Next Steps
 
-[Continue to PART 2: How Do I Perform A Prearchive Cleanup?](prearchive_cleanup_instructions.md)
+[Continue to PART 2: How Do I Perform A Prearchive Cleanup?](Prearchive_Cleanup_Instructions.md)
