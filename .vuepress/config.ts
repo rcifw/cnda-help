@@ -107,6 +107,13 @@ export default defineUserConfig({
               '/CNDA_User_Guide_and_Tutorials/Searching_CNDA/Unable_to_Find_Upload_in_Prearchive',
             ],
           },
+          {
+            text: 'Prearchive Cleanup',
+            children: [
+              '/CNDA_User_Guide_and_Tutorials/Prearchive_Cleanup/Prearchive_Cleanup_Overview',
+              '/CNDA_User_Guide_and_Tutorials/Prearchive_Cleanup/Prearchive_Cleanup_Instructions',
+            ],
+          },
           '/CNDA_User_Guide_and_Tutorials/Data_Sharing/Data_Sharing',
           '/CNDA_User_Guide_and_Tutorials/Data_Sharing/Requesting_Clinical_Imaging_Data_From_BJC',
           {
