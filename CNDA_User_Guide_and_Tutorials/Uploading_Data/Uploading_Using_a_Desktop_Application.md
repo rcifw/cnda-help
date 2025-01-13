@@ -49,7 +49,7 @@ The first time XNAT Desktop Client opens, you will need to enter some informatio
 
 4.	Click Login button.
 
-![xnat desktop client logon](images/UploadUsingDesktopClient4.jpg)
+![xnat desktop client logon](images/UploadUsingDesktopClient4.jpg)  
 
 
 ### Important: Configuring Settings so that this upload does not freeze on you
@@ -67,7 +67,7 @@ If the XNAT Desktop Client is not already running at this point, launch it (idea
 5.	You will now be uploading from one stream instead of multiple at the same time. This should help keep your upload from freezing.
 
 
-![adjust_the concurrency](images/Concurrency.jpg)
+![adjust_the concurrency](images/Concurrency.jpg)  
 
 
 **A Note on Proxy Heavy Systems**: This application uploads data to CNDA via a POST request to https://cnda.wustl.edu. Ideally, this request should be made directly. However, if your institution uses proxies or other intermediaries, these can sometimes interfere with the request, potentially causing the upload to freeze or fail. If you encounter such issues regularly, we recommend checking with your IT team to ensure that requests to cnda.wustl.edu can bypass the proxy and be made directly if possible.
