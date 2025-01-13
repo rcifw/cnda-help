@@ -68,7 +68,7 @@ If the XNAT Desktop Client is not already running at this point, launch it (idea
 
 
 ![adjust_the concurrency](images/Concurrency.jpg)  
-
+  
 
 **A Note on Proxy Heavy Systems**: This application uploads data to CNDA via a POST request to https://cnda.wustl.edu. Ideally, this request should be made directly. However, if your institution uses proxies or other intermediaries, these can sometimes interfere with the request, potentially causing the upload to freeze or fail. If you encounter such issues regularly, we recommend checking with your IT team to ensure that requests to cnda.wustl.edu can be whitelisted, to bypass the proxy, and have those requests go directly to our url if possible.  
 
