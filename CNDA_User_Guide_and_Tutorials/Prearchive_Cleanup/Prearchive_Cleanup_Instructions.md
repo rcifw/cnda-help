@@ -44,7 +44,8 @@ In the prearchive section, you can select a session by checking the box to the l
 
 - Enter the prearchive section and review the sessions in your project.  
 - Inspect the details of each session:  
-  - **If a session is needed**, archive it by using the **Archive** button.  
+  - **If a session is needed**, archive it by using the **Archive** button.
+  - **If a merge is needed**, perform a merge by using the **Review and Archive** button.  
   - **If a session is not needed**, delete it using the **Delete** button.
 
 ---
