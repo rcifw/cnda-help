@@ -8,6 +8,12 @@ The prearchive was designed as a temporary holding area for researchers to revie
 
 ---
 
+## Why Have I Never Heard of the CNDA Prearchive?
+
+Some researchers love to review everything before it is archived in CNDA. Others may choose in their settings to archive the scans immediatley without any review. More information on prearchive settings and where they are located can be found in part 2 of this document below.   
+  
+---
+
 ## What Is the CNDA Archive?
 
 The CNDA archive is the normal place in CNDA where you see your image data online and available. Images are not stored in a separate system that requires extra steps to retrieve the data. "Archive" simply refers to the standard location for managing and processing your image data.
