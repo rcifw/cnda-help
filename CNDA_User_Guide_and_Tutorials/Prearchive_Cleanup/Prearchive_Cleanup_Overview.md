@@ -2,7 +2,9 @@
 
 ## What Is the CNDA Prearchive?
 
-The CNDA prearchive is a staging area where images are uploaded and stored temporarily before being formally archived into the main archive. It serves as a temporary holding space, allowing researchers to review, organize, and manage their data before archiving. This ensures that only relevant and properly vetted data is moved into the main archive.
+The CNDA prearchive is a staging area where images are uploaded and stored temporarily before being formally archived into the main archive. It serves as a temporary holding space, allowing researchers to review, organize, and manage their data before archiving. This ensures that only relevant and properly vetted data is moved into the main archive.  
+  
+The prearchive was designed as a temporary holding area for researchers to review and process sessions before archiving them. However, sessions are often left unreviewed, with some remaining in the prearchive for months or even years. To address this issue, we are now undertaking a cleanup of the prearchive.  
 
 ---
 
