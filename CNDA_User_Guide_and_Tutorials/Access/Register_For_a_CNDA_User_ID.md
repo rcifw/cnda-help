@@ -8,14 +8,14 @@ Using any web browser, go to [https://cnda.wustl.edu/](https://cnda.wustl.edu/).
 ---
 
 ### Step 2: Click the Register Link
-Click on the **Register** link located below the password field.  
+Click on the **Register** link located below the password field.
 
 ![Register link](images/Reg1.jpg)
 
 ---
 
 ### Step 3: Fill Out the Registration Form
-Fill out the **New User Registration form** that will open. Required fields are highlighted in the red box below.  
+Fill out the **New User Registration form** that will open. Required fields are highlighted in the red box below.
 
 ---
 
@@ -26,7 +26,7 @@ Fill out the **New User Registration form** that will open. Required fields are 
 ### Step 4: Submit Your Request
 Click the **Register** button to submit your request.
 
----  
+---
 
 ![Comment box example](images/Reg3.jpg)
 
