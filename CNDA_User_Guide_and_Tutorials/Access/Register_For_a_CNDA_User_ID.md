@@ -15,7 +15,7 @@ Click on the **Register** link located below the password field.
 ---
 
 ### Step 3: Fill Out the Registration Form
-Fill out the **New User Registration form** that will open. Required fields are highlighted in the red box below.
+Fill out the **New User Registration form** that will open. Required fields are highlighted in the red box below.  
 
 ---
 
