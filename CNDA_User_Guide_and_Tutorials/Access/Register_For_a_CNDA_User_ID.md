@@ -26,7 +26,7 @@ Fill out the **New User Registration form** that will open. Required fields are 
 ### Step 4: Submit Your Request
 Click the **Register** button to submit your request.
 
----
+---  
 
 ![Comment box example](images/Reg3.jpg)
 
