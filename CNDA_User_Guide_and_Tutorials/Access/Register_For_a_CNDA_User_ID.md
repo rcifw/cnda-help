@@ -8,7 +8,7 @@ Using any web browser, go to [https://cnda.wustl.edu/](https://cnda.wustl.edu/).
 ---
 
 ### Step 2: Click the Register Link
-Click on the **Register** link located below the password field.
+Click on the **Register** link located below the password field.  
 
 ![Register link](images/Reg1.jpg)
 
