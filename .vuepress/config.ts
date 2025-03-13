@@ -28,6 +28,14 @@ export default defineUserConfig({
         ],
       },
       {
+        text: 'CNDA Newsletters',
+        collapsible: true,
+        children: [
+          '/Newsletters/Schedule',
+          '/Newsletters/20250313-Upcoming_CNDA_Split',
+        ],
+      },
+      {
         text: 'CNDA User Guide and Tutorials',
         collapsible: true,
         children: [
