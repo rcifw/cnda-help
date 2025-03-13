@@ -18,10 +18,14 @@ You will be able to login with your existing credentials to see older projects, 
 
 ## Carry Forward Active Projects With New File System (CNDA 1.0)
 We will activate new virtual machines that will use a new file system with only the active projects.
-These new machines will appear at the standard CNDA URL: https://cnda.wustl.edu
+These new machines will appear at the standard CNDA URL: https://cnda.wustl.edu.
 Your existing credentials will work.
 You will see your active projects, but you will not see inactive projects.
 This step moves us from an older storage system but does not address the performance issues.
+
+We will not carry forward older sessions that are in the prearchive.
+We have been working with you to clean these up over the last few months.
+We will carry forward recent sessions from the past two weeks.
 
 ## Stand Up CNDA 2.0
 We are using the term "CNDA 2.0" to refer to the version of CNDA where we have removed the unused data that we believe is one contributing factor to performance issues.
