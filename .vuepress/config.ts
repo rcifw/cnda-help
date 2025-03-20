@@ -32,6 +32,7 @@ export default defineUserConfig({
         collapsible: true,
         children: [
           '/Newsletters/Schedule',
+          '/Newsletters/20250320-Inactive_Projects',
           '/Newsletters/20250313-Upcoming_CNDA_Split',
         ],
       },
