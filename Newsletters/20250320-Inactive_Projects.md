@@ -16,7 +16,8 @@ At the same time, we will disable these projects in the CNDA.
 The date/time for this update is TBD.
 We believe it will occur the week of 2025.03.24.
 
-## 2025.03.24 Update
+**2025.03.24 Update**
+
 Users in the inactive projects in CNDA are now changed to collaborator status.
 You can still see the data in the project.
 You cannot modify the data / add new data.
