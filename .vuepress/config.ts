@@ -142,7 +142,6 @@ export default defineUserConfig({
               '/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Data_via_DICOM_Browser',
               '/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_ECAT_Data_to_the_CNDA',
               '/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application',
-              '/CNDA_User_Guide_and_Tutorials/Uploading_Data/Troubleshooting_the_Desktop_Application',
             ],
           },
           {
@@ -232,6 +231,7 @@ export default defineUserConfig({
           '/Troubleshooting_Issues_in_CNDA/Clearing_CNDA_Cache',
           '/Troubleshooting_Issues_in_CNDA/Reporting_an_Issue_With_the_CNDA',
           '/Troubleshooting_Issues_in_CNDA/Resetting_Internet_Browser',
+          '/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader',
         ],
       },
       {
