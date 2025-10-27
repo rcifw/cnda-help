@@ -16,7 +16,7 @@ The progress bar does not move, and the uploaded session never appears in CNDA.
 
 ---
 
-## **Step 2 – Check That the Client Loads Configurations**
+## **Step 2 – Check that the Client Loads Configurations**
 
 1. Open XNAT Desktop Client.
 2. Confirm that you can:
