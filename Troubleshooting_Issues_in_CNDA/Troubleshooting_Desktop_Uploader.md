@@ -61,7 +61,7 @@ You can test this easily in the next step.
    ```bash
    curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
    ```
-3. Enter your CNDA password when prompted (input is invisible).
+3. Enter your CNDA password when prompted (password input is invisible).
 4. **Results:**
 
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
@@ -72,7 +72,7 @@ You can test this easily in the next step.
 ## **Step 5 – If POST Requests Work, Clear Cached Data**
 
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
-2. Open the **Roaming** folder → delete the folder named **XNAT Desktop Client**.
+2. Open the **Roaming** folder → delete the folder named **XNAT Desktop Client** which is inside of Roaming.
 3. Restart XNAT Desktop Client.
 4. On the home screen, delete any saved servers.
 5. Click Add New XNAT Server and enter:
@@ -91,14 +91,15 @@ You can test this easily in the next step.
 
 ## **Step 6 – Confirm the CNDA Certificate is Valid**
 
-1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in a browser (do **not** log in yet).
-2. Click the padlock 🔒 → **Connection is Secure** or **View Certificate**.
-3. Depending on your browser, here you may need to click on something that looks like a certificate or **Certificate is Valid**
-4. It should say:
+1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in a browser.
+2. Do NOT log in yet.
+3. Click the padlock 🔒 → **Connection is Secure** or **View Certificate**.
+4. Depending on your browser, here you may need to click on something that looks like a certificate or **Certificate is Valid**
+5. It should say:
 
    * **Valid** and **Trusted**
    * **Issued to:** *InCommon RSA Server CA 2*
-5. Log in to CNDA now and after login check the lock/certificate again.
+6. Log in to CNDA now and after login check the lock/certificate again.
 
    * **If certificate stays the same →** that is good, skip ahead.
    * **If certificate changes after login →** contact IT to whitelist `cnda.wustl.edu` so its certificate is not replaced by that of your institution.
