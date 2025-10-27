@@ -67,8 +67,31 @@ You can test this easily in the next step.
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
    * If you get a network or permission error → POST requests are being blocked → skip to Step 7.
 
----
+### **Identifying POST Request Blocking**
 
+When testing POST requests using the following command:
+
+```bash
+curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
+```
+
+certain error messages may indicate that your institution or network is blocking outbound POST traffic.
+
+**Common error patterns:**
+
+* `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out` – The network is dropping or filtering HTTPS POST packets.
+* `curl: (7) Couldn't connect to server` – The firewall is blocking the outbound connection.
+* `curl: (35) SSL connect error` – HTTPS handshake failed due to SSL inspection or proxy interference.
+* `curl: (56) Recv failure: Connection was reset` – The request was terminated mid-transfer, often by a content filter.
+* `curl: (60) SSL certificate problem: unable to get local issuer certificate` – A proxy has replaced CNDA’s certificate, indicating SSL inspection.
+* `curl: (22) The requested URL returned error: 403 Forbidden` – The proxy or gateway is explicitly rejecting POST requests.
+* **HTML error page (e.g., “Access Denied” or “403 Forbidden”)** – A web security gateway returned a blocked-request page instead of JSON, confirming POST blocking.
+
+**Normal (working) response:**
+
+```json
+{"JSESSIONID":"ABC1234567890XYZ"}
+```
 ## **Step 5 – If POST Requests Work, Clear Cached Data**
 
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
