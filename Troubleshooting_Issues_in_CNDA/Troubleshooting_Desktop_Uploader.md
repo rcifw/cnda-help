@@ -117,7 +117,7 @@ certain error messages may indicate that your institution or network is blocking
 
 1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in a browser.
 2. Do NOT log in yet.
-3. Click the padlock 🔒 → **Connection is Secure** or **View Certificate**.
+3. Click the padlock 🔒 or button right to the left of website url → **Connection is Secure** or **View Certificate**.
 4. Depending on your browser, here you may need to click on something that looks like a certificate or **Certificate is Valid**
 5. It should say:
 
