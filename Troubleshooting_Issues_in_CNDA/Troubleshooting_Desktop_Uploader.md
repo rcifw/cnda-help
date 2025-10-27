@@ -102,7 +102,7 @@ certain error messages may indicate that your institution or network is blocking
 5. Click Add New XNAT Server and enter:
 
    ```
-   https://cnda.wustl.edu
+   cnda.wustl.edu
    ```
 6. Log in again.
 7. *(Optional)* Click the blue **Home** button → **Flush XNAT User Access Cache**.
