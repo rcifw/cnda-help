@@ -1,4 +1,4 @@
-# XNAT Desktop Client Upload Troubleshooting (Windows)
+# XNAT Desktop Client Upload Troubleshooting
 
 ## **Symptom**
 
