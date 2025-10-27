@@ -45,8 +45,8 @@ One way to verify if your process has reached the beginning of uploading is to c
 2. Sign in using the same username and password used in XNAT Desktop Client.
 3. Search for your project in the top right and open it.
 4. If your XNAT Desktop app upload included making a new Subject, the new Subject should be visible with nothing in it.
-5. If the new subject is visible, that means you got to the point where the uploading should begin, via **POST** request.
-6. But your uploading is stuck, so you don't see anything in the subject.
+5. If the new Subject is visible, that means you got to the point where the uploading should begin, via **POST** request.
+6. But your uploading is stuck, so you don't see anything in the Subject.
 
 If an upload never progresses past the loading screen, your computer may not be able to send **POST** requests (used for file transfers).
 You can test this easily in the next step.
