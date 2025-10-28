@@ -106,7 +106,7 @@ certain error messages may indicate that your institution or network is blocking
    cnda.wustl.edu
    ```
 7. Log in again.
-8. *(Optional)* Click the blue **Home** button → **Flush XNAT User Access Cache**.
+8. *(Optional)* Click the blue **Home** button at the top left and click → **Flush XNAT User Access Cache**.
 9. Retry your upload.
 
    * If uploads now work → problem solved.
