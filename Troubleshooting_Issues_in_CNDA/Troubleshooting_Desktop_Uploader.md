@@ -98,7 +98,7 @@ certain error messages may indicate that your institution or network is blocking
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
 2. Open the **Roaming** folder → delete the folder named **XNAT Desktop Client** which is inside of the Roaming folder.
 3. Completely Close and Restart XNAT Desktop Uploader.
-4. On the home screen, remove any saved server connections by clicking on the connection and then Remove in the pop up window.
+4. On the home screen, remove any saved server connections by clicking on the connection and then **Remove** in the pop up window.
 5. Click **Add New XNAT Server** and enter:
 
    ```
