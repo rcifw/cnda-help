@@ -78,16 +78,9 @@ You can test this easily in the next step.
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
    * If you get a network or permission error → POST requests are being blocked → skip to Step 7.
 
-### **Identifying POST Request Blocking ERROR messages**
-
-When testing POST requests using the following command:
-
-```bash
-curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
-```
 ## Common error patterns and what they actually indicate
 
-These errors may appear when testing POST requests with `curl`. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
+These errors may appear when testing POST requests with `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
 
 ### Connection-level failures (network connectivity issues)
 
