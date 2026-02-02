@@ -25,7 +25,7 @@ The progress bar does not move, and the uploaded session never appears in CNDA.
    * Log in successfully
    * View your list of projects
    * See configuration options load without errors
-   * Do not worry about the no anonimyzation popup message - that is only for people with custom anonimization set up
+   * Do not worry about the no anonymization popup message - that is only for people with custom anonymization set up
    * Reach the upload screen, even if the progress bar is stuck
 4. The server address when logging in must be **exactly**:
 
@@ -58,7 +58,7 @@ You can test this easily in the next step.
 ## **Step 4 – Test POST Requests**
 
 1. Press **⊞ Win + R** → type `cmd` → press **Enter**.
-2. In the Command Prompt window, type:
+2. In the Command Prompt window, type or copy over:
 
    ```bash
    curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
@@ -95,7 +95,7 @@ certain error messages may indicate that your institution or network is blocking
 ```json
 {"JSESSIONID":"ABC1234567890XYZ"}
 ```
-## **Step 5 – If POST Requests Work, Clear Cached Data**
+## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
 
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
 2. Open the **Roaming** folder
@@ -111,12 +111,14 @@ certain error messages may indicate that your institution or network is blocking
 8. *(Optional)* Click the blue **Home** button at the top left and click → **Flush XNAT User Access Cache**.
 9. Retry your upload.
 
-   * If uploads now work → problem solved.
+   * If uploads work now → it was just your cache, and the problem is solved.
    * If not → continue to Step 6.
 
 ---
 
 ## **Step 6 – Confirm the CNDA Certificate is Valid**
+
+Some institutional networks replace SSL security certificates after login.
 
 1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in a browser.
 2. Do NOT log in yet.
