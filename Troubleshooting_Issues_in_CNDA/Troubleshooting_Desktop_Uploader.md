@@ -76,11 +76,11 @@ You can test this easily in the next step.
 6. Results:
 
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
-   * If you get a network or permission error → POST requests are being blocked → skip to Step 7.
+   * If you specifically get a network or permission error → POST requests are being blocked → skip to Step 7.
 
-## Common error patterns and what they actually indicate
+## Common error messages explained
 
-These errors may appear when testing POST requests with `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
+These errors may appear when testing POST requests with the `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
 
 ### Connection-level failures (network connectivity issues)
 
