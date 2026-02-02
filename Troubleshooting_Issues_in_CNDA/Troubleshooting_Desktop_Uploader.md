@@ -71,6 +71,7 @@ You can test this easily in the next step.
 
 ```json
 {"JSESSIONID":"ABC1234567890XYZ"}
+```
    
 6. Results:
 
@@ -96,7 +97,7 @@ certain error messages may indicate that your institution or network is blocking
 * `curl: (60) SSL certificate problem: unable to get local issuer certificate` – A proxy has replaced CNDA’s certificate, indicating SSL inspection.
 * `curl: (22) The requested URL returned error: 403 Forbidden` – The proxy or gateway is explicitly rejecting POST requests.
 * **HTML error page (e.g., “Access Denied” or “403 Forbidden”)** – A web security gateway returned a blocked-request page instead of JSON, confirming POST blocking.
-```
+
 ## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
 
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
