@@ -82,7 +82,7 @@ You can test this easily in the next step.
 
 These errors may appear when testing POST requests with the `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
 
-## **Connection-level failures (network connectivity issues)**
+## Connection-level failures (network connectivity issues)
 
 * `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out`  
   The network is blocking or dropping outbound HTTPS connections entirely.
