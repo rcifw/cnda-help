@@ -154,8 +154,8 @@ Contact your institutional IT team and provide this message:
   cnda.wustl.edu
   ```
 * The most common fix: delete the **XNAT Desktop Client** folder under
-  `%AppData%\Roaming`.
+  `%AppData%\Roaming` to clear the cache.
 * If that doesn’t help, it’s almost always a **network POST blocking** issue.
-* Once POST requests are allowed, uploads typically resume immediately.
+* Once POST requests are allowed by institution, uploads typically resume immediately.
 
 
