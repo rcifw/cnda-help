@@ -91,7 +91,7 @@ certain error messages may indicate that your institution or network is blocking
 * `curl: (22) The requested URL returned error: 403 Forbidden` – The proxy or gateway is explicitly rejecting POST requests.
 * **HTML error page (e.g., “Access Denied” or “403 Forbidden”)** – A web security gateway returned a blocked-request page instead of JSON, confirming POST blocking.
 
-**Normal (working) response:**
+**Normal (Post request is working) response:**
 
 ```json
 {"JSESSIONID":"ABC1234567890XYZ"}
