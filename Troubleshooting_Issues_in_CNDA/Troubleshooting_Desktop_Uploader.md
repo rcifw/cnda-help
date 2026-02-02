@@ -82,7 +82,7 @@ You can test this easily in the next step.
 
 These errors may appear when testing POST requests with the `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
 
-### Connection-level failures (network connectivity issues)
+## Connection-level failures (network connectivity issues)
 
 * `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out`  
   The network is blocking or dropping outbound HTTPS connections entirely.
@@ -92,7 +92,7 @@ These errors may appear when testing POST requests with the `curl` command given
 
 These errors indicate basic network connectivity problems, not application-level blocking.
 
-### TLS / certificate-related failures (SSL inspection or trust issues)
+## TLS / certificate-related failures (SSL inspection or trust issues)
 
 * `curl: (35) SSL connect error`  
   The TLS handshake failed. This often occurs due to SSL inspection, proxy interference, or certificate validation issues. This does not, by itself, indicate POST blocking.
@@ -103,14 +103,14 @@ These errors indicate basic network connectivity problems, not application-level
 * `curl: (60) SSL certificate problem: unable to get local issuer certificate`  
   The certificate chain cannot be validated. This commonly means a proxy or security appliance has replaced the server certificate.
 
-These errors occur before any POST request is processed by CNDA.
+These errors occur before any POST request is processed by CNDA. They have to do with the security certificate.
 
-### Connection termination during transfer
+## Connection termination during transfer
 
 * `curl: (56) Recv failure: Connection was reset`  
   The connection was forcibly closed mid-request, often by a firewall, proxy, or content filter. This may indicate filtering of upload traffic but is not definitive on its own.
 
-### Application-level blocking (true POST rejection)
+## Application-level blocking (true POST rejection)
 
 * `curl: (22) The requested URL returned error: 403 Forbidden`  
   The request reached the server or gateway, but POST requests are explicitly being denied.
