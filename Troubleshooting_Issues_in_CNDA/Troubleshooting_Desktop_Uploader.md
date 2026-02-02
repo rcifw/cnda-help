@@ -18,22 +18,24 @@ The progress bar does not move, and the uploaded session never appears in CNDA.
 
 ## **Step 2 – Check that the Client Loads Configurations**
 
-1. Open XNAT Desktop Client.
-2. Confirm that you can:
+1. Open XNAT Desktop Client, ideally by right clicking the app and pressing Run as Administrator.
+2. If you can not run as administrator, just open it normally by double clicking the app.
+3. Confirm that you can:
 
    * Log in successfully
    * View your list of projects
    * See configuration options load without errors
+   * Do not worry about the no anonimyzation popup message - that is only for people with custom anonimization set up
    * Reach the upload screen, even if the progress bar is stuck
-3. The server address must be **exactly**:
+4. The server address when logging in must be **exactly**:
 
    ```
    cnda.wustl.edu
    ```
 
    There should be nothing after `.edu` (no slashes or sub-URLs).
-4. **If you can browse projects normally →** proceed to Step 3.
-5. **If you get connection errors →** check your internet or VPN and ensure you’re targeting the correct URL.
+5. **If you can browse projects normally →** proceed to Step 3.
+6. **If you get connection errors →** check your internet or VPN and ensure you’re targeting the correct URL.
 
 ---
 
@@ -68,7 +70,7 @@ You can test this easily in the next step.
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
    * If you get a network or permission error → POST requests are being blocked → skip to Step 7.
 
-### **Identifying POST Request Blocking**
+### **Identifying POST Request Blocking ERROR messages**
 
 When testing POST requests using the following command:
 
