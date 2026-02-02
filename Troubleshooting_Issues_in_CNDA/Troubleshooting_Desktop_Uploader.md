@@ -66,6 +66,12 @@ You can test this easily in the next step.
 3. In the command above replace yourusername with your CNDA username and press Enter to run it.
 4. Enter your CNDA password when prompted (password input is invisible).
 5. Press Enter.
+
+**Normal (Post request is working) response:**
+
+```json
+{"JSESSIONID":"ABC1234567890XYZ"}
+   
 6. Results:
 
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
@@ -90,11 +96,6 @@ certain error messages may indicate that your institution or network is blocking
 * `curl: (60) SSL certificate problem: unable to get local issuer certificate` – A proxy has replaced CNDA’s certificate, indicating SSL inspection.
 * `curl: (22) The requested URL returned error: 403 Forbidden` – The proxy or gateway is explicitly rejecting POST requests.
 * **HTML error page (e.g., “Access Denied” or “403 Forbidden”)** – A web security gateway returned a blocked-request page instead of JSON, confirming POST blocking.
-
-**Normal (Post request is working) response:**
-
-```json
-{"JSESSIONID":"ABC1234567890XYZ"}
 ```
 ## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
 
