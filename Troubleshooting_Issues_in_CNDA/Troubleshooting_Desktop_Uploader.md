@@ -63,9 +63,10 @@ You can test this easily in the next step.
    ```bash
    curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
    ```
-3. Enter your CNDA password when prompted (password input is invisible).
-4. Press Enter.
-5. Results:
+3. In the command above replace yourusername with your CNDA username and press Enter to run it.
+4. Enter your CNDA password when prompted (password input is invisible).
+5. Press Enter.
+6. Results:
 
    * If you receive a response containing a `JSESSIONID` → POST works → go to Step 5.
    * If you get a network or permission error → POST requests are being blocked → skip to Step 7.
