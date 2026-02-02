@@ -85,18 +85,46 @@ When testing POST requests using the following command:
 ```bash
 curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
 ```
+## Common error patterns and what they actually indicate
 
-certain error messages may indicate that your institution or network is blocking outbound POST traffic.
+These errors may appear when testing POST requests with `curl`. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
 
-**Common error patterns:**
+### Connection-level failures (network connectivity issues)
 
-* `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out` – The network is dropping or filtering HTTPS POST packets.
-* `curl: (7) Couldn't connect to server` – The firewall is blocking the outbound connection.
-* `curl: (35) SSL connect error` – HTTPS handshake failed due to SSL inspection or proxy interference.
-* `curl: (56) Recv failure: Connection was reset` – The request was terminated mid-transfer, often by a content filter.
-* `curl: (60) SSL certificate problem: unable to get local issuer certificate` – A proxy has replaced CNDA’s certificate, indicating SSL inspection.
-* `curl: (22) The requested URL returned error: 403 Forbidden` – The proxy or gateway is explicitly rejecting POST requests.
-* **HTML error page (e.g., “Access Denied” or “403 Forbidden”)** – A web security gateway returned a blocked-request page instead of JSON, confirming POST blocking.
+* `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out`  
+  The network is blocking or dropping outbound HTTPS connections entirely.
+
+* `curl: (7) Couldn't connect to server`  
+  A firewall or network rule is preventing the connection from being established.
+
+These errors indicate basic network connectivity problems, not application-level blocking.
+
+### TLS / certificate-related failures (SSL inspection or trust issues)
+
+* `curl: (35) SSL connect error`  
+  The TLS handshake failed. This often occurs due to SSL inspection, proxy interference, or certificate validation issues. This does not, by itself, indicate POST blocking.
+
+* `curl: (35) schannel: CRYPT_E_NO_REVOCATION_CHECK`  
+  Windows could not complete certificate revocation checking. The TLS handshake failed before the POST request was sent. This indicates a certificate validation or network restriction issue, not blocked POST traffic.
+
+* `curl: (60) SSL certificate problem: unable to get local issuer certificate`  
+  The certificate chain cannot be validated. This commonly means a proxy or security appliance has replaced the server certificate.
+
+These errors occur before any POST request is processed by CNDA.
+
+### Connection termination during transfer
+
+* `curl: (56) Recv failure: Connection was reset`  
+  The connection was forcibly closed mid-request, often by a firewall, proxy, or content filter. This may indicate filtering of upload traffic but is not definitive on its own.
+
+### Application-level blocking (true POST rejection)
+
+* `curl: (22) The requested URL returned error: 403 Forbidden`  
+  The request reached the server or gateway, but POST requests are explicitly being denied.
+
+* HTML error page (e.g., “Access Denied” or “403 Forbidden”)  
+  A security gateway intercepted the request and returned a blocking page instead of JSON. This strongly indicates POST blocking.
+
 
 ## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
 
