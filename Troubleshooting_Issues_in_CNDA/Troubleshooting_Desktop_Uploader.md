@@ -1,11 +1,41 @@
-# Troubleshooting XNAT Desktop Uploader
+## Troubleshooting XNAT Desktop Uploader
+
+## Generic Troubleshooting Information
+
+The following items address common issues that may prevent successful uploads to CNDA.
+
+### Account Activity Requirement
+
+CNDA accounts require activity at least once every 6 months.
+
+Accounts that remain inactive for 6 months are automatically disabled and uploads will not be allowed.
+
+If your account becomes disabled, email cnda-help@wustl.edu to request reactivation.
+
+### Clear Your CNDA Cache
+
+If you are missing project access, cannot upload, or recently had permissions updated, clearing your CNDA cache often resolves the issue.
+
+#### Clear cache in the CNDA website
+
+1. Log in to CNDA: https://cnda.wustl.edu  
+2. Click the link in the top-right corner that says **Logged in as <your username>**.  
+3. Select the **Manage Cached Resources** tab.  
+4. Click **Reset Access Cache**.
+
+#### Clear cache in the XNAT Desktop Client
+
+1. Open the XNAT Desktop Client.  
+2. Log in using your CNDA username and password.  
+3. In the top left corner, click the large blue **MENU** button.  
+4. Click **Flush XNAT User Access Cache**.
+
+After clearing the cache, log out and back in to XNAT Desktop Uploader before trying your upload again.
 
 ## **Symptom**
 
 Your uploads in the XNAT Desktop Client appear *stuck*.
 The progress bar does not move, and the uploaded session never appears in CNDA.
-
----
 
 ## **Step 1 – Confirm You Can Log In to CNDA**
 
@@ -13,8 +43,6 @@ The progress bar does not move, and the uploaded session never appears in CNDA.
 2. Sign in using the same username and password used in XNAT Desktop Client.
 3. **If login works →** proceed to Step 2.
 4. **If login fails →** reset or confirm your CNDA password first.
-
----
 
 ## **Step 2 – Check that the Client Loads Configurations**
 
@@ -37,8 +65,6 @@ The progress bar does not move, and the uploaded session never appears in CNDA.
 5. **If you can browse projects normally →** proceed to Step 3.
 6. **If you get connection errors →** check your internet or VPN and ensure you’re targeting the correct URL.
 
----
-
 ## **Step 3 – Verify the Upload Actually Starts**
 
 One way to verify if your process has reached the beginning of uploading is to check if an empty Subject was made on the CNDA website.
@@ -52,8 +78,6 @@ One way to verify if your process has reached the beginning of uploading is to c
 
 If an upload never progresses past the loading screen, your computer may not be able to send **POST** requests (used for file transfers).
 You can test this easily in the next step.
-
----
 
 ## **Step 4 – Test POST Requests**
 
@@ -138,8 +162,6 @@ These errors occur before any POST request is processed by CNDA. They have to do
    * If uploads work now → it was just your cache, and the problem is solved.
    * If not → continue to Step 6.
 
----
-
 ## **Step 6 – Confirm the CNDA Certificate is Valid**
 
 Some institutional networks replace SSL security certificates after login.
@@ -157,8 +179,6 @@ Some institutional networks replace SSL security certificates after login.
    * **If certificate stays the same →** that is good, skip ahead.
    * **If certificate changes after login →** contact IT to whitelist `cnda.wustl.edu` so its certificate is not replaced by that of your institution.
 
----
-
 ## **Step 7 – If POST Requests Fail Everywhere**
 
 If the `curl POST` test fails, your **network firewall** is blocking POST traffic.
@@ -166,8 +186,6 @@ Contact your institutional IT team and provide this message:
 
 > “Outbound HTTPS POST requests to `https://cnda.wustl.edu` are being blocked.
 > Please whitelist this endpoint so uploads from XNAT Desktop Client can succeed.”
-
----
 
 ## **Final Notes**
 
