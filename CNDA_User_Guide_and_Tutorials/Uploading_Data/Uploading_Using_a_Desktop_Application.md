@@ -1,224 +1,297 @@
-#  Uploading Using a Desktop Application
+# Uploading Using the XNAT Desktop Client (DXM)
 
-### Uploading Using XNAT Desktop Client 
+## Overview
 
-The XNAT Desktop Client, or "Data Transfer Manager" (DXM), is a full-featured upload and download application that integrates with XNAT 1.7.5 and later.  It can easily be installed and launched from the user’s desktop.  It is a stand-alone tool, purpose-built to anonymize and upload image session data to your CNDA powered by XNAT.  
+The XNAT Desktop Client, also known as the Data Transfer Manager (DXM), is a standalone application used to upload and download imaging session data to CNDA (powered by XNAT).
 
-### Downloading the XNAT Desktop Client 
-To download the XNAT Desktop Client (DXM), please visit the XNAT downloads page:  https://download.xnat.org/desktop-client/ where the most recent packages can be found under “XNAT Desktop Client”.  The download options will appear as shown in the image to the right, under “Get the XNAT Desktop Client”.
+It supports XNAT 1.7.5 and later and is available for:
 
-There are three operating system versions of the XNAT Desktop Client listed; “Mac OS”, “Windows” and “Linux”.  Most users will probably need to use the “Windows” or “Max OS” link.  If you are unsure of which tool to download, please contact your IT department to confirm your operating system version. 
+- Windows  
+- Mac OS  
+- Linux  
 
+The client is designed to anonymize and securely upload imaging sessions directly to CNDA.
 
-![get xnat desktop client](images/UploadUsingDesktopClient1.jpg)
+---
 
-### Installing the XNAT Desktop Client
-The XNAT Desktop Client is available for use on modern Mac, Windows and Linux operating systems, though the installation methods and requirements differ for each system.  Please visit Installing the XNAT Desktop Client page:  https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client
+## Downloading the Client
 
-### Installing the XNAT Desktop Client Windows Version
-The XNAT Desktop Client for Windows includes an embedded Java Runtime Environment. There have been known issues accessing this bundled resource in virtualized Windows environments, so we strongly recommend only installing the client on a native Windows OS.  Installing the application will install file-handling support for all your browsers so that image session download requests from the XNAT web app will open in your desktop client. Installation is very straightforward.  
-1.	As indicated above, download the .exe file from download.xnat.org/desktop-client
-2.	Go to your Downloads folder and Open the XNAT-Desktop-Client-Setup file, which launches the one-step installer.
-3.	Please click Yes or OK for pop-up: "Do you want to allow the following programs to make changes to this computer?” 
-4.	Completing XNAT-Desktop-Client Setup dialog box displays.
-5.	Click the Finish button.
+Download the latest version from:
 
-![xnat desktop client setup](images/UploadUsingDesktopClient2.jpg)
+https://download.xnat.org/desktop-client/
 
-6. XNAT Desktop Client page displays.
+Under **Get the XNAT Desktop Client**, choose the version that matches your operating system.
 
-![xnat desktop client page](images/UploadUsingDesktopClient3a.jpg)
+If you are unsure which version to install, contact your IT department.
 
-### Running XNAT Desktop Client for the First Time
+![Download Page](images/UploadUsingDesktopClient1.jpg)
 
-The first time XNAT Desktop Client opens, you will need to enter some information into the tool.  This information will be saved so that when you open the tool in the future, you won’t need to complete this step again.
+---
 
-1.	Click the Add New XNAT Server button.
-   
-![add new server](images/UploadUsingDesktopClient3b.jpg)
+## Installing the Client
 
+Installation steps vary by operating system.  
+You can read the official installation guide here in case needed:
 
-2.	User login dialog box displays.
-3.	Please enter the following values:
+https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client
 
-    **Server**:  cnda.wustl.edu
-  
-    **Username**:  your CNDA user id
-  
-    **Password**: your CNDA password
+---
 
-4.	Click Login button.
+## Installing on Windows
 
-![xnat desktop client logon](images/UploadUsingDesktopClient4.jpg)  
+The Windows version includes an embedded Java Runtime Environment.
 
+For best results, install on a native Windows system rather than a virtual environment.
 
-### Important: Configuring Settings so that this upload does not freeze on you
+### Installation Steps
 
-**VERY IMPORTANT**: This application runs the best when it is being run as an Administator. 
-Therefore, the best way to launch this application is to right click on it's Desktop icon, and click on the **Run As Administrator** button. While we fully understand that not everyone may have this level of access at their institution, this admin method of starting the application is higly recommended for anyone who can.
+1. Download the `.exe` installer.
+2. Open the installer from your Downloads folder.
+3. Click **Yes** if prompted to allow changes.
+4. Complete the setup wizard.
+5. Click **Finish**.
 
-**Upload Concurrency Adjustment**:
-If the XNAT Desktop Client is not already running at this point, launch it (ideally as Administrator) from the shortcut created during installation and pinned to your desktop and log in with your username and password. 
+![Windows Setup](images/UploadUsingDesktopClient2.jpg)
 
-1.	On the top right, you will see a settings icon that looks like a cog wheel. Click on that icon to open up settings.
-2.	In the center, you will see a button that says User Settings. Click on that button.
-3.	At the bottom you will see Upload Concurrency and a text box which has a number greater than one in it (usually a 6).
-4.	Click in that text box, delete the number, and type in a 1 and click Save.
-5.	You will now be uploading from one stream instead of multiple at the same time. This should help keep your upload from freezing.
+After installation, the client will launch.
 
+![Client Landing Page](images/UploadUsingDesktopClient3a.jpg)
 
-![adjust_the concurrency](images/Concurrency.jpg)  
-  
+---
 
-**A Note on Proxy Heavy Systems**: This application uploads data to CNDA via a POST request to https://cnda.wustl.edu. Ideally, this request should be made directly. However, if your institution uses proxies or other intermediaries, these can sometimes interfere with the request, potentially causing the upload to freeze or fail. If you encounter such issues regularly, we recommend checking with your IT team to ensure that requests to cnda.wustl.edu can be whitelisted, to bypass the proxy, and have those requests go directly to our url if possible.  
+## First-Time Setup
 
-### Uploading Images
+When launching the client for the first time, you must add the CNDA server.
 
-If the XNAT Desktop Client is for any reason no longer running, launch it from the shortcut created during installation and pinned to your desktop. 
+1. Click **Add New XNAT Server**.
 
-![xnat desktop client icon](images/UploadUsingDesktopClient5.jpg)
+![Add Server](images/UploadUsingDesktopClient3b.jpg)
 
-1.	Log in using your CNDA username and password same as above.
+2. Enter:
 
-2.	The XNAT Desktop Client Home page displays.
+```
+Server:   cnda.wustl.edu
+Username: your CNDA username
+Password: your CNDA password
+```
+Note: server should always be exactly cnda.wustl.edu
 
-**Note**: You can select the drop down Menu, to navigate to the Home, Upload, Download, Monitor Transfers, Flush XNAT User Access Cache, Documentation and About pages.
+3. Click **Login**.
 
-![home page menu](images/UploadUsingDesktopClient6.jpg)
+![Login Screen](images/UploadUsingDesktopClient4.jpg)
 
+Your connection settings will be saved for future sessions.
 
-3.	Click the Upload files button.
+---
 
-![upload files button](images/UploadUsingDesktopClient7.jpg)
+## Recommended Configuration
 
+### Run as Administrator (Windows)
 
-4.	The Upload Image session to [cnda.wustl.edu] page displays.
-   
-**Note**: You will only see the projects in CNDA for which you have been granted access.
- 
-5.	Select the project to upload the files to.
+For improved stability:
 
-![select project](images/UploadUsingDesktopClient8.jpg)
+- Right-click the desktop icon  
+- Select **Run as Administrator**
 
+If administrator access is not available, continue normally.
 
-6.  The Project Setting will display.
-7.	Click the Browse button and select the **directory where the files are stored**.
+---
 
-![browse button](images/UploadUsingDesktopClient9.jpg)
+### Adjust Upload Concurrency
 
+Reducing concurrency can prevent freezing during upload.
 
-8.	Your project has an anonymization script set up, so the follow dialog box displays.
+1. Click the **Settings (gear icon)** in the top right.
+2. Select **User Settings**.
+3. Locate **Upload Concurrency**.
+4. Change the value to `1`.
+5. Click **Save**.
 
-9.	Click the radio button to the left of the file.
+![Concurrency Setting](images/Concurrency.jpg)
 
-10.	Click the Upload button.
+This forces uploads to run as a single stream.
 
-![upload button](images/UploadUsingDesktopClient10.jpg)
+---
 
+### Proxy or Network Issues
 
-11.	The page to Confirm Details displays.
-12.	If the subject has been scanned before, click the “Select subject” drop down menu and select the subject.
-13.	If this is the first time a subject was scanned, please select the “Create new subject” button.
+The client uploads data via HTTPS to:
 
-![select subject](images/UploadUsingDesktopClient11.jpg)
+```
+https://cnda.wustl.edu
+```
 
+### If Uploads Freeze or Fail
 
-14.	Create new subject dialog box displays.
-15.	Enter subject id. (Subject’s research group within this project box may be left blank.)
-16.	Click Add New Subject button.
+If your upload freezes or fails to start:
 
-![create new subject](images/UploadUsingDesktopClient12.jpg)
+- Ask your IT team to whitelist `cnda.wustl.edu`
+- Ensure outbound HTTPS traffic is not blocked or routed through a restrictive proxy
+- Review troubleshooting steps here:  
+  [Desktop Uploader Troubleshooting Guide](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
+- If issues persist, contact: cnda-help@wustl.edu
 
+---
 
-17.	Once the subject is selected or created, the Experiment Label (session label) is auto filled.
-18.	You may change it to what your site uses.  
+# Uploading an Imaging Session
 
-**Note**: The session label must be unique!  No other session in your project can have the same label. 
+## Launch the Client
 
-a.	Review the series listed to confirm this is the correct session.
+Open the XNAT Desktop Client and log in.
 
-b.	Scroll down and review the Session summary, confirm all is correct.
+![Client Icon](images/UploadUsingDesktopClient5.jpg)
 
-c.	Click Next button.
+The Home page will display.
 
-![session label](images/UploadUsingDesktopClient13.jpg)
+![Home Menu](images/UploadUsingDesktopClient6.jpg)
 
+---
 
-19.	The next page is for visual inspection of the images to check for burned-in PHI.
+## Start Upload
 
-**Note**: No Protected Health Information (PHI) also known as Patient Personal Information (PPI) should be stored on the CNDA.  This includes patient initials.
+1. Click **Upload Files**.
 
-20.	Select an image series from the left and drag into the larger window on the right.
-21.	Use the mouse wheel and Scroll through the series dragged into the window on right to confirm none contain PHI. 
-22.	Use the blue scroll bar to scroll down to the next series of images.
-23.	Do the above for each series of images.
-24.	Once all images have been reviewed, click the Finish and Upload button.
+![Upload Button](images/UploadUsingDesktopClient7.jpg)
 
-![visual imspect images](images/UploadUsingDesktopClient14.jpg)
+2. Select the destination **Project**.  
+   Only projects you have access to will appear.
 
+![Select Project](images/UploadUsingDesktopClient8.jpg)
 
-25.	If burned-in PHI is found:
-    
-a.	Click on the Select Area icon. 
+### Message About Missing Anonymization Script
 
-b.	Click on the image and draw a box around unwanted PHI. 
+When selecting your project during upload, you may see this warning:
 
-c.	As you draw these, they are highlighted with orange boxes, and you will also see an orange circle in the thumbnail view to indicate you have started the process. 
+```
+Warning: No anonymization scripts found!
+Anonymization scripts are not set for this site or this project. Do you want to continue?
+```
 
-d.	The boxes you draw are applied to all images in the current series. 
+For most users, this message is **expected and not an error**.
 
-e.	When you are done, click the Save scan icon. 
+It simply means that a server-side anonymization script is not configured for that project.  
+This does **not** prevent uploading and does **not** indicate a problem.
 
-f.	The application will turn the circle that appears on the thumbnail image to green to indicate confirmation. (Note: See 2nd group of images below to see the green.)
+You may safely click **Continue** and proceed with the upload.
 
-g.	 Perform the same procedure on each series. 
+Note:
+If you are unsure whether your project should have an anonymization script, contact the CNDA team.
 
-h.	After all images haven been reviewed, click Finish and Upload button.
+3. Click **Browse** and select the directory containing your image files.
 
-![remove phi part 1](images/UploadUsingDesktopClient15.jpg)
+![Browse Directory](images/UploadUsingDesktopClient9.jpg)
 
-![remove phi part 2](images/UploadUsingDesktopClient16.jpg)
+4. If prompted with anonymization options, select the file and click **Upload**.
 
-26.	The Monitor Transfers: Upload page displays.
+![Upload Dialog](images/UploadUsingDesktopClient10.jpg)
 
-![monitor transfer](images/UploadUsingDesktopClient17.jpg)
+---
 
-27.	The Status column will display Completed once file has finished uploading. 
-28.	Click the “Upload Another Session” button to upload another session or close the page.
+## Subject and Session Setup
 
-![upload another session](images/UploadUsingDesktopClient18.jpg)
+### If Subject Already Exists
 
-29.	Once your files have completed uploading, Log in to CNDA.
-30.	Go to your project.
-31.	Select the subject.
-32.	The Subject Details page displays.
-33.	Click the Experiment (MR Session) link.
+- Select the subject from the dropdown menu.
 
+### If Subject is New
 
-![cnda subject page](images/UploadUsingDesktopClient19.jpg)
+1. Click **Create New Subject**.
+2. Enter the **Subject ID**.
+3. Click **Add New Subject**.
 
-34.	The Session page displays.
-35.	Confirm the series uploaded are all there.
-36.	Scroll down and confirm the Total number of files are the correct.
+![Create Subject](images/UploadUsingDesktopClient12.jpg)
 
-![cnda top of session page](images/UploadUsingDesktopClient20.jpg)
+---
 
-![cnda bottom of session page](images/UploadUsingDesktopClient21.jpg)
+### Session Label
 
+The session label auto-fills. You may modify it if needed.
 
-	
+> The session label must be unique within the project.
 
+Review:
 
+- Listed image series  
+- Session summary  
 
+Click **Next**.
 
+![Session Review](images/UploadUsingDesktopClient13.jpg)
 
+---
 
+## PHI Visual Inspection
 
+All images must be reviewed for burned-in PHI.
 
+PHI includes:
 
+- Patient names  
+- Initials  
+- Medical record numbers  
+- Any identifying text  
 
+### Review Steps
 
+1. Select a series from the left panel.
+2. Drag it into the viewer.
+3. Scroll through all images.
+4. Repeat for every series.
+5. Click **Finish and Upload** when complete.
 
+![Visual Inspection](images/UploadUsingDesktopClient14.jpg)
 
+---
 
+## Removing Burned-In PHI
 
+If PHI is found:
+
+1. Click the **Select Area** tool.
+2. Draw a box around the PHI.
+3. Apply to the series.
+4. Click **Save Scan**.
+5. Repeat for all affected series.
+6. Click **Finish and Upload**.
+
+![Remove PHI 1](images/UploadUsingDesktopClient15.jpg)
+![Remove PHI 2](images/UploadUsingDesktopClient16.jpg)
+
+---
+
+## Monitor Upload Progress
+
+The **Monitor Transfers** page displays upload status.
+
+![Monitor Transfers](images/UploadUsingDesktopClient17.jpg)
+
+When the **Status** column shows `Completed`, the upload is finished.
+
+Click **Upload Another Session** to upload another session or close the client.
+
+![Upload Another](images/UploadUsingDesktopClient18.jpg)
+
+---
+
+# Verifying Upload in CNDA
+
+After upload completes:
+
+1. Log in to CNDA.
+2. Navigate to your project.
+3. Select the subject.
+4. Open the session.
+
+![Subject Page](images/UploadUsingDesktopClient19.jpg)
+
+Confirm:
+
+- All expected series are present  
+- Total file counts are correct  
+
+![Session Top](images/UploadUsingDesktopClient20.jpg)
+![Session Bottom](images/UploadUsingDesktopClient21.jpg)
+
+---
+
+Upload process complete.
