@@ -12,7 +12,6 @@ It supports XNAT 1.7.5 and later and is available for:
 
 The client is designed to anonymize and securely upload imaging sessions directly to CNDA.
 
----
 
 ## Downloading the Client
 
@@ -26,16 +25,12 @@ If you are unsure which version to install, contact your IT department.
 
 ![Download Page](images/UploadUsingDesktopClient1.jpg)
 
----
-
 ## Installing the Client
 
 Installation steps vary by operating system.  
 You can read the official installation guide here in case needed:
 
 https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client
-
----
 
 ## Installing on Windows
 
@@ -57,7 +52,6 @@ After installation, the client will launch.
 
 ![Client Landing Page](images/UploadUsingDesktopClient3a.jpg)
 
----
 
 ## First-Time Setup
 
@@ -82,7 +76,6 @@ When launching the client for the first time, you must add the CNDA server.
 
 Your connection settings will be saved for future sessions.
 
----
 
 ## Recommended Configuration
 
@@ -111,7 +104,6 @@ Reducing concurrency can prevent freezing during upload.
 
 This forces uploads to run as a single stream.
 
----
 
 ### Proxy or Network Issues
 
@@ -131,7 +123,6 @@ If your upload freezes or fails to start:
   [Desktop Uploader Troubleshooting Guide](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
 - If issues persist, contact: cnda-help@wustl.edu
 
----
 
 # Uploading an Imaging Session
 
@@ -145,7 +136,6 @@ The Home page will display.
 
 ![Home Menu](images/UploadUsingDesktopClient6.jpg)
 
----
 
 ## Start Upload
 
@@ -185,7 +175,6 @@ If you are unsure whether your project should have an anonymization script, cont
 
 ![Upload Dialog](images/UploadUsingDesktopClient10.jpg)
 
----
 
 ## Subject and Session Setup
 
@@ -201,7 +190,6 @@ If you are unsure whether your project should have an anonymization script, cont
 
 ![Create Subject](images/UploadUsingDesktopClient12.jpg)
 
----
 
 ### Session Label
 
@@ -218,7 +206,6 @@ Click **Next**.
 
 ![Session Review](images/UploadUsingDesktopClient13.jpg)
 
----
 
 ## PHI Visual Inspection
 
@@ -241,7 +228,6 @@ PHI includes:
 
 ![Visual Inspection](images/UploadUsingDesktopClient14.jpg)
 
----
 
 ## Removing Burned-In PHI
 
@@ -257,7 +243,6 @@ If PHI is found:
 ![Remove PHI 1](images/UploadUsingDesktopClient15.jpg)
 ![Remove PHI 2](images/UploadUsingDesktopClient16.jpg)
 
----
 
 ## Monitor Upload Progress
 
@@ -271,7 +256,6 @@ Click **Upload Another Session** to upload another session or close the client.
 
 ![Upload Another](images/UploadUsingDesktopClient18.jpg)
 
----
 
 # Verifying Upload in CNDA
 
@@ -292,6 +276,6 @@ Confirm:
 ![Session Top](images/UploadUsingDesktopClient20.jpg)
 ![Session Bottom](images/UploadUsingDesktopClient21.jpg)
 
----
 
 Upload process complete.
+
