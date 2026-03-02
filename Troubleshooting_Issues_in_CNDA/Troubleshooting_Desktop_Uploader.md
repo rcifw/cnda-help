@@ -155,12 +155,7 @@ These errors occur before any POST request is processed by CNDA. They have to do
    ```
    cnda.wustl.edu
    ```
-7. Log in again.
-8. *(Optional)* Click the blue **Home** button at the top left and click → **Flush XNAT User Access Cache**.
-9. Retry your upload.
-
-   * If uploads work now → it was just your cache, and the problem is solved.
-   * If not → continue to Step 6.
+7. Log in again and see if uploading works.
 
 ## **Step 6 – Confirm the CNDA Certificate is Valid**
 
