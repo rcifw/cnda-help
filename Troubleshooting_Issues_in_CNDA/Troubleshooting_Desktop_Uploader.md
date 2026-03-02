@@ -18,9 +18,9 @@ If you are missing project access, cannot upload, or recently had permissions up
 
 #### Clear cache in the CNDA website
 
-1. Log in to CNDA: https://cnda.wustl.edu  
-2. Click the link in the top-right corner that says **Logged in as <your username>**.  
-3. Select the **Manage Cached Resources** tab.  
+1. Log in to CNDA: https://cnda.wustl.edu
+2. Click the link in the top-right corner that says **Logged in as \<your username\>**.
+3. Select the **Manage Cached Resources** tab.
 4. Click **Reset Access Cache**.
 
 #### Clear cache in the XNAT Desktop Client
