@@ -25,6 +25,7 @@ If you are unsure which version to install, contact your IT department.
 
 ![Download Page](images/UploadUsingDesktopClient1.jpg)
 
+
 ## Installing the Client
 
 Installation steps vary by operating system.  
@@ -63,12 +64,13 @@ When launching the client for the first time, you must add the CNDA server.
 
 2. Enter:
 
-    ```
-    Server:   cnda.wustl.edu
-    Username: your CNDA username
-    Password: your CNDA password
-    ```
-    Note: server should always be exactly cnda.wustl.edu
+```
+Server:   cnda.wustl.edu
+Username: your CNDA username
+Password: your CNDA password
+```
+
+Note: server should always be exactly cnda.wustl.edu
 
 3. Click **Login**.
 
@@ -109,9 +111,9 @@ This forces uploads to run as a single stream.
 
 The client uploads data via HTTPS to:
 
-    ```
-    https://cnda.wustl.edu
-    ```
+```
+https://cnda.wustl.edu
+```
 
 ### If Uploads Freeze or Fail
 
@@ -152,10 +154,10 @@ The Home page will display.
 
 When selecting your project during upload, you may see this warning:
 
-      ```
-      Warning: No anonymization scripts found!
-      Anonymization scripts are not set for this site or this project. Do you want to continue?
-      ```
+```
+Warning: No anonymization scripts found!
+Anonymization scripts are not set for this site or this project. Do you want to continue?
+```
 
 For most users, this message is **expected and not an error**.
 
@@ -241,6 +243,7 @@ If PHI is found:
 6. Click **Finish and Upload**.
 
 ![Remove PHI 1](images/UploadUsingDesktopClient15.jpg)
+
 ![Remove PHI 2](images/UploadUsingDesktopClient16.jpg)
 
 
@@ -274,8 +277,8 @@ Confirm:
 - Total file counts are correct  
 
 ![Session Top](images/UploadUsingDesktopClient20.jpg)
+
 ![Session Bottom](images/UploadUsingDesktopClient21.jpg)
 
 
 Upload process complete.
- 
