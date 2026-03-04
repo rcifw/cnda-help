@@ -1,6 +1,6 @@
 # Troubleshooting XNAT Desktop Uploader
 
-## General prerequisites to be able to upload imagees
+## General prerequisites to be able to upload images
 
 The following conditions must be met by everyone in order to upload images to CNDA.
 
