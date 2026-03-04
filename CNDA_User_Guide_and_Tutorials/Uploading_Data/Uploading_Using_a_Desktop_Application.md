@@ -25,6 +25,7 @@ If you are unsure which version to install, contact your IT department.
 
 ![Download Page](images/UploadUsingDesktopClient1.jpg)
 
+<div style="clear:both"></div>
 
 ## Installing the Client
 
@@ -127,6 +128,8 @@ If your upload freezes or fails to start:
 Open the XNAT Desktop Client and log in.
 
 ![Client Icon](images/UploadUsingDesktopClient5.jpg)
+
+<div style="clear:both"></div>
 
 The Home page will display.
 
