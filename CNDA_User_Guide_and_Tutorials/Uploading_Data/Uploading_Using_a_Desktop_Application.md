@@ -64,15 +64,13 @@ When launching the client for the first time, you must add the CNDA server.
 
 2. Enter the following credentials:
 
-```
-Server:   cnda.wustl.edu
-Username: your CNDA username
-Password: your CNDA password
-```
+- Server: cnda.wustl.edu
+- Username: your CNDA username
+- Password: your CNDA password
 
 Note: server should always be exactly cnda.wustl.edu
 
-3\. Click **Login**.
+3. Click **Login**.
 
 ![Login Screen](images/UploadUsingDesktopClient4.jpg)
 
@@ -109,11 +107,7 @@ This forces uploads to run as a single stream.
 
 ### Proxy or Network Issues
 
-The client uploads data via HTTPS to:
-
-```
-https://cnda.wustl.edu
-```
+The client uploads data via HTTPS to https://cnda.wustl.edu
 
 ### If Uploads Freeze or Fail
 
@@ -154,10 +148,7 @@ The Home page will display.
 
 When selecting your project during upload, you may see this warning:
 
-```
-Warning: No anonymization scripts found!
-Anonymization scripts are not set for this site or this project. Do you want to continue?
-```
+*Warning: No anonymization scripts found! Anonymization scripts are not set for this site or this project. Do you want to continue?*
 
 For most users, this message is **expected and not an error**.
 
