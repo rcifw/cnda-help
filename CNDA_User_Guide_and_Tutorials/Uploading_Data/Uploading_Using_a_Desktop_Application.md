@@ -53,7 +53,7 @@ After installation, the client will launch.
 
 ![Client Landing Page](images/UploadUsingDesktopClient3a.jpg)
 
-<br>
+<div style="clear:both"></div>
 
 ## First-Time Setup
 
