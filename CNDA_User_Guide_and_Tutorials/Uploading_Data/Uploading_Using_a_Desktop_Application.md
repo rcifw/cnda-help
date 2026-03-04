@@ -24,7 +24,7 @@ The client is designed to anonymize and securely upload imaging sessions directl
 
 Download the latest version from:
 
-https://download.xnat.org/desktop-client/
+<https://download.xnat.org/desktop-client/>
 
 Under **Get the XNAT Desktop Client**, choose the version that matches your operating system.
 
@@ -39,7 +39,7 @@ These instructions will focus on Windows.
 
 You can read the official installation guide here in case needed:
 
-https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client
+<https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client>
 
 ## Installing on Windows
 
@@ -113,7 +113,7 @@ This forces uploads to run as a single stream.
 
 ### Proxy or Network Issues
 
-The client uploads data via HTTPS to https://cnda.wustl.edu
+The client uploads data via HTTPS to <https://cnda.wustl.edu>
 
 ### If Uploads Freeze or Fail
 
@@ -123,7 +123,7 @@ If your upload freezes or fails to start:
 - Ensure outbound HTTPS traffic is not blocked or routed through a restrictive proxy
 - Review troubleshooting steps here:  
   [Desktop Uploader Troubleshooting Guide](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
-- If issues persist, contact: cnda-help@wustl.edu
+- If issues persist, contact: <cnda-help@wustl.edu>
 
 
 # Uploading an Imaging Session
