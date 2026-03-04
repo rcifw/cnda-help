@@ -1,4 +1,4 @@
-## Troubleshooting XNAT Desktop Uploader
+# Troubleshooting XNAT Desktop Uploader
 
 ## General prerequisites to be able to upload imagees
 
