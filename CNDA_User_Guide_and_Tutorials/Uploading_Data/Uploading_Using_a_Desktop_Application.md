@@ -1,3 +1,10 @@
+<style>
+img {
+  float: none !important;
+  display: block;
+}
+</style>
+
 # Uploading Using the XNAT Desktop Client (DXM)
 
 ## Overview
@@ -25,11 +32,11 @@ If you are unsure which version to install, contact your IT department.
 
 ![Download Page](images/UploadUsingDesktopClient1.jpg)
 
-<div style="clear:both"></div>
-
 ## Installing the Client
 
 Installation steps vary by operating system.  
+These instructions will focus on Windows.  
+
 You can read the official installation guide here in case needed:
 
 https://wiki.xnat.org/xnat-tools/xnat-desktop-client-dxm/installing-the-xnat-desktop-client
@@ -53,8 +60,6 @@ For best results, install on a native Windows system rather than a virtual envir
 After installation, the client will launch.
 
 ![Client Landing Page](images/UploadUsingDesktopClient3a.jpg)
-
-<div style="clear:both"></div>
 
 ## First-Time Setup
 
@@ -128,8 +133,6 @@ If your upload freezes or fails to start:
 Open the XNAT Desktop Client and log in.
 
 ![Client Icon](images/UploadUsingDesktopClient5.jpg)
-
-<div style="clear:both"></div>
 
 The Home page will display.
 
