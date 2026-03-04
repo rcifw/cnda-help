@@ -53,6 +53,7 @@ After installation, the client will launch.
 
 ![Client Landing Page](images/UploadUsingDesktopClient3a.jpg)
 
+---
 
 ## First-Time Setup
 
@@ -63,12 +64,11 @@ When launching the client for the first time, you must add the CNDA server.
 ![Add Server](images/UploadUsingDesktopClient3b.jpg)
 
 2. Enter the following credentials:
+   - Server: cnda.wustl.edu
+   - Username: your CNDA username
+   - Password: your CNDA password
 
-- Server: cnda.wustl.edu
-- Username: your CNDA username
-- Password: your CNDA password
-
-Note: server should always be exactly cnda.wustl.edu
+   Note: server should always be exactly cnda.wustl.edu
 
 3. Click **Login**.
 
