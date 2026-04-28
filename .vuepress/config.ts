@@ -55,6 +55,8 @@ export default defineUserConfig({
           {
             text: 'Access',
             children: [
+              '/CNDA_User_Guide_and_Tutorials/Access/How_to_Register_Your_CNDA2_Account',
+              '/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token',
               '/CNDA_User_Guide_and_Tutorials/Access/Register_For_a_CNDA_User_ID',
               '/CNDA_User_Guide_and_Tutorials/Access/Roles_and_Permissions',
               '/CNDA_User_Guide_and_Tutorials/Access/Requesting_Access_To_a_Project',
