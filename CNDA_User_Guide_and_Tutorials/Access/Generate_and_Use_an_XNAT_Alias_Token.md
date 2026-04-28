@@ -1,4 +1,4 @@
-# Generate and Use an XNAT Alias Token (CNDA2)
+# Generate and Use an XNAT Alias Token
 
 <style>
 /* Prevent default-theme images from floating into the next section */
