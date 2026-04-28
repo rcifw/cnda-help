@@ -41,6 +41,13 @@ After clearing the cache, log out and back in to XNAT Desktop Uploader before tr
 Your uploads in the XNAT Desktop Client appear *stuck*.
 The progress bar does not move, and the uploaded session never appears in CNDA.
 
+## **Step 0 – Ensure data is saved to your local Laptop or Desktop**
+
+1. Uploading works best when the files are on your local machine.
+2. Uploading directly from the Cloud or an External Harddrive is less reliable.
+3. That does not mean it will always fail. 
+4. But it does perform better with the files on your local machine.
+
 ## **Step 1 – Confirm You Can Log In to CNDA**
 
 1. Open your browser and go to [https://cnda.wustl.edu](https://cnda.wustl.edu).
