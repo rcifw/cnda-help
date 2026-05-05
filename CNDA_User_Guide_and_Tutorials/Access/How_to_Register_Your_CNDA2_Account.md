@@ -41,12 +41,7 @@ Note:
 ## Step 2: Create Your CNDA2 Account
 
 1. Go to: https://cnda2.wustl.edu  
-
-![CNDA2 Login Page](/images/cnda2-register/login-page.png)
-
 2. Click **WUSTL Connect**
-
-![WUSTL Connect Button](/images/cnda2-register/wustl-connect.png)
 
 Important:
 - Do not enter anything in USER or PASSWORD fields  
@@ -61,12 +56,8 @@ Important:
 
 After login, you will be redirected back to CNDA:
 
-![Registration Screen](/images/cnda2-register/registration.png)
-
 1. Ensure **New CNDA Account** is selected  
 2. Review the generated Username  
-
-![Username Field](/images/cnda2-register/username.png)
 
 Recommendation:
 - Use your existing CNDA username if possible  
@@ -78,8 +69,6 @@ Recommendation:
 ## Important: Name Autofill Issue
 
 Some browsers may autofill your name incorrectly:
-
-![Name Autofill Issue](/images/cnda2-register/name-autofill.png)
 
 - **First Name and Last Name may be swapped**
 
