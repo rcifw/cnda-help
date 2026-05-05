@@ -1,3 +1,6 @@
+Here is your same page with the 5 image placeholders added in the correct spots:
+
+```
 # How to Register Your CNDA2 Account
 
 ## Overview
@@ -41,7 +44,12 @@ Note:
 ## Step 2: Create Your CNDA2 Account
 
 1. Go to: https://cnda2.wustl.edu  
+
+![CNDA2 Login Page](/images/cnda2-register/login-page.png)
+
 2. Click **WUSTL Connect**
+
+![WUSTL Connect Button](/images/cnda2-register/wustl-connect.png)
 
 Important:
 - Do not enter anything in USER or PASSWORD fields  
@@ -56,8 +64,12 @@ Important:
 
 After login, you will be redirected back to CNDA:
 
+![Registration Screen](/images/cnda2-register/registration.png)
+
 1. Ensure **New CNDA Account** is selected  
 2. Review the generated Username  
+
+![Username Field](/images/cnda2-register/username.png)
 
 Recommendation:
 - Use your existing CNDA username if possible  
@@ -69,6 +81,8 @@ Recommendation:
 ## Important: Name Autofill Issue
 
 Some browsers may autofill your name incorrectly:
+
+![Name Autofill Issue](/images/cnda2-register/name-autofill.png)
 
 - **First Name and Last Name may be swapped**
 
@@ -110,3 +124,4 @@ You will be notified when the system is ready for use.
 - Your old CNDA account is not transferred automatically  
 - Project access must be re-linked  
 - Scripts and XNAT Desktop Client access require alias tokens (see separate guide)
+```
