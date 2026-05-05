@@ -1,6 +1,3 @@
-Here is your same page with the 5 image placeholders added in the correct spots:
-
-```
 # How to Register Your CNDA2 Account
 
 ## Overview
@@ -124,4 +121,3 @@ You will be notified when the system is ready for use.
 - Your old CNDA account is not transferred automatically  
 - Project access must be re-linked  
 - Scripts and XNAT Desktop Client access require alias tokens (see separate guide)
-```
