@@ -16,13 +16,13 @@ CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication
 
 ## Step 1: Create Your CNDA2 Account
 1. Go to: [https://cnda2.wustl.edu](https://cnda2.wustl.edu)
-2. Click **WUSTL Connect**
 
 ::: warning Important
 - Do not enter anything in USER or PASSWORD fields
 - Do not click Register or Forgot Login
 :::
 
+2. Click **WUSTL Connect**
 3. Log in with your WashU Key
 4. Complete two-factor authentication if prompted
 
@@ -43,8 +43,9 @@ You must enter the username you currently use on CNDA1. If you use a different u
 ---
 
 ## Important: Name Autofill Issue
+
 ::: warning Check Your Name Before Submitting
-Some browsers may autofill your name incorrectly — First Name and Last Name may be swapped. Verify both fields are correct before submitting and manually correct them if needed.
+Some browsers may autofill your first and last name into the wrong fields. Verify both are correct before submitting and manually correct them if needed.
 :::
 
 ---
