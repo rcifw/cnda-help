@@ -1,4 +1,3 @@
-```markdown
 # How to Obtain a WashU Key
 
 ## Overview
@@ -58,4 +57,3 @@ The following documentation is for sponsors and departmental approvers. It requi
 ## Next Steps
 Once your WashU Key is approved, proceed to create your CNDA2 account:
 - See: [How to Register Your CNDA2 Account](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Register_For_a_CNDA2_Account.html)
-```
