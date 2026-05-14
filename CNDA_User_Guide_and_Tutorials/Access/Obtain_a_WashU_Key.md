@@ -1,7 +1,7 @@
-# How to Obtain a WashU Key
+# How to Obtain a WashU Guest Key
 
 ## Overview
-External collaborators who need access to CNDA must first obtain a WashU Key. This is Washington University's network credential for non-WashU personnel and is required before you can create a CNDA2 account. WashU Keys are issued through a faculty sponsorship process and are not managed by the CNDA Help Desk.
+External collaborators who need access to CNDA must first obtain a WashU Guest Key. This is Washington University's network credential for non-WashU personnel and is required before you can create a CNDA2 account. WashU Keys are issued through a faculty sponsorship process and are not managed by the CNDA Help Desk.
 
 ---
 
