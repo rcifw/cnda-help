@@ -1,45 +1,47 @@
 # Generate and Use an XNAT Alias Token
-<style>
-/* Prevent default-theme images from floating into the next section */
-.theme-default-content img {
-  float: none;
-  display: block;
-  margin: 1em 0;
-  max-width: 100%;
-  height: auto;
-}
-</style>
-CNDA2 uses [WashU Key](https://it.wustl.edu/items/what-is-a-wustl-key/) for web login. This works only in a browser and cannot be used with tools like XNAT Desktop Client (XDC), scripts, or the REST API.
-For those, you must use an **Alias Token**. This is a temporary `alias`/`secret` pair that acts like a username and password.
+
+CNDA2 uses WashU Key for web login. This works only in a browser and cannot be used with tools like XNAT Desktop Client (XDC), scripts, or the REST API. For those, you must use an Alias Token. This is a temporary alias/secret pair that acts like a username and password.
 
 ## Who this applies to
+
 - XNAT Desktop Client (XDC) users
 - Scripts using the XNAT REST API (Python, curl, etc.)
 
 ## Before you start
-- You will make your alias token after the cutover date.
+
 - You must have a working WashU Key
 - Your CNDA2 account must be active
 
----
-
 ## Create an Alias Token
-1. Go to <https://cnda2.wustl.edu> and log in with WashU Key
-2. Click your username (top-right)
+
+1. Go to [https://cnda2.wustl.edu](https://cnda2.wustl.edu) and log in with WashU Key
+2. Click your username in the top-right corner
+
+![Click your username in the top-right corner](/images/alias-token/alias-token-click-username.jpg)
+
 3. Select **Manage Alias Tokens**
+
+![Navigate to Manage Alias Tokens](/images/alias-token/alias-token-manage-page.jpg)
+
 4. Click **Create Alias Token**
-5. Click **View** to see:
-   - **Alias** (username)
-   - **Secret** (password)
+
+![Click Create Alias Token](/images/alias-token/alias-token-create-button.jpg)
+
+5. Your token now appears in the list. Click **View**
+
+![Token appears in the list — click View](/images/alias-token/alias-token-list-view.jpg)
+
+6. Copy the **alias** (username) and **secret** (password) values from the popup
+
+![Copy the alias and secret values](/images/alias-token/alias-token-details-popup.jpg)
 
 Keep these private. Treat them like a username and password.
-
----
 
 ## Use the Token
 
 ### XNAT Desktop Client (XDC)
-- **Server:** `cnda2.wustl.edu`
+
+- **Server:** cnda2.wustl.edu
 - **Username:** alias
 - **Password:** secret
 
@@ -65,33 +67,37 @@ with xnat.connect(
     project = session.projects["MY_PROJECT"]
 ```
 
-**Note:** Avoid hardcoding credentials in scripts if possible. Use environment variables instead.
+::: tip
+Avoid hardcoding credentials in scripts. Use environment variables instead.
+:::
 
----
+## Verify Your Token (Optional)
+
+You can confirm the token works before using it in XDC or a script. Open a second browser window and go to [https://cnda2.wustl.edu](https://cnda2.wustl.edu). Enter the alias as the username and the secret as the password and click Login — do not use the WashU Key button.
+
+![Log in using alias as username and secret as password](/images/alias-token/alias-token-login-verify.jpg)
+
+A successful login confirms the token is active.
 
 ## Token Lifecycle
-- **Tokens expire automatically after 30 days**
-- Once expired:
-  - They stop working immediately
-  - You cannot log in with them
-- **To continue access:** Generate a new token and update your XDC connections and scripts
 
-You may delete old tokens from the UI to keep things clean, but this is optional.
-
----
+- Tokens expire automatically after 30 days
+- Once expired they stop working immediately
+- To continue access: generate a new token and update your XDC connections and scripts
+- You may delete old tokens from the UI to keep things clean, but this is optional
 
 ## Troubleshooting
 
 | Symptom | What to try |
-| --- | --- |
-| `401 Unauthorized` from the REST API | Token may be expired. Generate a new one. |
-| XDC login fails | Make sure you are using `alias` and `secret`, not WashU Key. |
+|---|---|
+| 401 Unauthorized from the REST API | Token may be expired. Generate a new one. |
+| XDC login fails | Make sure you are using alias and secret, not WashU Key. |
 | Script works on one machine but not another | Check for cached or outdated credentials. |
 
----
+## Key Takeaway
 
-## Key takeaway
 - Use alias tokens for anything outside the browser
 - Expect them to expire every 30 days
 - Regenerate when needed
-- Contact the **CNDA Help Desk** at cnda-help@wustl.edu if you have questions
+
+Contact the CNDA Help Desk at [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu) if you have questions.
