@@ -1,6 +1,6 @@
 # Generate and Use an XNAT Alias Token
 
-CNDA2 uses WashU Key for web login. This works only in a browser and cannot be used with tools like XNAT Desktop Client (XDC), scripts, or the REST API. For those, you must use an Alias Token. This is a temporary alias/secret pair that acts like a username and password.
+CNDA2 uses [WashU Key](https://it.wustl.edu/items/what-is-a-wustl-key/) for web login. This works only in a browser and cannot be used with tools like XNAT Desktop Client (XDC), scripts, or the REST API. For those, you must use an Alias Token. This is a temporary alias/secret pair that acts like a username and password.
 
 ## Who this applies to
 
@@ -9,6 +9,7 @@ CNDA2 uses WashU Key for web login. This works only in a browser and cannot be u
 
 ## Before you start
 
+- Wait until the cutover date
 - You must have a working WashU Key
 - Your CNDA2 account must be active
 
