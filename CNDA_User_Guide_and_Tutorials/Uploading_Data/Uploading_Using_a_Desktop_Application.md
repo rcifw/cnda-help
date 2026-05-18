@@ -74,7 +74,7 @@ When launching the client for the first time, you must add the CNDA server.
    - Username: your CNDA username
    - Password: your CNDA password
 
-   Note: server should always be exactly cnda.wustl.edu
+   Note: Server should always be exactly cnda.wustl.edu. In the near future, we are migrating to CNDA2, which has a different login method. See more on that below.
 
 3. Click **Login**.
 
