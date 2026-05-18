@@ -72,14 +72,6 @@ with xnat.connect(
 Avoid hardcoding credentials in scripts. Use environment variables instead.
 :::
 
-## Verify Your Token (Optional)
-
-You can confirm the token works before using it in XDC or a script. Open a second browser window and go to [https://cnda2.wustl.edu](https://cnda2.wustl.edu). Enter the alias as the username and the secret as the password and click Login — do not use the WashU Key button.
-
-![Log in using alias as username and secret as password](/images/alias-token/alias-token-login-verify.jpg)
-
-A successful login confirms the token is active.
-
 ## Token Lifecycle
 
 - Tokens expire automatically after 30 days
