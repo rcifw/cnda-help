@@ -17,6 +17,7 @@ For those, you must use an **Alias Token**. This is a temporary `alias`/`secret`
 - Scripts using the XNAT REST API (Python, curl, etc.)
 
 ## Before you start
+- You will make your alias token after the cutover date.
 - You must have a working WashU Key
 - Your CNDA2 account must be active
 
