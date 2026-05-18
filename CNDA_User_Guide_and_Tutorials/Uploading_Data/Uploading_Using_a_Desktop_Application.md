@@ -82,6 +82,20 @@ When launching the client for the first time, you must add the CNDA server.
 
 Your connection settings will be saved for future sessions.
 
+### COMING SOON: CNDA2 
+
+CNDA2 uses WashU Key for authentication, which the Desktop Client does not support directly. You must use an **alias token** instead of your WashU Key credentials.
+
+Before adding the server, [generate an alias token](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html) from your CNDA2 account.
+
+1. Click **Add New XNAT Server**.
+2. Enter the following credentials:
+   - **Server:** `cnda2.wustl.edu`
+   - **Username:** your alias token alias
+   - **Password:** your alias token secret
+3. Click **Login**.
+
+Your connection settings will be saved for future sessions.
 
 ## Recommended Configuration
 
