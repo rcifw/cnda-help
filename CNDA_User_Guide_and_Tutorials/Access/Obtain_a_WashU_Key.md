@@ -1,7 +1,7 @@
 # How to Obtain a WashU Key
 
 ## Overview
-External collaborators who need access to CNDA must first obtain a WashU Key. This is Washington University's network credential for non-WashU personnel and is required before you can create a CNDA2 account. WashU Keys are issued through a faculty sponsorship process and are not managed by the CNDA Help Desk.
+External collaborators who need access to CNDA must first obtain a WashU Key. This is Washington University's network credential for non-WashU personnel and is required before you can create a CNDA2 account. WashU Keys for external users are issued through a faculty sponsorship process and are managed by WashU IT, not the CNDA Help Desk.
 
 ---
 
@@ -28,8 +28,8 @@ Use the following values when completing the form:
 ---
 
 ## Step 2: Wait for Approval
+- WashU IT will contact your faculty sponsor to confirm their approval before your key is issued
 - You will receive an email notification when your key is approved
-- You will also receive a notification when your key is approaching expiration
 
 ::: tip
 - Keys are valid for the duration selected during the application, up to a maximum of one year
@@ -42,9 +42,9 @@ Use the following values when completing the form:
 ## Information for Sponsors
 If you are a WashU faculty member sponsoring an external collaborator:
 
-- You can contact WU IT to revoke a key early if the collaboration ends
+- You can contact WashU IT to revoke a key early if the collaboration ends
 - Keys are valid for the duration selected during the application, up to a maximum of one year, and must be renewed by the sponsor
-- CNDA Help Desk does not manage WashU Keys
+- CNDA Help Desk does not manage WashU Keys and cannot approve, renew, or revoke them
 
 ::: warning WashU Access Required
 The following documentation is for sponsors and departmental approvers. It requires WashU SSO access to view and is not accessible to external users.
