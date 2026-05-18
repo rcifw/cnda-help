@@ -9,8 +9,8 @@ CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication
 - You must have a **WashU Key**
   - WashU faculty and staff already have one
   - External users must apply for one — see [How to Obtain a WashU Key](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Obtain_a_WashU_Key.html)
-- Your CNDA2 account will be created **from scratch**
-- Your existing project access will be re-linked automatically once migration is complete
+- You will create a new account on CNDA2
+- Your existing project access will be re-linked once data migration is complete — we will announce when the system is ready
 
 ---
 
@@ -29,7 +29,7 @@ CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication
 ---
 
 ## Step 2: Complete Registration
-After login, you will be redirected back to CNDA:
+After authenticating, you will be redirected back to the CNDA2 registration page:
 
 1. Ensure **New CNDA Account** is selected
 2. Review the generated Username
@@ -38,15 +38,8 @@ After login, you will be redirected back to CNDA:
 You must enter the username you currently use on CNDA1. If you use a different username, your project access cannot be linked automatically. Your WashU Key is assigned an internal ID that only WashU IT can see — your CNDA1 username is the only identifier we have to connect your new account to your existing projects.
 :::
 
-3. Click **Submit**
-
----
-
-## Important: Name Autofill Issue
-
-::: warning Check Your Name Before Submitting
-Some browsers may autofill your first and last name into the wrong fields. Verify both are correct before submitting and manually correct them if needed.
-:::
+3. Verify your first and last name are in the correct fields — some browsers autofill them in reverse. Correct manually if needed.
+4. Click **Submit**
 
 ---
 
@@ -61,5 +54,5 @@ You will be notified when the system is ready for use. Your project access will 
 
 ## Notes
 - Your old CNDA account is not transferred automatically
-- Project access is re-linked automatically based on your CNDA1 username — no need to contact the Help Desk
+- Project access will be re-linked automatically based on your CNDA1 username on the cutover date — no need to contact the Help Desk
 - Scripts and XNAT Desktop Client users will need alias tokens after cutover — see [How to Generate and Use Alias Tokens](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)
