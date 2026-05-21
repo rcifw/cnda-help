@@ -65,6 +65,7 @@ You will be notified when the system is ready for use. Your project access will 
 
 ## Notes
 
-- Your old CNDA account is not transferred automatically
+- Your old CNDA account is not transferred instantly
 - Project access will be re-linked automatically based on your CNDA1 username on the cutover date — no need to contact the Help Desk
+- cnda2.wustl.edu is a temporary address used during the migration period. After cutover, CNDA2 will move to its permanent address at cnda.wustl.edu.
 - Scripts and XNAT Desktop Client users will need alias tokens after cutover — see [How to Generate and Use Alias Tokens](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)
