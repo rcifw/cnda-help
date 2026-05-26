@@ -5,7 +5,7 @@ CNDA provides a service which delivers de-identified clinical imaging to a proje
 
 If the the study IRB has not previously requested a data pull, IRB documentation must be provided, and we must get approval for the pull from BJC. Please follow the steps below to request the data pull.
 
-The fee for this service is $6 per imaging session. You will be invoiced after your sessions have been pulled.
+The fee for this service is $7 per imaging session. You will be invoiced after your sessions have been pulled.
 
 ## Instructions
 1. Send the CNDA Help Desk IRB information from the study. The help desk will need a copy of the **IRB Detail and Approval memo** before data can be pulled.
