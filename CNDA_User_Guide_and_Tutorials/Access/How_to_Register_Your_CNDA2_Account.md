@@ -48,7 +48,7 @@ You must enter the username you currently use on CNDA1. If you use a different u
 :::
 
 3. Verify your first and last name are in the correct fields — some browsers autofill them in reverse order, as shown in the screenshot above. Correct manually if needed.
-4. Click **Submit**
+4. Click **Register**
 
 ---
 
