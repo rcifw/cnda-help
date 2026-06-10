@@ -2,7 +2,7 @@
 
 ## Overview
 
-CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication instead of local usernames and passwords. All users must create a new CNDA2 account.
+CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication instead of local usernames and passwords. All users must create a new CNDA2 account. The Cutover date is 7/5/2026.
 
 ---
 
