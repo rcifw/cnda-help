@@ -156,6 +156,16 @@ These errors occur before any POST request is processed by CNDA. They have to do
 
 ## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
 
+Simple method:
+
+1. When you log in to your XNAT Desktop Client, you should see a settings Cogwheel icon on the top right.
+2. CLick on that **Settings Cogwheel** to open Settings.
+3. In Settings click on **Debug**
+4. In the Debug screen you will find a button that says **Clear Application Cache**
+5. Click on that button to clear all cache.
+
+Alternative method to do the same thing, but a different way
+
 1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
 2. Open the **Roaming** folder
 3. Delete the folder named **XNAT Desktop Client** which is located inside of the Roaming folder.
