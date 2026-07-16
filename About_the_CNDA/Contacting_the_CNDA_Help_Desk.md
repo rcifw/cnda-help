@@ -2,6 +2,19 @@
 
 ## Contact Options
 
+### Via email
+
+Send an email to cnda-help@wustl.edu. Email is by far the best method to reach us and receive help.
+
+*We discourage sending PHI through email, but sometimes it might be necessary to document an issue.
+Sending email with PHI from your WUSTL email account to the cnda-help email address is allowed.
+Do not send email from a non-WUSTL account (e.g., gmail) with PHI to cnda-help or any other destination.*
+
+### Via phone
+
+The CNDA team no longer has a telephone number.
+You are welcome to send a note to the email address above and request a video call.
+
 ### Via the CNDA Site
 
 *Do not use this mechanism if your report (text and/or screen capture) will contain PHI.
@@ -18,19 +31,6 @@ Use direct email; see below.*
 3. Attach a file if applicable.
 
 4. Click Submit Issue.
-
-### Via email
-
-Send an email to cnda-help@wustl.edu.
-
-*We discourage sending PHI through email, but sometimes it might be necessary to document an issue.
-Sending email with PHI from your WUSTL email account to the cnda-help email address is allowed.
-Do not send email from a non-WUSTL account (e.g., gmail) with PHI to cnda-help or any other destination.*
-
-### Via phone
-
-The CNDA team no longer has a telephone number.
-You are welcome to send a note to the email address above and request a video call.
 
 ### Tips for quicket assistance
 *Information to Include*
