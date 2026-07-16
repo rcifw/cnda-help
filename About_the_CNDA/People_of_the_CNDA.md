@@ -10,11 +10,6 @@
 }
 </style>
 
-## Jenny Gurney
-
-![Jenny Gurney](./images/gurney.jpg)
-Jenny completed her MS in computer science right here at Washington University. She also has a somewhat disused BA in Spanish literature from UNC-Chapel Hill (Go Heels!). A refugee from the corporate world, Jenny is thoroughly enjoying her job as a developer and the operational lead (read: “your friendly help desk consultant”) for the CNDA. Jenny is a St. Louis native and enjoys spending time with her husband, family and friends and running/biking endless circles around Forest Park.
-
 ## Kenan Kadic
 
 ![Kenan Kadic](images/kadic.jpg)
