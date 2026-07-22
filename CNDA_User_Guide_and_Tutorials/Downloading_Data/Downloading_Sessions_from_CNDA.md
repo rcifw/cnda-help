@@ -12,8 +12,11 @@
 **As you can see, this form has 3 columns:**
 
 The left column allows you to select which session you need.
+
 The middle column allows you to select specific types of scans.
+
 At the bottom of the middle column you may also resource folders for raw data if available.
+
 The right column allows you to select your download method.
  
  3. Click check boxes on left column to **Select Sessions**.
