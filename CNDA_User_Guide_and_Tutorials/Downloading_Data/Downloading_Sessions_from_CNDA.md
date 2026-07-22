@@ -25,8 +25,8 @@
    - Option 2 will come with a preview of size once you click Submit so you will know how big your download is before you start. 
    - If your download is greater than 20GB and cannot complete in 30 minutes, I recommend **Option 1: Download Via Desktop Client**
    - If you choose Option 1, you will have to download and install the XNAT Desktop Client.
-   - [How to install and use XNAT Desktop Client Uploader](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
-   - [Troubleshooting XNAT Desktop Uploader](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
+   - [How to install and use XNAT Desktop Client](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
+   - [Troubleshooting XNAT Desktop Client](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
 
  7. After picking your download option, click **Submit**.
 
