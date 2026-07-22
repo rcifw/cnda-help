@@ -1,4 +1,4 @@
-#  Downloading Multiple Images From Project Page
+#  Downloading Sessions From CNDA
 
 ## Instructions
  1. Go to the **Project** page. In the **Actions** box at the top right, click on **Download Images**.
