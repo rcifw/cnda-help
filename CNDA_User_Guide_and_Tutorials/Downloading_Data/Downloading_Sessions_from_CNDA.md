@@ -6,19 +6,14 @@
  ![action box](images/DwnldMulimg1.jpg)
  
  2. The **Imaging Data Download form** display.
+   ![image data download form](images/DwnldMulimg2.jpg)
 
- ![image data download form](images/DwnldMulimg2.jpg)
+   **As you can see, this form has 3 columns:**
+   - The left column allows you to select which session you need.
+   - The middle column allows you to select specific types of scans if searching only for something very specific.
+   - At the bottom of the middle column you may also see a resource folders for raw data if available.
+   - The right column allows you to select your download method.
 
-**As you can see, this form has 3 columns:**
-
- - The left column allows you to select which session you need.
-
- - The middle column allows you to select specific types of scans if searching only for something very specific.
-
- - At the bottom of the middle column you may also see a resource folders for raw data if available.
-
- - The right column allows you to select your download method.
- 
  3. Click check boxes on left column to **Select Sessions**.
 
  4. Click check boxes in middle column to **Select Scan Types**.
