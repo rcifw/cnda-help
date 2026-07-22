@@ -41,7 +41,7 @@
     - [Downloading From Search Results](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_From_Search_Results.md)
     - [Using Manage Files to Download](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Using_Manage_Files_to_Download.md)
     - [Downloading One Image From Session](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_One_Image_From_Session.md)
-    - [Downloading Multiple Images From Project Page](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Multiple_Images_From_Project_Page.md)
+    - [Downloading Sessions from CNDA](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.md)
     - [Bulk Downloads from CNDA to Windows PC](../CNDA_User_Guide_and_Tutorials/Downloading_Data/Bulk_Downloads_from_CNDA_to_Windows_PC.md)
 
 - Misc
