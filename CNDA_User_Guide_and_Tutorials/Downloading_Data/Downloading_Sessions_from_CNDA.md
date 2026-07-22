@@ -9,11 +9,18 @@
 
  ![image data download form](images/DwnldMulimg2.jpg)
 
- 3. Click check boxes by **Select Sessions needed**.
+**As you can see, this form has 3 columns:**
 
- 4. Click check boxes by **Select Image Data**.
+The left column allows you to select which session you need.
+The middle column allows you to select specific types of scans.
+At the bottom of the middle column you may also resource folders for raw data if available.
+The right column allows you to select your download method.
+ 
+ 3. Click check boxes on left column to **Select Sessions**.
 
- 5. Select **Download Data Options** you want to use.
+ 4. Click check boxes in middle column to **Select Scan Types**.
+
+ 5. Click in the right column to select the **Download Option** you want to use.
 
  6. Click **Submit**.
 
