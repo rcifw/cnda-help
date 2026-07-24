@@ -27,13 +27,15 @@
 
 5. Click in the right column to select the **Download Option** you want to use.
 
+6. After picking your download option, click **Submit**.
+
    **You have 2 main download options here:**
 
    **Download via Zip**
    - If your download can complete in less than 30 minutes (usually for sessions smaller than 20GB), I recommend **Option 2: ZIP Download**.
-   - Option 2 will show a size preview once you click Submit, so you'll know how big your download is before you start.
+   - Option 2 is a great choice for smaller downloads.
    - Option 2 has no ability to resume after a failure. If the download fails for any reason, you will have to start over.
-   - If you choose **Option 2: Zip Download**, you will be shown the size and prompted to click **Download ZIP** as seen below:
+   - If you proceed with **Option 2: Zip Download**, you will be shown the download size and prompted to click **Download ZIP** as seen below:
 
    ![download option 2](images/DwnldMulimg4.jpg)
 
@@ -46,10 +48,18 @@
    - You don't need all the instructions below, but you do need the info on how to download this application and log in.
      - [How to install and use XNAT Desktop Client](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
      - [Troubleshooting XNAT Desktop Client](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
-   - If you choose **Option 1: Download via Desktop Client**, you will be prompted to click **Download via App** as seen below:
+   - If you proceed with **Option 1: Download via Desktop Client**, you will be prompted to click **Download via App** as seen below:
 
    ![download option 1](images/DwnldMulimg3.jpg)
 
    <div style="clear:both"></div>
 
-6. After picking your download option, click **Submit**.
+7. ![open xnat desktop client](images/DwnldMulimg5.jpg)
+8. ![set destination](images/DwnldMulimg6.jpg)
+9. ![pick download folder](images/DwnldMulimg7.jpg)
+10. ![press download button](images/DwnldMulimg8.jpg)
+11. ![watch download progress](images/DwnldMulimg9.jpg)
+12. ![see download details](images/DwnldMulimg10.jpg)
+13. ![resume a download](images/DwnldMulimg11.jpg)
+14. ![notice that download restarted](images/DwnldMulimg12.jpg)
+15. You should find the downloaded file in your destination folder.
