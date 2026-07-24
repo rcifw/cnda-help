@@ -54,8 +54,8 @@
 
    <div style="clear:both"></div>
 
-7. When you press **Download via App** a new popup page will open.
-   On that page, you have to press **Open XNAT-DesktopClient**
+7. When you press **Download via App** a new popup page will open.  
+   On that page, you have to press **Open XNAT-DesktopClient**.  
    You also have a choice to always allow opening so that it does not ask again in the future.
 
   ![open xnat desktop client](images/DwnldMulimg5.jpg)
