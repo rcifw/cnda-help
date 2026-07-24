@@ -45,7 +45,7 @@
    - If your download is large and cannot complete in 30 minutes, I recommend **Option 1: Download via Desktop Client**.
    - If you choose Option 1, you will need to download and install the XNAT Desktop Client first.
    - The XNAT Desktop Client can resume a download even if it gets interrupted.
-   - You don't need all the instructions below, but you do need the info on how to download this application and log in.
+   - You don't need all the instructions below, but you do need the info on how to download this application and install it.
      - [How to install and use XNAT Desktop Client](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
      - [Troubleshooting XNAT Desktop Client](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
    - If you proceed with **Option 1: Download via Desktop Client**, you will be prompted to click **Download via App** as seen below:
@@ -54,12 +54,17 @@
 
    <div style="clear:both"></div>
 
-7. ![open xnat desktop client](images/DwnldMulimg5.jpg)
+7. When you press **Download via App** a new popup page will open.
+   On that page, you have to press **Open XNAT-DesktopClient**
+   You also have a choice to always allow opening so that it does not ask again in the future.
+
+  ![open xnat desktop client](images/DwnldMulimg5.jpg)
+  
 8. ![set destination](images/DwnldMulimg6.jpg)
 9. ![pick download folder](images/DwnldMulimg7.jpg)
 10. ![press download button](images/DwnldMulimg8.jpg)
 11. ![watch download progress](images/DwnldMulimg9.jpg)
 12. ![see download details](images/DwnldMulimg10.jpg)
 13. ![resume a download](images/DwnldMulimg11.jpg)
-14. ![notice that download restarted](images/DwnldMulimg12.jpg)
-15. You should find the downloaded file in your destination folder.
+15. ![notice that download restarted](images/DwnldMulimg12.jpg)
+16. You should find the downloaded file in your destination folder.
