@@ -22,7 +22,7 @@
 
     **You have 2 main download options here:**
 
-    **Download via Zip**
+   **Download via Zip**
    - If your download can complete in less than 30 minutes (usually for sessions smaller than 20GB), I recommend **Option 2: ZIP Download**.
    - Option 2 will come with a preview of size once you click Submit so you will know how big your download is before you start.
    - Option 2 has no ability to continue after a failure. If the download fails for any reason, you will have to start over.
