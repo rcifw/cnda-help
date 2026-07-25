@@ -113,3 +113,17 @@
     <div style="clear:both"></div>
 
 15. You should find the downloaded file in your destination folder.
+
+**Note:** If you are ever signed out of CNDA, close the application, or lose your progress for any reason while a Desktop Client download is in progress, you do not need to start over.
+
+- Open the **XNAT Desktop Client** application again.
+- Click **Add New XNAT Server**
+- The server address is https://cnda.wustl.edu
+- Sign in using your CNDA username and password.
+- Click **Monitor Transfers** to return to the Download area.
+
+![return to monitor transfers](images/DwnldMulimg13.jpg)
+
+<div style="clear:both"></div>
+
+Your in-progress and completed transfers will still be listed here, and any interrupted sessions can be resumed the same way described in steps 13–14 above.
