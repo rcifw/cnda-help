@@ -118,7 +118,7 @@
 
 - Open the **XNAT Desktop Client** application again.
 - Click **Add New XNAT Server**
-- The server address is https://cnda.wustl.edu
+- The server address is <https://cnda.wustl.edu>
 - Sign in using your CNDA username and password.
 - Click **Monitor Transfers** to return to the Download area.
 
