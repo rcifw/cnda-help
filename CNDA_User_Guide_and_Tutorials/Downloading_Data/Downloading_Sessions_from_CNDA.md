@@ -122,7 +122,7 @@
 - Sign in using your CNDA username and password.
 - Click **Monitor Transfers** to return to the Download area.
 
-![return to monitor transfers](images/DwnldMulimg13.jpg)
+
 
 <div style="clear:both"></div>
 
