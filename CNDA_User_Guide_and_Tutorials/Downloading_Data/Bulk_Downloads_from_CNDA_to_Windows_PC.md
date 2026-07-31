@@ -1,3 +1,6 @@
+THIS SITE IS VERY OLD AND THE DATA ON IT HAS BEEN MOST LIKELY DEPRECATED. PLEASE SEE THE PAGE CALLED Downloading Sessions from CNDA instead.
+
+
 # Bulk Downloads from CNDA to Windows PC
 
 Due to multiple browsers no longer supporting Java applet tools, they are being phased out of CNDA as well, including the Download Images (dir), the bulk session downloader in CNDA. A new version of the tool will be available when CNDA migrates to XNAT 1.7 in a few weeks.
