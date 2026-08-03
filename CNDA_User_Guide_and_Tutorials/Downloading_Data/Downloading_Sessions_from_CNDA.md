@@ -115,6 +115,8 @@
 
 15. You should find the downloaded file in your destination folder.
 
+**Important:** Please Monitor your downloads. Do not assume things are downloading for hours or days without checking.
+
 **Note:** If you are ever signed out of CNDA, close the application, or lose your progress for any reason while a Desktop Client download is in progress, you do not need to start over.
 
 - Open the **XNAT Desktop Client** application again.
