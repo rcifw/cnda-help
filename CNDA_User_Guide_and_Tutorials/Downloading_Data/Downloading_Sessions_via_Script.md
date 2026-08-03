@@ -14,9 +14,7 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
 
 ## Instructions
 
-1. If you only need a few sessions, use [Downloading Sessions From CNDA]
-   (https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small
-   number of sessions and doesn't require any of the setup below.
+1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small number of sessions and doesn't require any of the setup below.
 
 2. Download the script file: [cndaBulkDownload.sh](cndaBulkDownload.sh).
    Right-click the link and choose **Save link as...**, then save it
