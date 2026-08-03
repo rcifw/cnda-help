@@ -1,194 +1,143 @@
-# Download Sessions via Script
-
-If you need to download many sessions at once — a whole project, or a long
-list of specific sessions — the **Download Images** button on the Project
-page in CNDA works, but it's built for downloading a handful of sessions at a time
-through your browser. For many sessions or sessions of a large size, use the **CNDA
-Bulk Download script** instead. It logs into CNDA for you, downloads each
-session as a `.zip`, skips anything it already downloaded, retries a failed
-download once automatically, and keeps a log of everything it did.
-
-This page walks Windows users all the way from "I have nothing installed"
-to a finished download. Mac and Linux users already have everything the
-script needs and can skip to [step 4](#_4-open-a-command-line).
+# Downloading Sessions From CNDA
 
 ## Instructions
 
-1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small
-   number of sessions and doesn't require any of the setup below.
+1. Go to the **Project** page. In the **Actions** box at the top right, click on **Download Images**.
 
-2. Download the script file: [cndaBulkDownload.sh](cndaBulkDownload.sh).
-   Right-click the link and choose **Save link as...**, then save it
-   somewhere you'll remember — your Desktop or Documents folder works well.
-   **Note:** your browser may warn you that `.sh` files can be harmful.
-   This is a standard warning for any script file, not specific to this
-   one — click **Keep** if prompted.
+   ![action box](images/DwnldMulimg1.jpg)
 
-3. Install Git Bash (Windows only, one-time setup). This gives Windows the
-   command-line tools (`bash`, `curl`) the script needs, which aren't
-   included by default.
-   1. Go to <https://git-scm.com/download/win> — the download starts
-      automatically. If it doesn't, click the "Click here to download"
-      link on that page.
-   2. Once downloaded, double-click the installer file (something like
-      `Git-2.xx.x-64-bit.exe`) to run it.
-   3. Windows may show a "Do you want to allow this app to make changes to
-      your device?" prompt — click **Yes**.
-   4. Click through the installer screens. The default settings on every
-      screen are fine for this script — just click **Next** on each one,
-      then **Install** on the final screen.
-   5. When it finishes, click **Finish**.
-   **Note:** if your team already has WSL (Windows Subsystem for Linux)
-   set up on your machine, you can use that instead of Git Bash — open
-   your Linux distro from the Start menu and follow the same steps below.
-   If you're not sure whether you have WSL, Git Bash is faster to get
-   running and is all this script needs.
+   <div style="clear:both"></div>
 
-4. Open a command line.
-   - **Windows:** click the Start menu, type `Git Bash`, and click **Git
-     Bash** in the results. A dark window with a text prompt opens — this
-     is your command line for every step below.
-   - **Mac:** press **Cmd + Space**, type `Terminal`, and press Enter.
-   - **Linux:** open your distro's terminal application from your
-     applications menu.
+2. The **Imaging Data Download form** displays.
 
-5. Go to the folder where you saved the script. Type `cd` followed by the
-   folder path. For example, if you saved it to your Desktop:
-   ```bash
-   cd ~/Desktop
-   ```
-   or if you saved it to Documents:
-   ```bash
-   cd ~/Documents
-   ```
-   **Note:** in Git Bash, `~` always means your Windows user folder
-   (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
-   way they do on Mac and Linux. If you saved the script somewhere else,
-   like a Downloads folder or a specific project folder, use that path
-   instead — for example `cd ~/Downloads` or `cd "/c/Users/yourname/My Folder"`.
-   **Tip:** you can also type `cd ` (with a trailing space) and then drag
-   the folder from File Explorer directly into the Git Bash window — it
-   will fill in the correct path for you automatically.
+   ![image data download form](images/DwnldMulimg2.jpg)
 
-6. Confirm the script is actually there before continuing:
-   ```bash
-   ls cndaBulkDownload.sh
-   ```
-   If it prints back `cndaBulkDownload.sh`, you're in the right folder.
-   If you instead see `No such file or directory`, you're either in the
-   wrong folder or the file didn't save with that exact name — check
-   step 5 and step 2 again.
+   <div style="clear:both"></div>
 
-7. Make the script runnable. This is a one-time step per computer:
-   ```bash
-   chmod +x cndaBulkDownload.sh
-   ```
-   You won't see any output from this — that's expected. It only needs to
-   be done once; you don't need to repeat it the next time you use the
-   script on the same computer.
+   **This form has 3 columns:**
 
-8. Run the script. **You have two ways to tell it what to download:**
+   - The left column allows you to select which sessions you need.
+   - The middle column allows you to select specific types of scans if searching only for something very specific. If you want everything from a session, leave this unchanged.
+   - At the bottom of the middle column you may also see resource folders for raw data if available.
+   - The right column allows you to select your download method.
 
-   **Download an entire project**
-   ```bash
-   ./cndaBulkDownload.sh -u yourNetID -p MRF_1234
-   ```
-   Replace `yourNetID` with your CNDA username and `MRF_1234` with the
-   actual project ID. You'll be prompted to type your CNDA password — it
-   won't show anything on screen as you type, not even dots. This is
-   normal terminal behavior, not a freeze. Type it and press Enter.
+3. Click check boxes in the left column to **Select Sessions**.
 
-   **Download a specific list of sessions**
+4. Click check boxes in the middle column to **Select Scan Types**.
 
-   Create a CSV file listing the sessions first — see
-   [Session List CSV Format](#session-list-csv-format) below — then run:
-   ```bash
-   ./cndaBulkDownload.sh -u yourNetID -s mysessions.csv
-   ```
-   **Note:** use one or the other, not both — the script will stop with
-   an error if you pass `-p` and `-s` together.
+5. Click in the right column to select the **Download Option** you want to use.
 
-9. (Optional) Choose where files are saved. By default, downloads go into
-   a new folder named after the project (or `cnda_downloads` if you used
-   a session list), created inside whatever folder you were in when you
-   ran the script. To pick your own folder instead, add `-d`:
-   ```bash
-   ./cndaBulkDownload.sh -u yourNetID -p MRF_1234 -d /path/to/my/folder
-   ```
+   **You have 2 main download options here:**
 
-10. (Optional) Avoid typing your password every time. For a long-running
-    download, or if you're downloading several projects back to back, you
-    can save your credentials to a file instead of using `-u`:
-    1. In the same folder as the script, create a plain text file named
-       `creds.json` containing exactly this, with your own NetID and
-       password:
-       ```json
-       {"user": "yourNetID", "password": "yourPassword"}
-       ```
-    2. Run the script with `-c` instead of `-u`:
-       ```bash
-       ./cndaBulkDownload.sh -c creds.json -p MRF_1234
-       ```
-    **Note:** this file holds your password in plain text. Restrict who
-    can read it (`chmod 600 creds.json`), never commit it to Git, never
-    email it, and delete it when you're done with it. Do not use `-u` and
-    `-c` together — the username comes from the file.
+   **Download via Zip**
 
-## Session List CSV Format
+   - If your download can complete in less than 30 minutes (usually for sessions smaller than 20GB), I recommend **Option 2: ZIP Download**.
+   - Option 2 is a great choice for smaller downloads.
+   - Option 2 has no ability to resume after a failure. If the download fails for any reason, you will have to start over.
+   - If you proceed with **Option 2: Zip Download**, you will be shown the download size and prompted to click **Download ZIP** as seen below:
 
-If you're downloading specific sessions instead of a whole project, create
-a plain CSV file — you can build this in Excel and use **Save As → CSV**,
-or write it directly in a plain text editor. **No header row** — just one
-session per line, in this order: `Project,Subject,Session`
+   ![download option 2](images/DwnldMulimg4.jpg)
 
-```
-MRF_1234,Subj001,Subj001_MR1
-MRF_1234,Subj002,Subj002_MR1
-CCIR_5678,Subj010,Subj010_MR2
-```
+   <div style="clear:both"></div>
 
-## What Happens While It Runs
+   **Download via Desktop Client**
 
-You'll see output scroll by that looks like this:
+   - If your download is large and cannot complete in 30 minutes, I recommend **Option 1: Download via Desktop Client**.
+   - If you choose Option 1, you will need to download and install the XNAT Desktop Client first.
+   - After you install the Desktop Client, you will want to go back to the same CNDA download page and start the download with Option 1.
+   - The XNAT Desktop Client can resume a download even if it gets interrupted.
+   - You don't need all the instructions below, but you do need the info on how to download this application and install it.
 
-```
-[1]
-Downloading Subj001_MR1 (MRF_1234/Subj001)...
-[2]
-Subj002_MR1.zip already exists, skipping
-```
+     - [How to install and use XNAT Desktop Client](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
+     - [Troubleshooting XNAT Desktop Client](https://cnda-help.wustl.edu/Troubleshooting_Issues_in_CNDA/Troubleshooting_Desktop_Uploader.html)
 
-When it finishes, you'll see a summary line:
+   - If you proceed with **Option 1: Download via Desktop Client**, you will be prompted to click **Download via App** as seen below:
 
-```
-Done. OK=42  FAIL=1  SKIP=3
-See /path/to/logs/cndaBulkDownload_20260803_143000.log for details.
-```
+   ![download option 1](images/DwnldMulimg3.jpg)
 
-- **OK** — successfully downloaded.
-- **SKIP** — already downloaded in a previous run; left alone.
-- **FAIL** — something went wrong with that specific session. Open the log
-  file named in that line for details on exactly which session and why.
+   <div style="clear:both"></div>
 
-**Note:** if anything fails, it's almost always safe to just run the exact
-same command again. The script automatically skips everything it already
-downloaded successfully, so a rerun only retries what actually failed.
+6. After picking your download option, click **Submit**.
 
-## Troubleshooting
+   **Note:** If you chose Zip Download, this is the end of the process — once you click Download ZIP, your file will save normally through your browser. The remaining steps below apply only if you chose **Download via Desktop Client**.
 
-- **`command not found: ./cndaBulkDownload.sh`** — you're either not in
-  the same folder as the script, or you forgot step 7 (`chmod +x`). Run
-  `ls cndaBulkDownload.sh` to check you're in the right place.
-- **"Your id is probably not enabled for this project, or the project id
-  is wrong."** — double-check the project ID is typed exactly as it
-  appears in CNDA, and confirm you have access to that project.
-- **"CNDA login failed. Check your credentials and retry."** — your
-  username or password was entered incorrectly. Just run the command
-  again.
-- **A session fails every time, even after rerunning** — check the log
-  file named in the "Done." summary line for the specific reason next to
-  that session.
-- **You're not sure if you're signed in for too long** — CNDA sessions
-  expire automatically after a period of inactivity. The script detects
-  this on its own and re-logs in for you mid-run; you don't need to do
-  anything.
+7. When you press **Download via App**, a new popup page will open.<br>
+   On that page, you have to press **Open XNAT-DesktopClient**.<br>
+   You also have the choice to always allow opening so it does not ask again in the future.
+
+   ![open xnat desktop client](images/DwnldMulimg5.jpg)
+
+   <div style="clear:both"></div>
+
+8. The Desktop Client will open to a **Download XNAT XML catalog files** window. The **Select XML File** field will already be filled in automatically — the app logs you in and pulls the correct file list through your existing CNDA session, so you don't need to enter any credentials here.
+
+   Click **Browse** next to **Set Destination** to choose where the download should be saved.
+
+   ![set destination](images/DwnldMulimg6.jpg)
+
+   <div style="clear:both"></div>
+
+9. In the **Select Folder** window, choose the folder you want to save to (for example, a folder on your Desktop), then click **Select Folder**.
+
+   ![pick download folder](images/DwnldMulimg7.jpg)
+
+   <div style="clear:both"></div>
+
+10. Your chosen destination now shows in the **Set Destination** field. Optionally check **Set as the default storage location** if you want this folder used automatically next time. Click **Download** to begin.
+
+    ![press download button](images/DwnldMulimg8.jpg)
+
+    <div style="clear:both"></div>
+
+11. The **Monitor Transfers: Download** screen shows your transfer in progress, with a green progress bar tracking the file as it downloads.
+
+    ![watch download progress](images/DwnldMulimg9.jpg)
+
+    <div style="clear:both"></div>
+
+12. Click **Details** to see a full breakdown of the sessions included in your download.
+
+    ![see download details](images/DwnldMulimg10.jpg)
+
+    <div style="clear:both"></div>
+
+13. The **Session transfer details** window lists each session, its scan count, any errors, and its individual download progress. If a session's transfer is interrupted or paused, its progress bar will appear orange with diagonal stripes rather than solid. Click **Restart Download** to resume it — the Desktop Client will continue from where it left off rather than starting over.
+
+    ![resume a download](images/DwnldMulimg11.jpg)
+
+    <div style="clear:both"></div>
+
+14. Once resumed, the progress bar turns green and continues actively downloading, and the button changes to **Cancel Download** — confirming the transfer has restarted successfully.
+
+    ![notice that download restarted](images/DwnldMulimg12.jpg)
+
+    <div style="clear:both"></div>
+
+15. You should find the downloaded file in your destination folder.
+
+**Important:** Please Monitor your downloads. Do not assume things are downloading for hours or days without checking.
+
+**Note:** If you are ever signed out of CNDA, close the application, or lose your progress for any reason while a Desktop Client download is in progress, you do not need to start over.
+
+- Open the **XNAT Desktop Client** application again.
+- Click **Add New XNAT Server**
+- For server address you must type in is <https://cnda.wustl.edu>
+- Then there are also fields for a username and password.
+
+  ![login screen with username and password fields](images/DwnldMulimg13.jpg)
+
+  <div style="clear:both"></div>
+
+- Sign in using your CNDA username and password.
+- When we migrate to CNDA2, you will have to make and use an Alias Token and Secret to log in.
+- After login ,click **Monitor Transfers** to return to the Download area.
+
+  ![return to monitor transfers](images/DwnldMulimg14.jpg)
+
+  <div style="clear:both"></div>
+
+**Download via Script**
+
+- If you need to automate downloads or pull sessions as part of a larger pipeline
+  see [Downloading Sessions via Script](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_via_Script.html).
+- This method uses the XNAT REST API directly.
