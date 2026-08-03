@@ -129,6 +129,7 @@
   <div style="clear:both"></div>
 
 - Sign in using your CNDA username and password.
+- When we migrate to CNDA2, you will have to make and use a Alias Token and Secret to log in.
 - After login ,click **Monitor Transfers** to return to the Download area.
 
   ![return to monitor transfers](images/DwnldMulimg14.jpg)
