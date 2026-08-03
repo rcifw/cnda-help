@@ -15,7 +15,7 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
 ## Instructions
 
 1. If you only need a few sessions, use [Downloading Sessions From CNDA]
-   (Downloading_Sessions_From_CNDA.md) instead — it's faster for a small
+   (Downloading_Sessions_from_CNDA.md) instead — it's faster for a small
    number of sessions and doesn't require any of the setup below.
 
 2. Download the script file: [cndaBulkDownload.sh](cndaBulkDownload.sh).
