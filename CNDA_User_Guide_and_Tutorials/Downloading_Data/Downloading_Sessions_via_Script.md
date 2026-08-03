@@ -4,9 +4,11 @@ If you need to download many sessions at once — a whole project, or a long
 list of specific sessions — the **Download Images** button on the Project
 page in CNDA works, but it's built for downloading a handful of sessions at a time
 through your browser. For many sessions or sessions of a large size, use the **CNDA
-Bulk Download script** instead. It logs into CNDA for you, downloads each
-session as a `.zip`, skips anything it already downloaded, retries a failed
-download once automatically, and keeps a log of everything it did.
+Bulk Download script** instead.
+
+It logs into CNDA for you, downloads each session as a `.zip`, skips
+anything it already downloaded, retries a failed download once automatically,
+and keeps a log of everything it did.
 
 This page walks Windows users all the way from "I have nothing installed"
 to a finished download. Mac and Linux users already have everything the
