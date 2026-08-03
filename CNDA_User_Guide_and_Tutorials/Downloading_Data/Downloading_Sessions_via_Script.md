@@ -180,7 +180,7 @@ downloaded successfully, so a rerun only retries what actually failed.
 - **`command not found: ./cndaBulkDownload.sh`** — you're either not in
   the same folder as the script, or you forgot step 7 (`chmod +x`). Run
   `ls cndaBulkDownload.sh` to check you're in the right place.
-- **"Your id is probably not enabled for this project, or the project id
+- **"Your access is probably not enabled for this project, or the project id
   is wrong."** — double-check the project ID is typed exactly as it
   appears in CNDA, and confirm you have access to that project.
 - **"CNDA login failed. Check your credentials and retry."** — your
