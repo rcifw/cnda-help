@@ -44,6 +44,7 @@
 
    - If your download is large and cannot complete in 30 minutes, I recommend **Option 1: Download via Desktop Client**.
    - If you choose Option 1, you will need to download and install the XNAT Desktop Client first.
+   - After you install the Desktop Client, you will want to go back to the same CNDA download page and start the download with Option 1.
    - The XNAT Desktop Client can resume a download even if it gets interrupted.
    - You don't need all the instructions below, but you do need the info on how to download this application and install it.
 
