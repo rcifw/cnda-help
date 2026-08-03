@@ -92,9 +92,9 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
 
    **Download an entire project**
    ```bash
-   ./cndaBulkDownload.sh -u yourNetID -p MRF_1234
+   ./cndaBulkDownload.sh -u yourUsername -p MRF_1234
    ```
-   Replace `yourNetID` with your CNDA username and `MRF_1234` with the
+   Replace `yourUsername` with your CNDA username and `MRF_1234` with the
    actual project ID. You'll be prompted to type your CNDA password — it
    won't show anything on screen as you type, not even dots. This is
    normal terminal behavior, not a freeze. Type it and press Enter.
@@ -104,7 +104,7 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    Create a CSV file listing the sessions first — see
    [Session List CSV Format](#session-list-csv-format) below — then run:
    ```bash
-   ./cndaBulkDownload.sh -u yourNetID -s mysessions.csv
+   ./cndaBulkDownload.sh -u yourUsername -s mysessions.csv
    ```
    **Note:** use one or the other, not both — the script will stop with
    an error if you pass `-p` and `-s` together.
@@ -114,17 +114,17 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    a session list), created inside whatever folder you were in when you
    ran the script. To pick your own folder instead, add `-d`:
    ```bash
-   ./cndaBulkDownload.sh -u yourNetID -p MRF_1234 -d /path/to/my/folder
+   ./cndaBulkDownload.sh -u yourUsername -p MRF_1234 -d /path/to/my/folder
    ```
 
 10. (Optional) Avoid typing your password every time. For a long-running
     download, or if you're downloading several projects back to back, you
     can save your credentials to a file instead of using `-u`:
     1. In the same folder as the script, create a plain text file named
-       `creds.json` containing exactly this, with your own NetID and
+       `creds.json` containing exactly this, with your own username and
        password:
        ```json
-       {"user": "yourNetID", "password": "yourPassword"}
+       {"user": "yourUsername", "password": "yourPassword"}
        ```
     2. Run the script with `-c` instead of `-u`:
        ```bash
