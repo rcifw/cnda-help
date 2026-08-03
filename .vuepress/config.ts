@@ -135,6 +135,7 @@ export default defineUserConfig({
               '/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_From_Search_Results',
               '/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA',
               '/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_One_Image_From_Session',
+              '/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_via_Script',              
               '/CNDA_User_Guide_and_Tutorials/Downloading_Data/Using_Manage_Files_to_Download',
             ],
           },
