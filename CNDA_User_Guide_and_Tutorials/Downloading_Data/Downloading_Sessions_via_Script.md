@@ -172,18 +172,25 @@ chmod +x cndaBulkDownload.sh
 ```
 
 ## Session List CSV Format
-
+ 
 If you're downloading specific sessions instead of a whole project, create
 a plain CSV file — you can build this in Excel and use **Save As → CSV**,
 or write it directly in a plain text editor. No header row — just one
 session per line, in this order: `Project,Subject,Session`
-
+ 
 File: `mysessions.csv`
 ```
 MRF_1234,Subj001,Subj001_MR1
 MRF_1234,Subj002,Subj002_MR1
 CCIR_5678,Subj010,Subj010_MR2
 ```
+ 
+Here's what that looks like opened in a spreadsheet — no header row, just
+three columns:
+ 
+![csv.jpg](images/csv.jpg)
+ 
+<div style="clear:both"></div>
 
 ## What Happens While It Runs
 
