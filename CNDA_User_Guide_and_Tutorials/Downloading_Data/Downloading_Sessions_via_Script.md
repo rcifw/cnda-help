@@ -20,7 +20,7 @@ You'll need:
 
 1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small number of sessions and doesn't require any of the setup below.
 
-2. Download the script file: [cndaBulkDownload.txt](cndaBulkDownload.txt).
+2. Download the script file: [cndaBulkDownload.txt](/cndaBulkDownload.txt).
    Right-click the link and choose **Save link as...**, then save it
    somewhere you'll remember — your Desktop or Documents folder works well.
    The file is provided as `.txt` because browsers often flag `.sh` files
