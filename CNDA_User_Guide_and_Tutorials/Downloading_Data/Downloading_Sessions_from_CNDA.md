@@ -101,6 +101,8 @@
 
     <div style="clear:both"></div>
 
+    **Note:** It is possible for an error to occur while sessions are downloading. Seeing an error alone does not mean that all downloads have stopped. Check the **Details** page to see if downloads are still continuing.
+
 13. The **Session transfer details** window lists each session, its scan count, any errors, and its individual download progress. If a session's transfer is interrupted or paused, its progress bar will appear orange with diagonal stripes rather than solid. Click **Restart Download** to resume it — the Desktop Client will continue from where it left off rather than starting over.
 
     ![resume a download](images/DwnldMulimg11.jpg)
