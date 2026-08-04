@@ -18,12 +18,14 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
 
 1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small number of sessions and doesn't require any of the setup below.
 
-2. Download the script file: [cndaBulkDownload.sh](cndaBulkDownload.sh).
+2. Download the script file: [cndaBulkDownload.txt](cndaBulkDownload.txt).
    Right-click the link and choose **Save link as...**, then save it
    somewhere you'll remember — your Desktop or Documents folder works well.
-   **Note:** your browser may warn you that `.sh` files can be harmful.
-   This is a standard warning for any script file, not specific to this
-   one — click **Keep** if prompted.
+   **Note:** the file is provided as `.txt` because browsers often flag
+   `.sh` files as potentially harmful and block the download. Once it's
+   saved, open the file, then use **Save As** to save a copy of it named
+   `cndaBulkDownload.sh` instead — the content stays the same, only the
+   file extension changes.
 
 3. Install Git Bash (Windows only, one-time setup). This gives Windows the
    command-line tools (`bash`, `curl`) the script needs, which aren't
