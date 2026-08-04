@@ -1,18 +1,20 @@
 # Download Sessions via Script
 
-If you need to download many sessions at once — a whole project, or a long
-list of specific sessions — the **Download Images** button on the Project
-page in CNDA works, but it's built for downloading a handful of sessions at a time
-through your browser. For many sessions or sessions of a large size, use the **CNDA
-Bulk Download script** instead.
+Use this script when downloading many imaging sessions from CNDA. It's
+designed for large downloads that would be cumbersome through the web
+browser — it logs into CNDA for you, downloads each session as a `.zip`,
+skips anything it already downloaded, retries a failed download once
+automatically, and keeps a log of everything it did. Each session is
+downloaded as a ZIP archive containing the files stored in CNDA for that
+session.
 
-It logs into CNDA for you, downloads each session as a `.zip`, skips
-anything it already downloaded, retries a failed download once automatically,
-and keeps a log of everything it did.
+## Before You Begin
 
-This page walks Windows users all the way from "I have nothing installed"
-to a finished download. Mac and Linux users already have everything the
-script needs and can skip to [step 4](#_4-open-a-command-line).
+You'll need:
+
+- A CNDA account with access to the project you want to download.
+- The project ID (for example `MRF_1234`), or a CSV listing the specific sessions you want.
+- Enough free disk space — roughly twice the size of the data you're downloading (temporary ZIPs, plus extracted data if you unzip them afterward).
 
 ## Instructions
 
@@ -21,11 +23,19 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
 2. Download the script file: [cndaBulkDownload.txt](cndaBulkDownload.txt).
    Right-click the link and choose **Save link as...**, then save it
    somewhere you'll remember — your Desktop or Documents folder works well.
-   **Note:** the file is provided as `.txt` because browsers often flag
-   `.sh` files as potentially harmful and block the download. Once it's
-   saved, open the file, then use **Save As** to save a copy of it named
-   `cndaBulkDownload.sh` instead — the content stays the same, only the
-   file extension changes.
+   The file is provided as `.txt` because browsers often flag `.sh` files
+   as potentially harmful and block the download. Once it's saved, open
+   the file and use **Save As** to save a copy of it named exactly:
+
+   ```
+   cndaBulkDownload.sh
+   ```
+
+   Make sure Windows doesn't save it as `cndaBulkDownload.sh.txt` — some
+   versions of Windows hide file extensions by default, so it's easy to
+   end up with `.sh.txt` without realizing it. If you're not sure, turn
+   on "File name extensions" in File Explorer's View tab so you can see
+   the full name before continuing.
 
 3. Install Git Bash (Windows only, one-time setup). This gives Windows the
    command-line tools (`bash`, `curl`) the script needs, which aren't
@@ -41,11 +51,12 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
       screen are fine for this script — just click **Next** on each one,
       then **Install** on the final screen.
    5. When it finishes, click **Finish**.
-   **Note:** if your team already has WSL (Windows Subsystem for Linux)
-   set up on your machine, you can use that instead of Git Bash — open
-   your Linux distro from the Start menu and follow the same steps below.
-   If you're not sure whether you have WSL, Git Bash is faster to get
-   running and is all this script needs.
+
+   If your team already has WSL (Windows Subsystem for Linux) set up on
+   your machine, you can use that instead of Git Bash — open your Linux
+   distro from the Start menu and follow the same steps below. If you're
+   not sure whether you have WSL, Git Bash is faster to get running and
+   is all this script needs.
 
 4. Open a command line.
    - **Windows:** click the Start menu, type `Git Bash`, and click **Git
@@ -64,14 +75,14 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    ```bash
    cd ~/Documents
    ```
-   **Note:** in Git Bash, `~` always means your Windows user folder
+   In Git Bash, `~` always means your Windows user folder
    (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
    way they do on Mac and Linux. If you saved the script somewhere else,
    like a Downloads folder or a specific project folder, use that path
    instead — for example `cd ~/Downloads` or `cd "/c/Users/yourname/My Folder"`.
-   **Tip:** you can also type `cd ` (with a trailing space) and then drag
-   the folder from File Explorer directly into the Git Bash window — it
-   will fill in the correct path for you automatically.
+   You can also type `cd ` (with a trailing space) and then drag the
+   folder from File Explorer directly into the Git Bash window — it will
+   fill in the correct path for you automatically.
 
 6. Confirm the script is actually there before continuing:
    ```bash
@@ -82,15 +93,17 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    wrong folder or the file didn't save with that exact name — check
    step 5 and step 2 again.
 
-7. Make the script runnable. This is a one-time step per computer:
+7. Give the script permission to run. Mac, Linux, and Git Bash all treat
+   downloaded scripts as non-executable by default as a safety measure,
+   so this tells your system it's okay to run this one. It's a one-time
+   step per copy of the script:
    ```bash
    chmod +x cndaBulkDownload.sh
    ```
-   You won't see any output from this — that's expected. It only needs to
-   be done once; you don't need to repeat it the next time you use the
-   script on the same computer.
+   You won't see any output from this — that's expected. You don't need
+   to repeat it the next time you use the same copy of the script.
 
-8. Run the script. **You have two ways to tell it what to download:**
+8. Run the script. You have two ways to tell it what to download:
 
    **Download an entire project**
    ```bash
@@ -108,8 +121,13 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    ```bash
    ./cndaBulkDownload.sh -u yourUsername -s mysessions.csv
    ```
-   **Note:** use one or the other, not both — the script will stop with
-   an error if you pass `-p` and `-s` together.
+   Use one or the other, not both — the script will stop with an error if
+   you pass `-p` and `-s` together.
+
+   Large projects may take hours to complete depending on your internet
+   connection and the amount of data involved. The script prints progress
+   as it downloads each session, so as long as you see new lines
+   appearing, it's still working.
 
 9. (Optional) Choose where files are saved. By default, downloads go into
    a new folder named after the project (or `cnda_downloads` if you used
@@ -119,9 +137,14 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
    ./cndaBulkDownload.sh -u yourUsername -p MRF_1234 -d /path/to/my/folder
    ```
 
-10. (Optional) Avoid typing your password every time. For a long-running
-    download, or if you're downloading several projects back to back, you
-    can save your credentials to a file instead of using `-u`:
+10. **Recommended for any download over ~25 minutes:** save your
+    credentials to a file instead of typing your password with `-u`. CNDA
+    logins expire every 30 minutes, and the script automatically re-logs
+    in for you around the 25-minute mark — without a creds file, that
+    re-login will stop and prompt you for your password again
+    mid-download, which can silently pause an unattended run. See
+    [How Interruptions Are Handled](#how-interruptions-are-handled) for
+    details.
     1. In the same folder as the script, create a plain text file named
        `creds.json` containing exactly this, with your own username and
        password:
@@ -137,13 +160,25 @@ script needs and can skip to [step 4](#_4-open-a-command-line).
     email it, and delete it when you're done with it. Do not use `-u` and
     `-c` together — the username comes from the file.
 
+## Complete Example
+
+Putting it all together, downloading a whole project on Mac or Linux
+looks like this from start to finish:
+
+```bash
+cd ~/Desktop
+chmod +x cndaBulkDownload.sh
+./cndaBulkDownload.sh -u jsmith -p MRF_1234
+```
+
 ## Session List CSV Format
 
 If you're downloading specific sessions instead of a whole project, create
 a plain CSV file — you can build this in Excel and use **Save As → CSV**,
-or write it directly in a plain text editor. **No header row** — just one
+or write it directly in a plain text editor. No header row — just one
 session per line, in this order: `Project,Subject,Session`
 
+File: `mysessions.csv`
 ```
 MRF_1234,Subj001,Subj001_MR1
 MRF_1234,Subj002,Subj002_MR1
@@ -173,15 +208,61 @@ See /path/to/logs/cndaBulkDownload_20260803_143000.log for details.
 - **FAIL** — something went wrong with that specific session. Open the log
   file named in that line for details on exactly which session and why.
 
+The log records every session downloaded, skipped, or failed, along with
+any error messages returned by CNDA — it's the first place to look if
+something goes wrong.
+
 **Note:** if anything fails, it's almost always safe to just run the exact
 same command again. The script automatically skips everything it already
 downloaded successfully, so a rerun only retries what actually failed.
+
+## How Interruptions Are Handled
+
+The script is built to survive network hiccups, expired logins, and
+partial failures without losing progress or corrupting your downloads.
+
+**Partial downloads never count as finished.** Each session downloads
+first to a temporary `.part` file. Only after the script confirms it's a
+valid ZIP archive does it rename the file to its final `.zip` name. If
+the download is interrupted for any reason — closed terminal, lost
+network connection, killed process — you're left with a `.part` file, not
+a broken `.zip`, so a later rerun won't mistake it for a completed
+download and skip it.
+
+**Failed downloads retry automatically, once.** If a download fails or
+comes back invalid, the script re-authenticates and tries that one
+session again before giving up and marking it FAIL in the log.
+
+**Your login is refreshed automatically during long runs.** CNDA logins
+expire after 30 minutes. Rather than waiting for a download to fail and
+then recovering, the script checks the age of its login before each
+session and proactively re-logs in once it's been about 25 minutes —
+before anything actually breaks.
+
+**This is why the credentials file matters for anything longer than 25
+minutes.** If you started the script with `-u` (typing your password),
+that automatic re-login has no password to use and will stop and prompt
+you to type it again, right there in the terminal — meaning an
+unattended long download can silently pause and wait for you. If you
+used `-c creds.json` instead, the re-login reads your password from the
+file with no prompt and no interruption. **For any download you expect to
+take more than about 20–25 minutes, use `-c creds.json`, not `-u`.**
+
+**A very slow or stalled connection is caught automatically.** If a
+download's transfer rate drops too low for too long (default: under
+1024 bytes/sec for 300 seconds), the script treats it as stuck, aborts
+that download, and moves on rather than hanging indefinitely. These
+thresholds can be tuned with the `STALL_TIME` and `STALL_LIMIT`
+environment variables if needed, but the defaults work for most
+connections.
 
 ## Troubleshooting
 
 - **`command not found: ./cndaBulkDownload.sh`** — you're either not in
   the same folder as the script, or you forgot step 7 (`chmod +x`). Run
   `ls cndaBulkDownload.sh` to check you're in the right place.
+- **`Permission denied`** — you skipped step 7. Run
+  `chmod +x cndaBulkDownload.sh`, then try again.
 - **"Your access is probably not enabled for this project, or the project id
   is wrong."** — double-check the project ID is typed exactly as it
   appears in CNDA, and confirm you have access to that project.
