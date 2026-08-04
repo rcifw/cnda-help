@@ -138,6 +138,6 @@
 
 **Download via Script**
 
-- If you need to automate downloads or pull sessions as part of a larger pipeline
+- If you need to automate downloads of a lot of sessions or a whole project another option is to
   see [Downloading Sessions via Script](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_via_Script.html).
 - This method uses the XNAT REST API directly.
