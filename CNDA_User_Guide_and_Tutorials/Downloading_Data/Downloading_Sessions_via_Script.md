@@ -72,7 +72,7 @@ You'll need:
      applications menu.
 
 6. Go to the folder where you saved the script. Type `cd` followed by the
-   folder path. For example, if you saved it to your Desktop:
+   folder path and then hit Enter. For example, if you saved it to your Desktop:
    ```bash
    cd ~/Desktop
    ```
