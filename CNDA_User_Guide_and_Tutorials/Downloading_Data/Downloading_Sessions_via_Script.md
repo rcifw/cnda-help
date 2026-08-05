@@ -37,7 +37,12 @@ You'll need:
    on "File name extensions" in File Explorer's View tab so you can see
    the full name before continuing.
 
-3. Install Git Bash (Windows only, one-time setup). This gives Windows the
+   As an alternative, you might also be able to copy the content of the
+   script into a Notepad and save it as cndaBulkDownload.sh. The main point
+   is the file should be a shell script format after renaming not in the
+   format of a txt file.
+
+4. Install Git Bash (Windows only, one-time setup). This gives Windows the
    command-line tools (`bash`, `curl`) the script needs, which aren't
    included by default.
    1. Go to <https://git-scm.com/download/win> — the download starts
@@ -58,7 +63,7 @@ You'll need:
    not sure whether you have WSL, Git Bash is faster to get running and
    is all this script needs.
 
-4. Open a command line.
+5. Open a command line.
    - **Windows:** click the Start menu, type `Git Bash`, and click **Git
      Bash** in the results. A dark window with a text prompt opens — this
      is your command line for every step below.
@@ -66,7 +71,7 @@ You'll need:
    - **Linux:** open your distro's terminal application from your
      applications menu.
 
-5. Go to the folder where you saved the script. Type `cd` followed by the
+6. Go to the folder where you saved the script. Type `cd` followed by the
    folder path. For example, if you saved it to your Desktop:
    ```bash
    cd ~/Desktop
@@ -84,7 +89,7 @@ You'll need:
    folder from File Explorer directly into the Git Bash window — it will
    fill in the correct path for you automatically.
 
-6. Confirm the script is actually there before continuing:
+7. Confirm the script is actually there before continuing:
    ```bash
    ls cndaBulkDownload.sh
    ```
@@ -93,7 +98,7 @@ You'll need:
    wrong folder or the file didn't save with that exact name — check
    step 5 and step 2 again.
 
-7. Give the script permission to run. Mac, Linux, and Git Bash all treat
+8. Give the script permission to run. Mac, Linux, and Git Bash all treat
    downloaded scripts as non-executable by default as a safety measure,
    so this tells your system it's okay to run this one. It's a one-time
    step per copy of the script:
@@ -103,7 +108,7 @@ You'll need:
    You won't see any output from this — that's expected. You don't need
    to repeat it the next time you use the same copy of the script.
 
-8. Run the script. You have two ways to tell it what to download:
+9. Run the script. You have two ways to tell it what to download:
 
    **Download an entire project**
    ```bash
@@ -129,7 +134,7 @@ You'll need:
    as it downloads each session, so as long as you see new lines
    appearing, it's still working.
 
-9. (Optional) Choose where files are saved. By default, downloads go into
+10. (Optional) Choose where files are saved. By default, downloads go into
    a new folder named after the project (or `cnda_downloads` if you used
    a session list), created inside whatever folder you were in when you
    ran the script. To pick your own folder instead, add `-d`:
@@ -137,7 +142,7 @@ You'll need:
    ./cndaBulkDownload.sh -u yourUsername -p MRF_1234 -d /path/to/my/folder
    ```
 
-10. **Recommended for any download over ~25 minutes:** save your
+11. **Recommended for any download over ~25 minutes:** save your
     credentials to a file instead of typing your password with `-u`. CNDA
     logins expire every 30 minutes, and the script automatically re-logs
     in for you around the 25-minute mark — without a creds file, that
