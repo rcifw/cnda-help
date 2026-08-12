@@ -2,6 +2,9 @@
 
 ## Instructions
 
+**NOTE:** Before any starting any download, first check how much storage space you have available.
+No download method will work if there is not enough storage space.
+
 1. Go to the **Project** page. In the **Actions** box at the top right, click on **Download Images**.
 
    ![action box](images/DwnldMulimg1.jpg)
