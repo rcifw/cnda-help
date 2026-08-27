@@ -44,13 +44,14 @@ After authenticating, you will be redirected back to the CNDA2 registration page
 
 1. Ensure **A New CNDA Account** is selected
 2. Replace the generated username with your existing CNDA1 username
+3. If you do not have a CNDA1 username, please pick a username for CNDA2. Don't leave it at that default WUSTL number that is pre-filled. 
 
 ::: danger Username Requirement
 You must enter the username you currently use on CNDA1. If you use a different username, your project access cannot be linked automatically. Your WashU Key is assigned an internal ID that only WashU IT can see — your CNDA1 username is the only identifier we have to connect your new account to your existing projects.
 :::
 
-3. Verify your first and last name are in the correct fields — some browsers autofill them in reverse order, as shown in the screenshot above. Correct manually if needed.
-4. Click **Register**
+4. Verify your first and last name are in the correct fields — some browsers autofill them in reverse order, as shown in the screenshot above. Correct manually if needed.
+5. Click **Register**
 
 ---
 
