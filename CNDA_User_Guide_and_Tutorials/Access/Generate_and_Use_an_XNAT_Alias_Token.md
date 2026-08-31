@@ -15,7 +15,7 @@ CNDA2 uses [WashU Key](https://it.wustl.edu/items/what-is-a-wustl-key/) for web 
 
 ## Create an Alias Token
 
-1. Go to [https://cnda2.wustl.edu](https://cnda2.wustl.edu) and log in with WashU Key
+1. Go to [https://cnda.wustl.edu](https://cnda.wustl.edu) and log in with WashU Key
 2. Click your username in the top-right corner
 
 ![Click your username in the top-right corner](/images/alias-token/alias-token-click-username.jpg)
