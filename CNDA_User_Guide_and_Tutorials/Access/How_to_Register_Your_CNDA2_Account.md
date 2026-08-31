@@ -2,9 +2,7 @@
 
 ## Overview
 
-CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication instead of local usernames and passwords. All users must create a new CNDA2 account. The Cutover date is 8/30/2026. 
-
-Right now, we are in the registration phase and the only thing that works is registering. Logging in and seeing things on CNDA2 has not been enabled yet. Do not try to log in after registering.
+CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication instead of local usernames and passwords. All users must create a new CNDA2 account. The Cutover date was 8/30/2026. 
 
 ---
 
@@ -55,14 +53,12 @@ You must enter the username you currently use on CNDA1. If you use a different u
 
 ---
 
-## Step 3: Wait for Migration Completion
+## Step 3: Notify CNDA-HELP via email of your registration
 
 After registering:
 
-- Do not begin normal work in CNDA2 until the cutover date
-- Wait for the official migration announcement
-
-You will be notified when the system is ready for use. Your project access will be restored automatically at that time — no action is needed on your part except to register for an account.
+- Please email CNDA-HELP at cnda-help@wustl.edu to let us know you registered.
+- That will allow us to restore your project access.
 
 ---
 
