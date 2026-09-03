@@ -74,7 +74,7 @@ Avoid hardcoding credentials in scripts. Use environment variables instead.
 
 ## Token Lifecycle
 
-- Tokens expire automatically after 30 days
+- Tokens expire automatically after 90 days
 - Once expired they stop working immediately
 - To continue access: generate a new token and update your XDC connections and scripts
 - You may delete old tokens from the UI to keep things clean, but this is optional
