@@ -41,7 +41,7 @@ After authenticating, you will be redirected back to the CNDA2 registration page
 ![The CNDA2 registration page. Select "A New CNDA Account" and replace the generated username with your existing CNDA1 username.](/images/cnda2-register/registration-page.jpg)
 
 1. Ensure **A New CNDA Account** is selected
-2. Replace the generated username with your existing CNDA1 username
+2. **Replace the pre-generated wustl username (ex. wustl4320132) with your existing CNDA1 username**
 3. If you do not have a CNDA1 username, please pick a username for CNDA2. Don't leave it at that default WUSTL number that is pre-filled. 
 
 ::: danger Username Requirement
