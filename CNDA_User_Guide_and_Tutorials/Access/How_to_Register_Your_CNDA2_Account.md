@@ -12,7 +12,7 @@ CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication
   - WashU faculty and staff already have one
   - External users must apply for one — see [How to Obtain a WashU Key](https://help.cnda.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Obtain_a_WashU_Key.html)
 - You will create a new account on CNDA2
-- Your existing project access will be re-linked once data migration is complete — we will announce when the system is ready
+- Your existing project access will be re-linked shortly after making an account
 
 ---
 
