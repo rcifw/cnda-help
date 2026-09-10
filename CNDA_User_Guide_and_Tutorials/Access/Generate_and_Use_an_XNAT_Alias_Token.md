@@ -42,7 +42,7 @@ Keep these private. Treat them like a username and password.
 
 ### XNAT Desktop Client (XDC)
 
-- **Server:** cnda2.wustl.edu
+- **Server:** cnda.wustl.edu
 - **Username:** alias
 - **Password:** secret
 
@@ -51,7 +51,7 @@ Keep these private. Treat them like a username and password.
 **curl:**
 ```bash
 curl -u "$CNDA_ALIAS:$CNDA_SECRET" \
-  "https://cnda2.wustl.edu/data/projects?format=json"
+  "https://cnda.wustl.edu/data/projects?format=json"
 ```
 
 **Python (XNATpy):**
@@ -60,7 +60,7 @@ import os
 import xnat
 
 with xnat.connect(
-    "https://cnda2.wustl.edu",
+    "https://cnda.wustl.edu",
     user=os.environ["CNDA_ALIAS"],
     password=os.environ["CNDA_SECRET"],
     extension_types=False,
