@@ -13,8 +13,15 @@ session.
 You'll need:
 
 - A CNDA account with access to the project you want to download.
+- An **Alias Token** and **Secret**. API and script users must sign in with
+  these instead of their WUSTL Key password. See
+  [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
 - The project ID (for example `MRF_1234`), or a CSV listing the specific sessions you want.
 - Enough free disk space — roughly twice the size of the data you're downloading (temporary ZIPs, plus extracted data if you unzip them afterward).
+
+**Note:** Each Alias Token and Secret lasts **90 days**. Before starting a
+large download, check when your token expires. If it expires soon, create
+a new one first so it doesn't stop working partway through.
 
 ## Instructions
 
@@ -27,9 +34,9 @@ You'll need:
    as potentially harmful and block the download. Once it's saved, open
    the file and use **Save As** to save a copy of it named exactly:
 
-   ```
+```
    cndaBulkDownload.sh
-   ```
+```
 
    Make sure Windows doesn't save it as `cndaBulkDownload.sh.txt` — some
    versions of Windows hide file extensions by default, so it's easy to
@@ -38,11 +45,10 @@ You'll need:
    the full name before continuing.
 
    As an alternative, you might also be able to copy the content of the
-   script into a Notepad and save it as cndaBulkDownload.sh. The main point
-   is the file should be a shell script format after renaming not in the
-   format of a txt file.
+   script into Notepad and save it as `cndaBulkDownload.sh`. The main point
+   is that the file should be a shell script after renaming, not a text file.
 
-4. Install Git Bash (Windows only, one-time setup). This gives Windows the
+3. Install Git Bash (Windows only, one-time setup). This gives Windows the
    command-line tools (`bash`, `curl`) the script needs, which aren't
    included by default.
    1. Go to <https://git-scm.com/download/win> — the download starts
@@ -63,7 +69,7 @@ You'll need:
    not sure whether you have WSL, Git Bash is faster to get running and
    is all this script needs.
 
-5. Open a command line.
+4. Open a command line.
    - **Windows:** click the Start menu, type `Git Bash`, and click **Git
      Bash** in the results. A dark window with a text prompt opens — this
      is your command line for every step below.
@@ -71,15 +77,15 @@ You'll need:
    - **Linux:** open your distro's terminal application from your
      applications menu.
 
-6. Go to the folder where you saved the script. Type `cd` followed by the
+5. Go to the folder where you saved the script. Type `cd` followed by the
    folder path and then hit Enter. For example, if you saved it to your Desktop:
-   ```bash
+```bash
    cd ~/Desktop
-   ```
+```
    or if you saved it to Documents:
-   ```bash
+```bash
    cd ~/Documents
-   ```
+```
    In Git Bash, `~` always means your Windows user folder
    (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
    way they do on Mac and Linux. If you saved the script somewhere else,
@@ -89,43 +95,44 @@ You'll need:
    folder from File Explorer directly into the Git Bash window — it will
    fill in the correct path for you automatically.
 
-7. Confirm the script is actually there before continuing:
-   ```bash
+6. Confirm the script is actually there before continuing:
+```bash
    ls cndaBulkDownload.sh
-   ```
+```
    If it prints back `cndaBulkDownload.sh`, you're in the right folder.
    If you instead see `No such file or directory`, you're either in the
    wrong folder or the file didn't save with that exact name — check
    step 5 and step 2 again.
 
-8. Give the script permission to run. Mac, Linux, and Git Bash all treat
+7. Give the script permission to run. Mac, Linux, and Git Bash all treat
    downloaded scripts as non-executable by default as a safety measure,
    so this tells your system it's okay to run this one. It's a one-time
    step per copy of the script:
-   ```bash
+```bash
    chmod +x cndaBulkDownload.sh
-   ```
+```
    You won't see any output from this — that's expected. You don't need
    to repeat it the next time you use the same copy of the script.
 
-9. Run the script. You have two ways to tell it what to download:
+8. Run the script. You have two ways to tell it what to download:
 
    **Download an entire project**
-   ```bash
-   ./cndaBulkDownload.sh -u yourUsername -p MRF_1234
-   ```
-   Replace `yourUsername` with your CNDA username and `MRF_1234` with the
-   actual project ID. You'll be prompted to type your CNDA password — it
-   won't show anything on screen as you type, not even dots. This is
-   normal terminal behavior, not a freeze. Type it and press Enter.
+```bash
+   ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
+```
+   Replace `yourAliasToken` with your Alias Token and `MRF_1234` with the
+   actual project ID. When prompted for a password, type your **Secret**
+   (not your WUSTL Key password). It won't show anything on screen as you
+   type, not even dots. This is normal terminal behavior, not a freeze.
+   Type it and press Enter.
 
    **Download a specific list of sessions**
 
    Create a CSV file listing the sessions first — see
    [Session List CSV Format](#session-list-csv-format) below — then run:
-   ```bash
-   ./cndaBulkDownload.sh -u yourUsername -s mysessions.csv
-   ```
+```bash
+   ./cndaBulkDownload.sh -u yourAliasToken -s mysessions.csv
+```
    Use one or the other, not both — the script will stop with an error if
    you pass `-p` and `-s` together.
 
@@ -134,36 +141,42 @@ You'll need:
    as it downloads each session, so as long as you see new lines
    appearing, it's still working.
 
-10. (Optional) Choose where files are saved. By default, downloads go into
+9. (Optional) Choose where files are saved. By default, downloads go into
    a new folder named after the project (or `cnda_downloads` if you used
    a session list), created inside whatever folder you were in when you
    ran the script. To pick your own folder instead, add `-d`:
-   ```bash
-   ./cndaBulkDownload.sh -u yourUsername -p MRF_1234 -d /path/to/my/folder
-   ```
+```bash
+   ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234 -d /path/to/my/folder
+```
 
-11. **Recommended for any download over ~25 minutes:** save your
-    credentials to a file instead of typing your password with `-u`. CNDA
-    logins expire every 30 minutes, and the script automatically re-logs
-    in for you around the 25-minute mark — without a creds file, that
-    re-login will stop and prompt you for your password again
-    mid-download, which can silently pause an unattended run. See
+10. **Recommended for any download over ~25 minutes:** save your Alias
+    Token and Secret to a file instead of typing your Secret with `-u`.
+    CNDA login sessions expire every 30 minutes, and the script
+    automatically re-logs in for you around the 25-minute mark — without
+    a creds file, that re-login will stop and prompt you for your Secret
+    again mid-download, which can silently pause an unattended run. See
     [How Interruptions Are Handled](#how-interruptions-are-handled) for
     details.
     1. In the same folder as the script, create a plain text file named
-       `creds.json` containing exactly this, with your own username and
-       password:
-       ```json
-       {"user": "yourUsername", "password": "yourPassword"}
-       ```
+       `creds.json` containing exactly this, with your own Alias Token
+       and Secret:
+```json
+       {"user": "yourAliasToken", "password": "yourSecret"}
+```
+       The field names stay `user` and `password` — just put your Alias
+       Token in `user` and your Secret in `password`.
     2. Run the script with `-c` instead of `-u`:
-       ```bash
+```bash
        ./cndaBulkDownload.sh -c creds.json -p MRF_1234
-       ```
-    **Note:** this file holds your password in plain text. Restrict who
-    can read it (`chmod 600 creds.json`), never commit it to Git, never
-    email it, and delete it when you're done with it. Do not use `-u` and
-    `-c` together — the username comes from the file.
+```
+    **Note:** this file holds your Secret in plain text. Anyone with your
+    Alias Token and Secret can access CNDA as you until the token expires.
+    Restrict who can read it (`chmod 600 creds.json`), never commit it to
+    Git, never email it, and delete it when you're done with it. Do not
+    use `-u` and `-c` together — the Alias Token comes from the file.
+
+    When your Alias Token expires after 90 days, create a new one and
+    update `creds.json` with the new Alias Token and Secret.
 
 ## Complete Example
 
@@ -173,7 +186,7 @@ looks like this from start to finish:
 ```bash
 cd ~/Desktop
 chmod +x cndaBulkDownload.sh
-./cndaBulkDownload.sh -u jsmith -p MRF_1234
+./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
 ```
 
 ## Session List CSV Format
@@ -245,20 +258,27 @@ download and skip it.
 comes back invalid, the script re-authenticates and tries that one
 session again before giving up and marking it FAIL in the log.
 
-**Your login is refreshed automatically during long runs.** CNDA logins
-expire after 30 minutes. Rather than waiting for a download to fail and
-then recovering, the script checks the age of its login before each
-session and proactively re-logs in once it's been about 25 minutes —
-before anything actually breaks.
+**Your login is refreshed automatically during long runs.** CNDA login
+sessions expire after 30 minutes. Rather than waiting for a download to
+fail and then recovering, the script checks the age of its login before
+each session and proactively re-logs in with your Alias Token and Secret
+once it's been about 25 minutes — before anything actually breaks.
+
+**This 30-minute session is different from your Alias Token's 90-day
+expiration.** The script can refresh a 30-minute session on its own, but
+it cannot renew your Alias Token. If your token expires during a run,
+every re-login after that point will fail. Create a new Alias Token,
+update `creds.json` if you use one, and rerun the same command — the
+script will skip everything already downloaded.
 
 **This is why the credentials file matters for anything longer than 25
-minutes.** If you started the script with `-u` (typing your password),
-that automatic re-login has no password to use and will stop and prompt
-you to type it again, right there in the terminal — meaning an
-unattended long download can silently pause and wait for you. If you
-used `-c creds.json` instead, the re-login reads your password from the
-file with no prompt and no interruption. **For any download you expect to
-take more than about 20–25 minutes, use `-c creds.json`, not `-u`.**
+minutes.** If you started the script with `-u` (typing your Secret), the
+automatic re-login has no Secret saved and will stop and prompt you to
+type it again, right there in the terminal — meaning an unattended long
+download can silently pause and wait for you. If you used
+`-c creds.json` instead, the re-login reads your Secret from the file
+with no prompt and no interruption. **For any download you expect to take
+more than about 20–25 minutes, use `-c creds.json`, not `-u`.**
 
 **A very slow or stalled connection is caught automatically.** If a
 download's transfer rate drops too low for too long (default: under
@@ -278,13 +298,22 @@ connections.
 - **"Your access is probably not enabled for this project, or the project id
   is wrong."** — double-check the project ID is typed exactly as it
   appears in CNDA, and confirm you have access to that project.
-- **"CNDA login failed. Check your credentials and retry."** — your
-  username or password was entered incorrectly. Just run the command
-  again.
+- **"CNDA login failed. Check your credentials and retry."** — there are
+  three common causes:
+  - The Alias Token or Secret was typed incorrectly. Run the command again.
+  - You used your WUSTL Key username or password instead of your Alias
+    Token and Secret. The script only accepts the Alias Token and Secret.
+  - Your Alias Token has expired (they last 90 days). Create a new one —
+    see [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html) —
+    and update `creds.json` if you use one.
+- **Downloads worked earlier but every session now fails at login** — your
+  Alias Token most likely expired mid-run. Create a new one, then rerun
+  the same command; completed sessions will be skipped.
 - **A session fails every time, even after rerunning** — check the log
   file named in the "Done." summary line for the specific reason next to
   that session.
-- **You're not sure if you're signed in for too long** — CNDA sessions
-  expire automatically after a period of inactivity. The script detects
-  this on its own and re-logs in for you mid-run; you don't need to do
-  anything.
+- **You're not sure if you're signed in for too long** — CNDA login
+  sessions expire automatically after a period of inactivity. The script
+  detects this on its own and re-logs in for you mid-run using your Alias
+  Token and Secret; you don't need to do anything, as long as the token
+  itself hasn't expired.
