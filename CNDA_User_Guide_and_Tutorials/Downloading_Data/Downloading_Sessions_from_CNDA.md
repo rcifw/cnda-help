@@ -2,7 +2,7 @@
 
 ## Instructions
 
-**NOTE:** Before any starting any download, first check how much storage space you have available.
+**NOTE:** Before starting any download, first check how much storage space you have available.
 No download method will work if there is not enough storage space.
 
 1. Go to the **Project** page. In the **Actions** box at the top right, click on **Download Images**.
@@ -49,6 +49,7 @@ No download method will work if there is not enough storage space.
    - If you choose Option 1, you will need to download and install the XNAT Desktop Client first.
    - After you install the Desktop Client, you will want to go back to the same CNDA download page and start the download with Option 1.
    - The XNAT Desktop Client can resume a download even if it gets interrupted.
+   - Desktop Client users will need an **Alias Token** and **Secret** to sign in to the app directly. See [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
    - You don't need all the instructions below, but you do need the info on how to download this application and install it.
 
      - [How to install and use XNAT Desktop Client](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Uploading_Data/Uploading_Using_a_Desktop_Application.html)
@@ -62,7 +63,7 @@ No download method will work if there is not enough storage space.
 
 6. After picking your download option, click **Submit**.
 
-   **Note:** If you chose Zip Download, this is the end of the process — once you click Download ZIP, your file will save normally through your browser. The remaining steps below apply only if you chose **Download via Desktop Client**.
+   **Note:** If you chose Zip Download, this is the end of the process. Once you click **Download ZIP**, your file will save normally through your browser. The remaining steps below apply only if you chose **Download via Desktop Client**.
 
 7. When you press **Download via App**, a new popup page will open.<br>
    On that page, you have to press **Open XNAT-DesktopClient**.<br>
@@ -72,7 +73,7 @@ No download method will work if there is not enough storage space.
 
    <div style="clear:both"></div>
 
-8. The Desktop Client will open to a **Download XNAT XML catalog files** window. The **Select XML File** field will already be filled in automatically — the app logs you in and pulls the correct file list through your existing CNDA session, so you don't need to enter any credentials here.
+8. The Desktop Client will open to a **Download XNAT XML catalog files** window. The **Select XML File** field will already be filled in automatically. The app logs you in and pulls the correct file list through your existing CNDA session, so you don't need to enter an Alias Token or any other credentials here.
 
    Click **Browse** next to **Set Destination** to choose where the download should be saved.
 
@@ -106,13 +107,13 @@ No download method will work if there is not enough storage space.
 
     **Note:** It is possible for an error to occur while sessions are downloading. Seeing an error alone does not mean that all downloads have stopped. Check the **Details** page to see if downloads are still continuing.
 
-13. The **Session transfer details** window lists each session, its scan count, any errors, and its individual download progress. If a session's transfer is interrupted or paused, its progress bar will appear orange with diagonal stripes rather than solid. Click **Restart Download** to resume it — the Desktop Client will continue from where it left off rather than starting over.
+13. The **Session transfer details** window lists each session, its scan count, any errors, and its individual download progress. If a session's transfer is interrupted or paused, its progress bar will appear orange with diagonal stripes rather than solid. Click **Restart Download** to resume it. The Desktop Client will continue from where it left off rather than starting over.
 
     ![resume a download](images/DwnldMulimg11.jpg)
 
     <div style="clear:both"></div>
 
-14. Once resumed, the progress bar turns green and continues actively downloading, and the button changes to **Cancel Download** — confirming the transfer has restarted successfully.
+14. Once resumed, the progress bar turns green and continues actively downloading, and the button changes to **Cancel Download**, confirming the transfer has restarted successfully.
 
     ![notice that download restarted](images/DwnldMulimg12.jpg)
 
@@ -120,29 +121,40 @@ No download method will work if there is not enough storage space.
 
 15. You should find the downloaded file in your destination folder.
 
-**Important:** Please Monitor your downloads. Do not assume things are downloading for hours or days without checking.
+**Important:** Please monitor your downloads. Do not assume things are downloading for hours or days without checking.
 
-**Note:** If you are ever signed out of CNDA, close the application, or lose your progress for any reason while a Desktop Client download is in progress, you do not need to start over.
+## Signing Back In to the Desktop Client
+
+If you are ever signed out of CNDA, close the application, or lose your progress for any reason while a Desktop Client download is in progress, you do not need to start over.
 
 - Open the **XNAT Desktop Client** application again.
-- Click **Add New XNAT Server**
-- For server address you must type in is <https://cnda.wustl.edu>
-- Then there are also fields for a username and password.
+- Click **Add New XNAT Server**.
+- For server address, type in <https://cnda.wustl.edu>
+- You will see fields for a username and password. **Do not use your WUSTL Key or password here.** CNDA requires an **Alias Token** and **Secret** to sign in to the Desktop Client:
+  - In the **Username** field, enter your **Alias Token**.
+  - In the **Password** field, enter your **Secret**.
 
   ![login screen with username and password fields](images/DwnldMulimg13.jpg)
 
   <div style="clear:both"></div>
 
-- Sign in using your CNDA username and password.
-- When we migrate to CNDA2, you will have to make and use an Alias Token and Secret to log in.
-- After login ,click **Monitor Transfers** to return to the Download area.
+- If you don't have an Alias Token yet, see [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
+- After login, click **Monitor Transfers** to return to the Download area.
 
   ![return to monitor transfers](images/DwnldMulimg14.jpg)
 
   <div style="clear:both"></div>
 
-**Download via Script**
+### Alias Token Expiration
 
-- If you need to automate downloads of a lot of sessions or a whole project another option is to
+Each Alias Token and Secret lasts **90 days**. After that, it stops working and you will need to create a new one.
+
+- If the Desktop Client suddenly fails to log in or reconnect, your token may have expired. Create a new Alias Token and Secret, then sign in again using the steps above.
+- For large downloads that may take several days, check your token's expiration date before starting. If it expires soon, create a new token first.
+
+## Download via Script
+
+- If you need to automate downloads of a lot of sessions or a whole project, another option is to
   see [Downloading Sessions via Script](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_via_Script.html).
 - This method uses the XNAT REST API directly.
+- API and script users will need an **Alias Token** and **Secret** instead of their WUSTL Key password, and the same 90-day expiration applies. See [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
