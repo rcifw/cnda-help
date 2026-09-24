@@ -90,7 +90,7 @@ Avoid hardcoding credentials in scripts. Use environment variables instead.
 ## Key Takeaway
 
 - Use alias tokens for anything outside the browser
-- Expect them to expire every 30 days
+- Expect them to expire every 90 days
 - Regenerate when needed
 
 Contact the CNDA Help Desk at [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu) if you have questions.
