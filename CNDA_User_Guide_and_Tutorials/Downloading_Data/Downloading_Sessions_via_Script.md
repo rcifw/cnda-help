@@ -28,155 +28,202 @@ a new one first so it doesn't stop working partway through.
 1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small number of sessions and doesn't require any of the setup below.
 
 2. Download the script file: [cndaBulkDownload.txt](/cndaBulkDownload.txt).
-   Right-click the link and choose **Save link as...**, then save it
-   somewhere you'll remember — your Desktop or Documents folder works well.
-   The file is provided as `.txt` because browsers often flag `.sh` files
-   as potentially harmful and block the download. Once it's saved, open
-   the file and use **Save As** to save a copy of it named exactly:
+    Right-click the link and choose **Save link as...**, then save it
+    somewhere you'll remember — your Desktop or Documents folder works well.
+    The file is provided as `.txt` because browsers often flag `.sh` files
+    as potentially harmful and block the download. Once it's saved, open
+    the file and use **Save As** to save a copy of it named exactly:
 
-```
-   cndaBulkDownload.sh
-```
+    ```text
+    cndaBulkDownload.sh
+    ```
 
-   Make sure Windows doesn't save it as `cndaBulkDownload.sh.txt` — some
-   versions of Windows hide file extensions by default, so it's easy to
-   end up with `.sh.txt` without realizing it. If you're not sure, turn
-   on "File name extensions" in File Explorer's View tab so you can see
-   the full name before continuing.
+    Make sure Windows doesn't save it as `cndaBulkDownload.sh.txt` — some
+    versions of Windows hide file extensions by default, so it's easy to
+    end up with `.sh.txt` without realizing it. If you're not sure, turn
+    on "File name extensions" in File Explorer's View tab so you can see
+    the full name before continuing.
 
-   As an alternative, you might also be able to copy the content of the
-   script into Notepad and save it as `cndaBulkDownload.sh`. The main point
-   is that the file should be a shell script after renaming, not a text file.
+    As an alternative, you might also be able to copy the content of the
+    script into Notepad and save it as `cndaBulkDownload.sh`. The main point
+    is that the file should be a shell script after renaming, not a text file.
 
 3. Install Git Bash (Windows only, one-time setup). This gives Windows the
-   command-line tools (`bash`, `curl`) the script needs, which aren't
-   included by default.
-   1. Go to <https://git-scm.com/download/win> — the download starts
+    command-line tools (`bash`, `curl`) the script needs, which aren't
+    included by default.
+    1. Go to <https://git-scm.com/download/win> — the download starts
       automatically. If it doesn't, click the "Click here to download"
       link on that page.
-   2. Once downloaded, double-click the installer file (something like
+    2. Once downloaded, double-click the installer file (something like
       `Git-2.xx.x-64-bit.exe`) to run it.
-   3. Windows may show a "Do you want to allow this app to make changes to
+    3. Windows may show a "Do you want to allow this app to make changes to
       your device?" prompt — click **Yes**.
-   4. Click through the installer screens. The default settings on every
+    4. Click through the installer screens. The default settings on every
       screen are fine for this script — just click **Next** on each one,
       then **Install** on the final screen.
-   5. When it finishes, click **Finish**.
+    5. When it finishes, click **Finish**.
 
-   If your team already has WSL (Windows Subsystem for Linux) set up on
-   your machine, you can use that instead of Git Bash — open your Linux
-   distro from the Start menu and follow the same steps below. If you're
-   not sure whether you have WSL, Git Bash is faster to get running and
-   is all this script needs.
+    If your team already has WSL (Windows Subsystem for Linux) set up on
+    your machine, you can use that instead of Git Bash — open your Linux
+    distro from the Start menu and follow the same steps below. If you're
+    not sure whether you have WSL, Git Bash is faster to get running and
+    is all this script needs.
 
 4. Open a command line.
-   - **Windows:** click the Start menu, type `Git Bash`, and click **Git
+    - **Windows:** click the Start menu, type `Git Bash`, and click **Git
      Bash** in the results. A dark window with a text prompt opens — this
      is your command line for every step below.
-   - **Mac:** press **Cmd + Space**, type `Terminal`, and press Enter.
-   - **Linux:** open your distro's terminal application from your
+    - **Mac:** press **Cmd + Space**, type `Terminal`, and press Enter.
+    - **Linux:** open your distro's terminal application from your
      applications menu.
 
 5. Go to the folder where you saved the script. Type `cd` followed by the
-   folder path and then hit Enter. For example, if you saved it to your Desktop:
-```bash
-   cd ~/Desktop
-```
-   or if you saved it to Documents:
-```bash
-   cd ~/Documents
-```
-   In Git Bash, `~` always means your Windows user folder
-   (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
-   way they do on Mac and Linux. If you saved the script somewhere else,
-   like a Downloads folder or a specific project folder, use that path
-   instead — for example `cd ~/Downloads` or `cd "/c/Users/yourname/My Folder"`.
-   You can also type `cd ` (with a trailing space) and then drag the
-   folder from File Explorer directly into the Git Bash window — it will
-   fill in the correct path for you automatically.
+    folder path and then hit Enter. For example, if you saved it to your Desktop:
+    ```bash
+    cd ~/Desktop
+    ```
+
+    or if you saved it to Documents:
+    ```bash
+    cd ~/Documents
+    ```
+
+    In Git Bash, `~` always means your Windows user folder
+    (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
+    way they do on Mac and Linux. If you saved the script somewhere else,
+    like a Downloads folder or a specific project folder, use that path
+    instead — for example `cd ~/Downloads` or `cd "/c/Users/yourname/My Folder"`.
+    You can also type `cd ` (with a trailing space) and then drag the
+    folder from File Explorer directly into the Git Bash window — it will
+    fill in the correct path for you automatically.
 
 6. Confirm the script is actually there before continuing:
-```bash
-   ls cndaBulkDownload.sh
-```
-   If it prints back `cndaBulkDownload.sh`, you're in the right folder.
-   If you instead see `No such file or directory`, you're either in the
-   wrong folder or the file didn't save with that exact name — check
-   step 5 and step 2 again.
+    ```bash
+    ls cndaBulkDownload.sh
+    ```
+
+    If it prints back `cndaBulkDownload.sh`, you're in the right folder.
+    If you instead see `No such file or directory`, you're either in the
+    wrong folder or the file didn't save with that exact name — check
+    step 5 and step 2 again.
 
 7. Give the script permission to run. Mac, Linux, and Git Bash all treat
-   downloaded scripts as non-executable by default as a safety measure,
-   so this tells your system it's okay to run this one. It's a one-time
-   step per copy of the script:
-```bash
-   chmod +x cndaBulkDownload.sh
-```
-   You won't see any output from this — that's expected. You don't need
-   to repeat it the next time you use the same copy of the script.
+    downloaded scripts as non-executable by default as a safety measure,
+    so this tells your system it's okay to run this one. It's a one-time
+    step per copy of the script:
+    ```bash
+    chmod +x cndaBulkDownload.sh
+    ```
+
+    You won't see any output from this — that's expected. You don't need
+    to repeat it the next time you use the same copy of the script.
 
 8. Run the script. You have two ways to tell it what to download:
 
-   **Download an entire project**
-```bash
-   ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
-```
-   Replace `yourAliasToken` with your Alias Token and `MRF_1234` with the
-   actual project ID. When prompted for a password, type your **Secret**
-   (not your WUSTL Key password). It won't show anything on screen as you
-   type, not even dots. This is normal terminal behavior, not a freeze.
-   Type it and press Enter.
+    **Download an entire project**
+    ```bash
+    ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
+    ```
 
-   **Download a specific list of sessions**
+    Replace `yourAliasToken` with your Alias Token and `MRF_1234` with the
+    actual project ID. When prompted for a password, type your **Secret**
+    (not your WUSTL Key password). It won't show anything on screen as you
+    type, not even dots. This is normal terminal behavior, not a freeze.
+    Type it and press Enter.
 
-   Create a CSV file listing the sessions first — see
-   [Session List CSV Format](#session-list-csv-format) below — then run:
-```bash
-   ./cndaBulkDownload.sh -u yourAliasToken -s mysessions.csv
-```
-   Use one or the other, not both — the script will stop with an error if
-   you pass `-p` and `-s` together.
+    **Download a specific list of sessions**
 
-   Large projects may take hours to complete depending on your internet
-   connection and the amount of data involved. The script prints progress
-   as it downloads each session, so as long as you see new lines
-   appearing, it's still working.
+    Create a CSV file listing the sessions first — see
+    [Session List CSV Format](#session-list-csv-format) below — then run:
+    ```bash
+    ./cndaBulkDownload.sh -u yourAliasToken -s mysessions.csv
+    ```
+
+    Use one or the other, not both — the script will stop with an error if
+    you pass `-p` and `-s` together.
+
+    Large projects may take hours to complete depending on your internet
+    connection and the amount of data involved. The script prints progress
+    as it downloads each session, so as long as you see new lines
+    appearing, it's still working.
 
 9. (Optional) Choose where files are saved. By default, downloads go into
-   a new folder named after the project (or `cnda_downloads` if you used
-   a session list), created inside whatever folder you were in when you
-   ran the script. To pick your own folder instead, add `-d`:
-```bash
-   ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234 -d /path/to/my/folder
-```
+    a new folder named after the project (or `cnda_downloads` if you used
+    a session list), created inside whatever folder you were in when you
+    ran the script. To pick your own folder instead, add `-d`:
+    ```bash
+    ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234 -d /path/to/my/folder
+    ```
 
-10. **Recommended for any download over ~25 minutes:** save your Alias
-    Token and Secret to a file instead of typing your Secret with `-u`.
-    CNDA login sessions expire every 30 minutes, and the script
-    automatically re-logs in for you around the 25-minute mark — without
-    a creds file, that re-login will stop and prompt you for your Secret
-    again mid-download, which can silently pause an unattended run. See
-    [How Interruptions Are Handled](#how-interruptions-are-handled) for
-    details.
-    1. In the same folder as the script, create a plain text file named
-       `creds.json` containing exactly this, with your own Alias Token
-       and Secret:
-```json
-       {"user": "yourAliasToken", "password": "yourSecret"}
-```
-       The field names stay `user` and `password` — just put your Alias
-       Token in `user` and your Secret in `password`.
-    2. Run the script with `-c` instead of `-u`:
-```bash
-       ./cndaBulkDownload.sh -c creds.json -p MRF_1234
-```
-    **Note:** this file holds your Secret in plain text. Anyone with your
-    Alias Token and Secret can access CNDA as you until the token expires.
-    Restrict who can read it (`chmod 600 creds.json`), never commit it to
-    Git, never email it, and delete it when you're done with it. Do not
-    use `-u` and `-c` together — the Alias Token comes from the file.
 
-    When your Alias Token expires after 90 days, create a new one and
-    update `creds.json` with the new Alias Token and Secret.
+10. **Recommended for downloads over 25 minutes: Save your credentials securely.**
+
+    CNDA login sessions expire after approximately 30 minutes. The script automatically refreshes its login after about 25 minutes. Without a credentials file, the script may pause and ask for your Secret again during a long download.
+
+    Using a credentials file allows the download to continue unattended.
+
+    **Step 1: Create a private credentials folder**
+
+    Open Git Bash (Windows) or Terminal (Mac/Linux) and run:
+
+    ```bash
+    mkdir -p ~/.cnda
+    chmod 700 ~/.cnda
+    ```
+
+    This creates a dedicated folder inside your user account for CNDA credentials.
+
+    **Step 2: Create your credentials file**
+
+    Using a text editor, create a file named `creds.json` inside the `.cnda` folder.
+
+    Enter the following, replacing the example values with your actual CNDA Alias Token and Secret:
+
+    ```json
+    {
+      "user": "yourAliasToken",
+      "password": "yourSecret"
+    }
+    ```
+
+    The field names must remain `user` and `password`. Save the file as `creds.json`, not `creds.json.txt`.
+
+    **Step 3: Restrict access to your credentials**
+
+    Run:
+
+    ```bash
+    chmod 600 ~/.cnda/creds.json
+    ```
+
+    On Mac and Linux, this restricts access to your user account. On Windows, Git Bash permissions may depend on Windows file permissions. Keep the file inside your private user folder, not in a shared location.
+
+    **Step 4: Run the download script**
+
+    From the folder containing `cndaBulkDownload.sh`, run:
+
+    ```bash
+    ./cndaBulkDownload.sh -c ~/.cnda/creds.json -p MRF_1234
+    ```
+
+    Replace `MRF_1234` with your actual project ID.
+
+    To download a specific list of sessions instead, use:
+
+    ```bash
+    ./cndaBulkDownload.sh -c ~/.cnda/creds.json -s mysessions.csv
+    ```
+
+    The script will automatically use your Alias Token and Secret whenever it needs to sign in again.
+
+    **Important Security Notes**
+
+    - Your credentials file contains your Secret in plain text.
+    - Never email, share, or upload the file to a shared drive or Git repository.
+    - Keep it in your private `.cnda` folder rather than your Desktop or a shared project folder.
+    - Delete the credentials file when you no longer need it.
+    - Alias Tokens expire after 90 days. Generate a new token and update the file when yours expires.
+    - Do not use `-u` and `-c` together. When using `-c`, the script reads both credentials from the file.
 
 ## Complete Example
 
