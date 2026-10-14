@@ -159,7 +159,7 @@ These errors occur before any POST request is processed by CNDA. They have to do
 Simple method:
 
 1. When you log in to your XNAT Desktop Client, you should see a settings Cogwheel icon on the top right.
-2. CLick on that **Settings Cogwheel** to open Settings.
+2. Click on that **Settings Cogwheel** to open Settings.
 3. In Settings click on **Debug**
 4. In the Debug screen you will find a button that says **Clear Application Cache**
 5. Click on that button to clear all cache.
