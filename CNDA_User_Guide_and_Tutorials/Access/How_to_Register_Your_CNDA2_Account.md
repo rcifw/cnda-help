@@ -25,7 +25,7 @@ CNDA is migrating to a new system (CNDA2) that uses WashU Key for authentication
 - Do not click Register or Forgot Login
 :::
 
-2. Click **WUSTL Connect**
+2. Click **WUSTL Connect** instead to open the Register page.
 
 ![The CNDA2 login page. Leave USER and PASSWORD blank and click the WUSTL Connect button.](/images/cnda2-register/wustl-connect.jpg)
 
