@@ -172,7 +172,7 @@ KenanTestingUploader,smal_series,smal_series_MR_1
 KenanTestingUploader,tiny_series,tiny_series_MR_1
 ```
 
-![Example CNDA session list displayed in a spreadsheet](/images/session.png)
+![Example CNDA session list displayed in a spreadsheet](/images/sessions.png)
 
 Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the **project ID shown in CNDA**, not the project’s descriptive title. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
 
