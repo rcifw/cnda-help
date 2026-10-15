@@ -17,9 +17,9 @@ Use this script to download CNDA imaging sessions as verified ZIP archives. **Fi
 All platforms also need a CNDA2 account with access to the requested data, an XNAT alias token and secret, and adequate disk space. On Windows, run all commands in **Git Bash**, not Command Prompt or PowerShell. Check that `curl`, `unzip`, and `mktemp` are available in Git Bash before proceeding.
 :::
 
-::: info Platform testing status
+**Platform testing status**
+
 The script has been tested on **Linux**. The **Windows/Git Bash** and **macOS** instructions are provided, but those platforms have not yet been tested end-to-end. Downloads that include actual session-level resources also still need verification.
-:::
 
 ## Before you install: CNDA2 access and credentials
 
@@ -27,7 +27,7 @@ CNDA2 is available at [cnda.wustl.edu](https://cnda.wustl.edu/); the address has
 
 - **New to CNDA2?** Follow [How to Register Your CNDA2 Account](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/How_to_Register_Your_CNDA2_Account.html).
 - **External collaborator without a WashU Key?** A WashU PI must sponsor your WashU Key. See [How to Obtain a WashU Key](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Obtain_a_WashU_Key.html) before registering.
-- **Using this script?** Follow [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html). You need both the alias token and its secret. Alias tokens can expire, so you may need to generate a new one if authentication stops working.
+- **Using this script?** Follow [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html). You need both the alias token and its secret. **Alias tokens are valid for 90 days.** After expiration, generate a new token and secret to continue downloading.
 
 For account, project-access, or download assistance, email [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu).
 
@@ -54,10 +54,11 @@ If any other command is missing, resolve that installation or PATH issue before 
 
 ### 2. Download the script
 
-[Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) in your browser. Save it in your home directory, then rename it to `cndaBulkDownload.sh`. Or use this command **in Git Bash** to save and rename it:
+[Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) in your browser. Save it in your home directory, then rename it to `cndaBulkDownload.sh`. Or use the following commands **in Git Bash** to download and rename the script:
 
 ```bash
-curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt \
+  -o ~/cndaBulkDownload.txt
 mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
@@ -101,7 +102,8 @@ python3 --version
 [Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) from your browser and rename it to `cndaBulkDownload.sh` in your home directory. Alternatively:
 
 ```bash
-curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt \
+  -o ~/cndaBulkDownload.txt
 mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
@@ -142,7 +144,8 @@ python3 --version
 [Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) in your browser, then save or rename it as `~/cndaBulkDownload.sh`. Alternatively, from Terminal:
 
 ```bash
-curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt \
+  -o ~/cndaBulkDownload.txt
 mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
@@ -161,7 +164,7 @@ bash ~/cndaBulkDownload.sh -u YOUR_ALIAS -s ~/sessions.csv -d ~/cnda_downloads
 
 ## Prepare a session list and credentials
 
-All three platforms use the same CSV format. Create a UTF-8 file named `sessions.csv` in your home directory. Both `Project,Subject,Session` and `Project,SubjectLabel,SessionLabel` are accepted headers; a header is optional.
+All three platforms use the same CSV format. Create a UTF-8 file named `sessions.csv` in your home directory. Use a plain text editor, or in Microsoft Excel select **Save As → CSV UTF-8 (Comma delimited) (.csv)**. Both `Project,Subject,Session` and `Project,SubjectLabel,SessionLabel` are accepted headers; a header is optional.
 
 ```csv
 Project,SubjectLabel,SessionLabel
@@ -169,7 +172,7 @@ KenanTestingUploader,smal_series,smal_series_MR_1
 KenanTestingUploader,tiny_series,tiny_series_MR_1
 ```
 
-Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
+Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the **project ID shown in CNDA**, not the project’s descriptive title. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
 
 Use an **XNAT alias token and secret** ([setup instructions](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)), not your WashU Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
 
@@ -224,7 +227,7 @@ The `-t` filter is for **project mode only**; it cannot be combined with `-s`. O
 | Option | Behavior |
 | --- | --- |
 | `-s sessions.csv` | Download sessions listed in a CSV, including across multiple projects |
-| `-p PROJECT_ID` | Discover qualifying sessions in a project |
+| `-p PROJECT_ID` | Discover all supported imaging sessions in a project |
 | `-t xnat:mrSessionData` | Filter project downloads by session datatype |
 | `-d DIR` | Set the destination directory |
 | `--include-resources` | Request discoverable session-level resources as well as DICOM scans |
