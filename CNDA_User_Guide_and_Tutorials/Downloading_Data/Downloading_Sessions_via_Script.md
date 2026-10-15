@@ -195,6 +195,12 @@ Run with the file instead of an interactive prompt:
 bash ~/cndaBulkDownload.sh -c ~/creds.json -s ~/sessions.csv -d ~/cnda_downloads
 ```
 
+**Unattended downloads and automatic reauthentication**
+
+Large CNDA downloads can take hours. If the CNDA login session expires, the script automatically signs in again and continues processing the download queue. Both `-u` and `-c` support this during a running download: with `-u`, the script asks for your alias secret once and retains it for that run; with `-c`, it reads the alias token and secret from your credentials file. **For scheduled or unattended starts, use `-c`**, so the script can sign in without waiting for someone to enter the secret.
+
+This automatic sign-in does not renew your XNAT alias token. Alias tokens are valid for **90 days**; if yours expires, generate a new token and secret.
+
 Use either `-u` or `-c`, never both. Run the commands in **Git Bash** on Windows or **Terminal** on Linux/macOS.
 
 ## Download an entire project
