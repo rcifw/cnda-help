@@ -14,8 +14,22 @@ Use this script to download CNDA imaging sessions as verified ZIP archives. **Fi
 | **Linux** | **Bash**, **Python 3**, `curl`, `unzip`, `mktemp` |
 | **macOS** | **Terminal/Bash**, **Python 3**, `curl`, `unzip`, `mktemp` |
 
-All platforms also need a CNDA account with access to the requested data, an XNAT alias token and secret, and adequate disk space. On Windows, run all commands in **Git Bash**, not Command Prompt or PowerShell. Check that `curl`, `unzip`, and `mktemp` are available in Git Bash before proceeding.
+All platforms also need a CNDA2 account with access to the requested data, an XNAT alias token and secret, and adequate disk space. On Windows, run all commands in **Git Bash**, not Command Prompt or PowerShell. Check that `curl`, `unzip`, and `mktemp` are available in Git Bash before proceeding.
 :::
+
+::: info Platform testing status
+The script has been tested on **Linux**. The **Windows/Git Bash** and **macOS** instructions are provided, but those platforms have not yet been tested end-to-end. Downloads that include actual session-level resources also still need verification.
+:::
+
+## Before you install: CNDA2 access and credentials
+
+CNDA2 is available at [cnda.wustl.edu](https://cnda.wustl.edu/); the address has not changed.
+
+- **New to CNDA2?** Follow [How to Register Your CNDA2 Account](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/How_to_Register_Your_CNDA2_Account.html).
+- **External collaborator without a WashU Key?** A WashU PI must sponsor your WashU Key. See [How to Obtain a WashU Key](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Obtain_a_WashU_Key.html) before registering.
+- **Using this script?** Follow [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html). You need both the alias token and its secret. Alias tokens can expire, so you may need to generate a new one if authentication stops working.
+
+For account, project-access, or download assistance, email [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu).
 
 **Choose your operating system:** [Windows](#windows-setup) · [Linux](#linux-setup) · [macOS](#macos-setup)
 
@@ -34,7 +48,9 @@ done
 python3 --version
 ```
 
-If any command is missing, resolve that installation or PATH issue before proceeding. In Git Bash, `~` refers to your home directory; Windows locations may also be written as `/c/Users/YourUser/...`.
+The script requires a **working command named `python3`**, not just an installed Python application. On some Windows systems, `python3` is missing or opens the Microsoft Store instead of running Python. If so, check your Python installation and PATH, and disable the **python3 App execution alias** in Windows Settings if it points to the Store. Reopen Git Bash and run `python3 --version` again; do not proceed until it prints a Python 3 version.
+
+If any other command is missing, resolve that installation or PATH issue before proceeding. In Git Bash, `~` refers to your home directory; Windows locations may also be written as `/c/Users/YourUser/...`.
 
 ### 2. Download the script
 
@@ -45,6 +61,8 @@ curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.
 mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
+
+The `bash -n` check prints **nothing when the script has valid Bash syntax**. An error message indicates a problem with the downloaded file.
 
 ### 3. Run a download
 
@@ -88,6 +106,8 @@ mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
 
+The `bash -n` check prints **nothing when the script has valid Bash syntax**. An error message indicates a problem with the downloaded file.
+
 ### 3. Run a download
 
 After creating `~/sessions.csv` and obtaining your CNDA alias token:
@@ -127,6 +147,8 @@ mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
 bash -n ~/cndaBulkDownload.sh
 ```
 
+The `bash -n` check prints **nothing when the script has valid Bash syntax**. An error message indicates a problem with the downloaded file.
+
 ### 3. Run a download
 
 After creating `~/sessions.csv` and obtaining your CNDA alias token:
@@ -147,9 +169,9 @@ KenanTestingUploader,smal_series,smal_series_MR_1
 KenanTestingUploader,tiny_series,tiny_series_MR_1
 ```
 
-Replace the sample data with your **CNDA project ID, subject label, and session label**.
+Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
 
-Use an **XNAT alias token and secret**, not your WUSTL Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
+Use an **XNAT alias token and secret** ([setup instructions](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)), not your WashU Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
 
 For unattended use, create a private `~/creds.json` file:
 
@@ -172,7 +194,7 @@ Use either `-u` or `-c`, never both. Run the commands in **Git Bash** on Windows
 
 ## Download an entire project
 
-To discover and download qualifying sessions from a CNDA project:
+To discover and download supported imaging sessions from a CNDA project:
 
 ```bash
 bash ~/cndaBulkDownload.sh \
@@ -182,7 +204,7 @@ bash ~/cndaBulkDownload.sh \
 ```
 
 ::: warning A project may contain large sessions
-Project mode selects **all qualifying sessions in the project** unless filtered. Check the project contents and available storage before starting. You can stop with **Ctrl+C**, but an in-progress session will need to download again on the next run.
+Project mode selects **all supported imaging sessions in the project** unless filtered. Check the project contents and available storage before starting. You can stop with **Ctrl+C**, but an in-progress session will need to download again on the next run.
 :::
 
 For MR sessions only:
@@ -195,7 +217,7 @@ bash ~/cndaBulkDownload.sh \
   -d ~/cnda_downloads
 ```
 
-The `-t` filter is for **project mode only**; it cannot be combined with `-s`.
+The `-t` filter is for **project mode only**; it cannot be combined with `-s`. Other possible XNAT session datatype names include `xnat:petSessionData` and `xnat:ctSessionData`; use a datatype actually present in your CNDA project.
 
 ## Optional download settings
 
@@ -256,7 +278,14 @@ For example, if you start the script from your home directory:
 ~/logs/cndaBulkDownload_YYYYMMDD_HHMMSS_PID.csv
 ```
 
-A successful result might show:
+A successful **first download** of one session might show:
+
+```text
+OK
+SUMMARY: OK=1 FAIL=0 SKIP=0 TOTAL=1
+```
+
+Running the same command again, with an unchanged and verified ZIP already present, might show:
 
 ```text
 SKIP verified ZIP matching requested mode
@@ -268,7 +297,9 @@ SUMMARY: OK=0 FAIL=0 SKIP=1 TOTAL=1
 ::: tip Previously downloaded sessions
 The script automatically skips existing ZIP files that pass integrity checks and match the recorded download settings.
 
-If new scans or resources have been added to a CNDA session since your last download, use `--force` to download the updated session. The script does not automatically detect changes made to sessions on the CNDA server.
+If scans or resources have been added or changed in CNDA since the last download, use `--force` to download fresh archives. The script does not automatically detect changes on the CNDA server.
+
+**Important:** `--force` redownloads **every session included in that run**. To refresh only specific sessions, put only those sessions in a CSV file and run with `-s sessions.csv --force`.
 :::
 
 ## Verify a downloaded ZIP
@@ -286,16 +317,19 @@ Exit code `0` means `unzip` did not detect an archive integrity error. It does n
 
 | Symptom | What to check |
 | --- | --- |
-| `Missing required command: python3` | Install Python 3 and ensure `python3` is available in the terminal you are using |
+| `Missing required command: python3` or `python3` opens the Microsoft Store | Install/configure Python 3 so `python3 --version` works in Git Bash; check PATH and the Windows App execution alias |
 | `Missing required command: unzip` | Install or enable `unzip` in that terminal environment |
 | `Missing credentials` | Confirm the path supplied with `-c` exists |
 | `AUTH ERROR` / HTTP 401 | Verify the XNAT alias token and secret, including expiration |
 | Permission denied | Choose a destination you can write to and verify folder permissions |
 | One session fails but others work | Review that session's entry and the run's CSV report |
+| `unable to resolve unique experiment ID` | Confirm the project ID and the subject/session **labels** in the CSV; check exact spelling and capitalization, and verify project access |
 | Existing ZIP downloads again | Check for missing/mismatched metadata, a corrupt ZIP, or use of `--force` |
 | ETA seems inaccurate | CNDA's estimate may not equal the compressed ZIP's final size |
 | Ctrl+C stops a download | Expected. Completed ZIPs can be skipped on the next run; partial session transfers do not resume byte-for-byte |
 | Windows command fails | Confirm that you are using **Git Bash** and that `bash`, `python3`, `curl`, `unzip`, and `mktemp` all resolve |
+
+The script exits with a **nonzero exit code if any session fails**; check the CSV report for individual results.
 
 If a session fails, preserve the terminal error and the timestamped `.csv` and `.log` report when requesting support. **Never share credentials files or alias secrets.**
 
@@ -308,6 +342,3 @@ If a session fails, preserve the terminal error and the timestamped `.csv` and `
 - Keep ZIPs together with their `.cnda.json` companions.
 - Use `--force` only when you intend to redownload an existing session.
 
-::: info Release scope
-Linux operation and several failure scenarios have been tested. Windows/Git Bash, macOS, and downloads containing actual session-level resources still require platform or scenario verification.
-:::
