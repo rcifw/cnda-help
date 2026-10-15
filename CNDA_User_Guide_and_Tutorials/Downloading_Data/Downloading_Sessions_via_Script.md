@@ -172,6 +172,8 @@ KenanTestingUploader,smal_series,smal_series_MR_1
 KenanTestingUploader,tiny_series,tiny_series_MR_1
 ```
 
+![Example CNDA session list displayed in a spreadsheet](/images/session.png)
+
 Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the **project ID shown in CNDA**, not the project’s descriptive title. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
 
 Use an **XNAT alias token and secret** ([setup instructions](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)), not your WashU Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
