@@ -1,474 +1,573 @@
-!/bin/bash
-#
-# cndaBulkDownload.sh
-#
-# Mode 1 (whole project):  -u <user> -p <project> [-t <xsitype>] [-d <dir>]
-# Mode 2 (pick sessions):  -u <user> -s <sessionlist.csv> [-d <dir>]
-#   CSV format, no header: Project,Subject,Session
-#
-# Credentials, instead of typing a password every time it's needed:
-#   -c / --creds <creds.json>   JSON file: {"user": "username", "password": "..."}
-#   Do not use -u together with -c; the username comes from the file.
-#   The password is never placed on the command line or in curl's argv --
-#   it's written to a short-lived curl config file (chmod 600) and passed
-#   via `curl -K`, then deleted on exit. Protect the creds.json file itself
-#   (chmod 600) since it holds a plaintext password at rest.
-#   No extra tools needed to read the file -- JSON parsing is plain bash.
-#
-# Requires bash + curl + mktemp. On Windows: Git Bash or WSL.
-#
-# Env vars:
-#   CURL_INSECURE=1     only if TLS verification fails and you understand why (default 0)
-#   STRICT_ZIP_CHECK=1  fully validate archive integrity with `unzip -t` (slower, default 0)
-#   STALL_TIME=300      abort a transfer averaging below STALL_LIMIT bytes/sec for this many seconds
-#   STALL_LIMIT=1024    bytes/sec threshold for the stall check above
-#   SESSION_TIMEOUT=1800   how long a CNDA JSESSION lasts, in seconds (default 1800 = 30 min)
-#   REFRESH_MARGIN=300     proactively reauth if within this many seconds of SESSION_TIMEOUT (default 300 = 5 min)
-#
+#!/usr/bin/env bash
+# CNDA bulk downloader v6 RELEASE. Requires bash, curl, python3, unzip, mktemp.
+# Never supply a WUSTL Key password; use an XNAT alias token and secret.
+
 set -uo pipefail
+ORIGINAL_UMASK=$(umask)
 umask 077
- 
-WRKDIR=$(pwd -P)
-echo "Working directory (logs, temp files, relative paths resolve here): $WRKDIR"
-XNATHOST=https://cnda.wustl.edu
-XSITYPES=xnat:mrSessionData
-CURL_INSECURE=${CURL_INSECURE:-0}
-STRICT_ZIP_CHECK=${STRICT_ZIP_CHECK:-0}
-STALL_TIME=${STALL_TIME:-300}
-STALL_LIMIT=${STALL_LIMIT:-1024}
-SESSION_TIMEOUT=${SESSION_TIMEOUT:-1800}
-REFRESH_MARGIN=${REFRESH_MARGIN:-300}
- 
-for cmd in curl mktemp; do
-  command -v "$cmd" >/dev/null 2>&1 || { echo "Required command not found: $cmd" >&2; exit 1; }
+HOST=https://cnda.wustl.edu
+ROOT=$(pwd -P)
+CREDS='' ALIAS='' PROJECT='' LIST='' DEST='' TYPE='' WITH_RES=0 ORIGINAL=0 FORCE=0 SHARED=0
+usage() {
+ cat <<'USAGE'
+Usage: cndaBulkDownload.sh (-u ALIAS | -c CREDS.json) (-p PROJECT | -s sessions.csv) [options]
+ -p PROJECT             All supported session datatypes in project (unless filtered with -t)
+ -s sessions.csv        Project,SubjectLabel,SessionLabel (optional header) (multiple projects supported)
+ -t xnat:mrSessionData  Optional session datatype filter (project mode)
+ -d DIR                 Download directory (default PROJECT_downloads or cnda_downloads)
+ --include-resources    Include all session-level resources discoverable through REST
+ --original-structure   Disable simplified archive paths (simplified is default)
+ --force                Safely replace existing ZIP and metadata after download verification
+ --shared               Apply group-readable permissions to new ZIPs and project folders
+ -u ALIAS               Prompt once for alias secret
+ -c CREDS.json          JSON containing "alias" and "secret" for unattended runs
+USAGE
+}
+while (($#)); do
+ case "$1" in
+ -u|-c|-p|-s|-t|-d) (($#>=2)) || { usage; exit 2; }; case "$1" in -u) ALIAS=$2;; -c) CREDS=$2;; -p) PROJECT=$2;; -s) LIST=$2;; -t) TYPE=$2;; -d) DEST=$2;; esac; shift 2;;
+ --include-resources) WITH_RES=1; shift;; --original-structure) ORIGINAL=1; shift;; --force) FORCE=1; shift;; --shared) SHARED=1; shift;;
+ -h|--help) usage; exit 0;; *) echo "Unknown argument: $1" >&2; usage; exit 2;; esac
 done
-if [ "$STRICT_ZIP_CHECK" = "1" ]; then
-  command -v unzip >/dev/null 2>&1 || { echo "STRICT_ZIP_CHECK=1 requires unzip, which was not found." >&2; exit 1; }
-fi
- 
-for _var in CURL_INSECURE STRICT_ZIP_CHECK; do
-  if [ "${!_var}" != "0" ] && [ "${!_var}" != "1" ]; then
-    echo "$_var must be 0 or 1 (got '${!_var}')" >&2
-    exit 2
-  fi
-done
- 
-is_positive_int() {
-  [[ "$1" =~ ^[0-9]+$ ]] && [ "$1" -gt 0 ]
+for tool in curl python3 unzip mktemp; do command -v "$tool" >/dev/null || { echo "Missing required command: $tool" >&2; exit 2; }; done
+python3 -c "import sys, json, csv" >/dev/null 2>&1 || { echo "A working Python 3 installation is required" >&2; exit 2; }
+[[ -n "$CREDS" && -n "$ALIAS" ]] && { echo 'Use -u or -c, not both' >&2; exit 2; }
+[[ -z "$PROJECT" && -z "$LIST" || -n "$PROJECT" && -n "$LIST" ]] && { usage; exit 2; }
+[[ -z "$LIST" || -z "$TYPE" ]] || { echo '-t only applies to project mode' >&2; exit 2; }
+[[ -z "$LIST" || -f "$LIST" ]] || { echo "Session CSV not found: $LIST" >&2; exit 2; }
+SAFE='^[A-Za-z0-9._-]+$'
+[[ -z "$PROJECT" || "$PROJECT" =~ $SAFE ]] || { echo 'Unsafe project ID' >&2; exit 2; }
+[[ -n "$DEST" ]] || DEST="${PROJECT:-cnda}_downloads"
+(umask "$ORIGINAL_UMASK"; mkdir -p "$DEST") || exit 1
+(umask 077; mkdir -p "$ROOT/logs") || exit 1
+DEST=$(cd "$DEST" && pwd -P)
+RUN=$(date +%Y%m%d_%H%M%S)_$$
+LOG="$ROOT/logs/cndaBulkDownload_$RUN.log"
+REPORT="$ROOT/logs/cndaBulkDownload_$RUN.csv"
+printf 'project,subject,session,status,detail\n' > "$REPORT"
+: > "$LOG"
+OK=0 FAIL=0 SKIP=0 DONE=0 TOTAL=0
+log(){ printf '[%s] %s\n' "$(date '+%F %T')" "$*" | tee -a "$LOG" >&2; }
+report(){ python3 - "$REPORT" "$1" "$2" "$3" "$4" "$5" <<'PY'
+import csv,sys
+with open(sys.argv[1], 'a', newline='') as f: csv.writer(f).writerow(sys.argv[2:])
+PY
 }
-for _var in STALL_TIME STALL_LIMIT SESSION_TIMEOUT REFRESH_MARGIN; do
-  if ! is_positive_int "${!_var}"; then
-    echo "Invalid value for $_var: '${!_var}' (must be a positive integer)" >&2
-    exit 2
+summary(){ log "SUMMARY: OK=$OK FAIL=$FAIL SKIP=$SKIP TOTAL=$TOTAL"; log "CSV report: $REPORT"; }
+CURLCFG=$(mktemp "$ROOT/.cnda_auth.XXXXXX") || exit 1
+META=$(mktemp "$ROOT/.cnda_meta.XXXXXX") || exit 1
+BODY=$(mktemp "$ROOT/.cnda_body.XXXXXX") || exit 1
+# Transactional installation: keep old ZIP and manifest until both new files exist.
+TX_ACTIVE=0
+rollback_install(){
+  (( ${TX_ACTIVE:-0} )) || return 0
+  # Backup paths are authoritative if interruption occurs between mv and flag updates.
+  if [[ -f "${TX_BZIP:-}" ]]; then
+    rm -f -- "$TX_ZIP" || true
+    mv -f -- "$TX_BZIP" "$TX_ZIP" || log 'CRITICAL: Could not restore original ZIP; backup retained'
+  elif [[ "${TX_ZIP_MOVED:-0}" == 1 ]]; then
+    rm -f -- "$TX_ZIP" || true
   fi
-done
-if [ "$REFRESH_MARGIN" -ge "$SESSION_TIMEOUT" ]; then
-  echo "REFRESH_MARGIN ($REFRESH_MARGIN) must be less than SESSION_TIMEOUT ($SESSION_TIMEOUT) -- as set, every download would trigger a reauth." >&2
-  exit 2
-fi
-unset _var
- 
-is_safe_component() {
-  [[ "$1" =~ ^[A-Za-z0-9._-]+$ ]]
+  if [[ -f "${TX_BMANIFEST:-}" ]]; then
+    rm -f -- "$TX_MANIFEST" || true
+    mv -f -- "$TX_BMANIFEST" "$TX_MANIFEST" || log 'CRITICAL: Could not restore original manifest; backup retained'
+  elif [[ "${TX_MANIFEST_MOVED:-0}" == 1 ]]; then
+    rm -f -- "$TX_MANIFEST" || true
+  fi
+  TX_ACTIVE=0
 }
- 
-USAGE() {
-  echo "Usage: cndaBulkDownload.sh [-u <user id> | -c <creds.json>] [-p <project> | -s <session list csv>]"
-  echo "  Whole project:  -p <project> [-t <xsitype>, default xnat:mrSessionData]"
-  echo "  Pick sessions:  -s <csv: Project,Subject,Session per line, no header>"
-  echo "  Credentials:    -u <user id>  (prompts for password each time it's needed)"
-  echo "               or -c/--creds <creds.json>  {\"user\": \"username\", \"password\": \"...\"}"
-  echo "  Optional:       -d <download directory>"
-  echo "  Env:            CURL_INSECURE=1, STRICT_ZIP_CHECK=1, STALL_TIME, STALL_LIMIT (see header comment)"
-}
- 
-need_val() { [ $# -ge 2 ] || { echo "Option $1 requires a value." >&2; USAGE; exit 2; }; }
- 
-while [ $# -gt 0 ]; do
-  case "$1" in
-    -u) need_val "$@"; USERID=$2; shift 2 ;;
-    -p) need_val "$@"; PROJECT=$2; shift 2 ;;
-    -t) need_val "$@"; XSITYPES=$2; shift 2 ;;
-    -d) need_val "$@"; DOWNLOADDIR=$2; shift 2 ;;
-    -s) need_val "$@"; SESSIONLIST=$2; shift 2 ;;
-    -c|--creds) need_val "$@"; CREDSFILE=$2; shift 2 ;;
-    *) echo "Unknown option: $1" >&2; USAGE; exit 2 ;;
-  esac
-done
- 
-if [ -n "${CREDSFILE:-}" ]; then
-  if [ -n "${USERID:-}" ]; then
-    echo "Use either -u or -c/--creds, not both (username comes from the creds file)." >&2
-    exit 2
+install_archive(){
+  local source_zip=$1 source_manifest=$2 final_zip=$3 final_manifest=$4
+  local backup_zip="${final_zip}.previous.${RUN}"
+  local backup_manifest="${final_manifest}.previous.${RUN}"
+  [[ ! -e "$backup_zip" && ! -e "$backup_manifest" ]] || return 1
+  TX_ZIP=$final_zip TX_MANIFEST=$final_manifest TX_BZIP=$backup_zip TX_BMANIFEST=$backup_manifest
+  TX_ZIP_MOVED=0 TX_MANIFEST_MOVED=0 TX_ACTIVE=1
+  if [[ -e "$final_zip" ]]; then
+    mv -- "$final_zip" "$backup_zip" || { rollback_install; return 1; }
   fi
-  [ -f "$CREDSFILE" ] || { echo "Creds file not found: $CREDSFILE" >&2; exit 2; }
- 
-  # Best-effort warning if the creds file is readable by group/other. Not fatal --
-  # permission semantics differ across Linux/macOS/Git Bash -- but worth flagging.
-  CREDS_PERMS=$(stat -c '%a' "$CREDSFILE" 2>/dev/null || stat -f '%Lp' "$CREDSFILE" 2>/dev/null || echo "")
-  if [ -n "$CREDS_PERMS" ]; then
-    GROUP_OTHER_BITS=${CREDS_PERMS: -2}
-    if [ "$GROUP_OTHER_BITS" != "00" ]; then
-      echo "Warning: $CREDSFILE may be readable by others (perms: $CREDS_PERMS). Consider: chmod 600 \"$CREDSFILE\"" >&2
-    fi
+  if [[ -e "$final_manifest" ]]; then
+    mv -- "$final_manifest" "$backup_manifest" || { rollback_install; return 1; }
   fi
- 
-  extract_json_field() {
-    # Pure-bash JSON string field extractor. No external tools required.
-    # Handles \" \\ \n \t escapes correctly, unlike a plain regex/sed match.
-    local file=$1 key=$2
-    local content rest after i c nc result len
-    content=$(cat "$file")
-    rest=${content#*\"$key\"}
-    [ "$rest" = "$content" ] && return 1   # key not found
-    rest=${rest#*:}
-    while [ "${rest:0:1}" = " " ] || [ "${rest:0:1}" = $'\t' ] || [ "${rest:0:1}" = $'\n' ]; do
-      rest=${rest:1}
-    done
-    [ "${rest:0:1}" = '"' ] || return 1
-    after=${rest:1}
-    result=""
-    i=0
-    len=${#after}
-    while [ "$i" -lt "$len" ]; do
-      c="${after:$i:1}"
-      if [ "$c" = '\' ]; then
-        i=$((i+1))
-        nc="${after:$i:1}"
-        case "$nc" in
-          '"') result+='"' ;;
-          '\') result+='\' ;;
-          n) result+=$'\n' ;;
-          t) result+=$'\t' ;;
-          *) result+="$nc" ;;
-        esac
-      elif [ "$c" = '"' ]; then
-        break
-      else
-        result+="$c"
-      fi
-      i=$((i+1))
-    done
-    printf '%s' "$result"
-  }
- 
-  USERID=$(extract_json_field "$CREDSFILE" user)
-  CREDS_PASSWORD=$(extract_json_field "$CREDSFILE" password)
- 
-  if [ -z "$USERID" ] || [ -z "$CREDS_PASSWORD" ]; then
-    echo "Could not read 'user' and 'password' fields from $CREDSFILE" >&2
-    echo "Expected format: {\"user\": \"username\", \"password\": \"...\"}" >&2
-    exit 2
-  fi
- 
-  # Reject embedded newlines/carriage returns -- the curl config file is
-  # line-oriented, so a control character in either field could inject an
-  # extra directive rather than just being part of the value.
-  case "$USERID" in *$'\n'*|*$'\r'*)
-    echo "Invalid 'user' value in $CREDSFILE: contains a newline or carriage return." >&2
-    exit 2 ;;
-  esac
-  case "$CREDS_PASSWORD" in *$'\n'*|*$'\r'*)
-    echo "Invalid 'password' value in $CREDSFILE: contains a newline or carriage return." >&2
-    exit 2 ;;
-  esac
-fi
- 
-[ -z "${USERID:-}" ] && { echo "No user id entered (use -u or -c/--creds)" >&2; USAGE; exit 2; }
-if [ -z "${PROJECT:-}" ] && [ -z "${SESSIONLIST:-}" ]; then
-  echo "Specify -p <project> or -s <csv>" >&2; USAGE; exit 2
-fi
-if [ -n "${PROJECT:-}" ] && [ -n "${SESSIONLIST:-}" ]; then
-  echo "Use either -p or -s, not both." >&2; exit 2
-fi
-if [ -n "${PROJECT:-}" ] && ! is_safe_component "$PROJECT"; then
-  echo "Invalid or unsafe project identifier: $PROJECT" >&2
-  exit 2
-fi
-if [ -n "${SESSIONLIST:-}" ]; then
-  [ -f "$SESSIONLIST" ] || { echo "Session list not found: $SESSIONLIST" >&2; exit 2; }
-  SESSIONLIST=$(cd "$(dirname "$SESSIONLIST")" && pwd -P)/$(basename "$SESSIONLIST")
-fi
- 
-DOWNLOADDIR=${DOWNLOADDIR:-"${PROJECT:-cnda}_downloads"}
-if ! mkdir -p "$DOWNLOADDIR"; then
-  echo "Could not create download directory: $DOWNLOADDIR" >&2; exit 1
-fi
-if ! cd "$DOWNLOADDIR"; then
-  echo "Could not enter download directory: $DOWNLOADDIR" >&2; exit 1
-fi
- 
-LOGDIR="$WRKDIR/logs"
-if ! mkdir -p "$LOGDIR"; then
-  echo "Could not create log directory: $LOGDIR" >&2; exit 1
-fi
-LOGFILE="$LOGDIR/cndaBulkDownload_$(date '+%Y%m%d_%H%M%S').log"
-: > "$LOGFILE"
- 
-CURLOPTS=(
-  -sS
-  --fail
-  --location
-  --connect-timeout 20
-  --speed-time "$STALL_TIME"
-  --speed-limit "$STALL_LIMIT"
-  --retry 2
-  --retry-delay 5
-)
-[ "$CURL_INSECURE" = "1" ] && CURLOPTS+=(-k)
- 
-CFGFILE=$(mktemp "$WRKDIR/.RESTresults.XXXXXX") || {
-  echo "Could not create temporary file in $WRKDIR" >&2
-  exit 1
-}
- 
-OK_COUNT=0
-FAIL_COUNT=0
-SKIP_COUNT=0
- 
-log() { echo "$(date '+%F %T') $1" >> "$LOGFILE"; }
- 
-# If a creds file was supplied, write a short-lived curl config file holding
-# the credentials, so the password never appears on the command line or in
-# `ps` output. umask 077 (set at script start) means mktemp already creates
-# this as 600, but we chmod explicitly to be sure regardless of platform.
-CURLCFG=""
-if [ -n "${CREDS_PASSWORD:-}" ]; then
-  escape_curlcfg() {
-    local v=$1
-    v=${v//\\/\\\\}
-    v=${v//\"/\\\"}
-    printf '%s' "$v"
-  }
-  CURLCFG=$(mktemp "$WRKDIR/.curlcfg.XXXXXX") || {
-    echo "Could not create temporary curl config file in $WRKDIR" >&2
-    exit 1
-  }
-  chmod 600 "$CURLCFG"
-  printf 'user = "%s:%s"\n' "$(escape_curlcfg "$USERID")" "$(escape_curlcfg "$CREDS_PASSWORD")" > "$CURLCFG"
-  CREDS_PASSWORD=  # no longer needed in the shell variable once written to the config file
-fi
- 
-logout_session() {
-  if [ -n "${JSESSION:-}" ]; then
-    curl "${CURLOPTS[@]}" -X DELETE -b "JSESSIONID=$JSESSION" "$XNATHOST/REST/JSESSION/" >/dev/null 2>&1 || true
-    JSESSION=
-  fi
-}
- 
-cleanup() {
-  logout_session
-  rm -f "$CFGFILE"
-  [ -n "$CURLCFG" ] && rm -f "$CURLCFG"
-}
-trap cleanup EXIT
- 
-authenticate() {
-  logout_session
- 
-  if [ -n "$CURLCFG" ]; then
-    JSESSION=$(curl "${CURLOPTS[@]}" -K "$CURLCFG" "$XNATHOST/REST/JSESSION")
-    auth_rc=$?
-  else
-    JSESSION=$(curl "${CURLOPTS[@]}" -u "$USERID" "$XNATHOST/REST/JSESSION")
-    auth_rc=$?
-  fi
- 
-  if [ "$auth_rc" -ne 0 ]; then
-    echo "Unable to contact CNDA authentication endpoint." >&2
-    log "AUTH_REQUEST_FAIL"
-    exit 1
-  fi
-  JSESSION=${JSESSION//$'\r'/}
-  JSESSION=${JSESSION//$'\n'/}
-  if [ -z "$JSESSION" ] || ! [[ "$JSESSION" =~ ^[A-Za-z0-9._-]+$ ]]; then
-    echo "CNDA login failed. Check your credentials and retry." >&2
-    log "AUTH_FAIL"
-    exit 1
-  fi
-  LAST_AUTH_TIME=$(date +%s)
-}
- 
-# CNDA JSESSIONs expire after SESSION_TIMEOUT seconds. Rather than waiting
-# for a download to fail and retrying reactively, check the age of the
-# current session before each download and refresh proactively if we're
-# within REFRESH_MARGIN seconds of the expected expiry. This avoids paying
-# for a failed attempt + reauth + repeat on every session once the token
-# goes stale during a long run.
-refresh_session_if_stale() {
-  local now elapsed
-  now=$(date +%s)
-  elapsed=$((now - LAST_AUTH_TIME))
-  if [ "$elapsed" -ge "$((SESSION_TIMEOUT - REFRESH_MARGIN))" ]; then
-    authenticate
-  fi
-}
- 
-is_valid_zip() {
-  [ -s "$1" ] || return 1
-  [ "$(head -c 2 "$1")" = "PK" ] || return 1
-  if [ "$STRICT_ZIP_CHECK" = "1" ]; then
-    unzip -tqq "$1" >/dev/null 2>&1 || return 1
-  fi
+  if ! mv -- "$source_zip" "$final_zip"; then rollback_install; return 1; fi
+  TX_ZIP_MOVED=1
+  if ! mv -- "$source_manifest" "$final_manifest"; then rollback_install; return 1; fi
+  TX_MANIFEST_MOVED=1
+  TX_ACTIVE=0
+  rm -f -- "$backup_zip" "$backup_manifest" || log 'WARNING: Old backup files could not be removed'
   return 0
 }
- 
-clean_field() {
-  local v=$1
-  v=${v//$'\r'/}
-  v=${v#\"}; v=${v%\"}
-  printf '%s' "$v"
-}
- 
-download_session() {
-  local project=$1 subj=$2 label=$3
- 
-  refresh_session_if_stale
- 
-  if ! is_safe_component "$project" || ! is_safe_component "$subj" || ! is_safe_component "$label"; then
-    echo "  -> skipping unsafe identifier: project=$project subject=$subj session=$label" >&2
-    log "INVALID_IDENTIFIER project=$project subject=$subj session=$label"
-    FAIL_COUNT=$((FAIL_COUNT+1))
-    return
-  fi
- 
-  local dir="$project/$subj"
-  local zipfile="$dir/${label}.zip"
-  local tmpfile="${zipfile}.part"
- 
-  if ! mkdir -p "$dir"; then
-    echo "  -> FAILED: could not create directory $dir" >&2
-    log "FAIL_CREATE_DIR $project/$subj/$label"
-    FAIL_COUNT=$((FAIL_COUNT+1))
-    return
-  fi
- 
-  if is_valid_zip "$zipfile"; then
-    echo "$zipfile already exists, skipping"
-    log "SKIP $project/$subj/$label"
-    SKIP_COUNT=$((SKIP_COUNT+1))
-    return
-  fi
- 
-  rm -f "$tmpfile"
-  echo "Downloading $label ($project/$subj)..."
-  if ! curl "${CURLOPTS[@]}" -b "JSESSIONID=$JSESSION" \
-      "$XNATHOST/REST/projects/$project/subjects/$subj/experiments/$label/scans/ALL/files?format=zip" \
-      -o "$tmpfile"; then
-    rm -f "$tmpfile"
-  fi
- 
-  if is_valid_zip "$tmpfile"; then
-    if mv "$tmpfile" "$zipfile"; then
-      log "OK $project/$subj/$label"
-      OK_COUNT=$((OK_COUNT+1))
-    else
-      echo "  -> FAILED: could not finalize $zipfile" >&2
-      rm -f "$tmpfile"
-      log "FAIL_MOVE $project/$subj/$label"
-      FAIL_COUNT=$((FAIL_COUNT+1))
-    fi
-    return
-  fi
- 
-  echo "  -> download invalid or unsuccessful; re-authenticating and retrying once..."
-  rm -f "$tmpfile"
-  authenticate
-  if ! curl "${CURLOPTS[@]}" -b "JSESSIONID=$JSESSION" \
-      "$XNATHOST/REST/projects/$project/subjects/$subj/experiments/$label/scans/ALL/files?format=zip" \
-      -o "$tmpfile"; then
-    rm -f "$tmpfile"
-  fi
- 
-  if is_valid_zip "$tmpfile"; then
-    if mv "$tmpfile" "$zipfile"; then
-      log "OK (retry) $project/$subj/$label"
-      OK_COUNT=$((OK_COUNT+1))
-    else
-      echo "  -> FAILED: could not finalize $zipfile" >&2
-      rm -f "$tmpfile"
-      log "FAIL_MOVE $project/$subj/$label"
-      FAIL_COUNT=$((FAIL_COUNT+1))
-    fi
-  else
-    echo "  -> FAILED: $label"
-    rm -f "$tmpfile"
-    log "FAIL $project/$subj/$label"
-    FAIL_COUNT=$((FAIL_COUNT+1))
+# Define session cleanup before the EXIT trap can run on invalid credentials.
+JSESSION=''
+close_session(){
+  if [[ -n "${JSESSION:-}" ]]; then
+    curl -sS --connect-timeout 3 --max-time 8 -o /dev/null \
+      -X DELETE -b "JSESSIONID=$JSESSION" "$HOST/data/JSESSION/" 2>/dev/null || true
+    JSESSION=''
   fi
 }
- 
-authenticate
-log "START user=$USERID host=$XNATHOST dir=$DOWNLOADDIR project=${PROJECT:-} sessionlist=${SESSIONLIST:-}"
- 
-if [ -n "${SESSIONLIST:-}" ]; then
-  row=0
-  n=0
-  while IFS=',' read -r proj subj sess extra; do
-    row=$((row+1))
-    proj=$(clean_field "$proj")
-    subj=$(clean_field "$subj")
-    sess=$(clean_field "$sess")
-    [ -z "$proj$subj$sess${extra:-}" ] && continue
-    if [ -n "${extra:-}" ]; then
-      echo "Invalid CSV row $row: too many columns" >&2
-      log "INVALID_ROW line=$row reason=too_many_columns"
-      FAIL_COUNT=$((FAIL_COUNT+1))
-      continue
-    fi
-    if [ -z "$proj" ] || [ -z "$subj" ] || [ -z "$sess" ]; then
-      echo "Invalid CSV row $row: expected Project,Subject,Session" >&2
-      log "INVALID_ROW line=$row"
-      FAIL_COUNT=$((FAIL_COUNT+1))
-      continue
-    fi
-    n=$((n+1))
-    echo "[$n]"
-    download_session "$proj" "$subj" "$sess"
-  done < "$SESSIONLIST"
- 
+cleanup(){
+  if [[ -n "${PROGRESS_PID:-}" ]]; then kill "$PROGRESS_PID" 2>/dev/null || true; fi
+  rollback_install
+  close_session
+  rm -f "$CURLCFG" "$META" "$BODY" "${INPUT:-}" "${BAD:-}" "${SEEN:-}" "${SJSON:-}" "${RLIST_FILE:-}" "${PART:-}" "${M_TMP:-}" "${AUTHRESP:-}" "$ROOT"/.cnda_cache_"$RUN"_*.json "$ROOT"/.cnda_subjectcache_"$RUN"_*.json "$ROOT"/.cnda_status_"$RUN"_*.txt 2>/dev/null || true
+}
+trap cleanup EXIT
+trap 'echo; log "Cancelled by user"; summary; exit 130' INT
+trap 'echo; log "Terminated"; summary; exit 143' TERM
+if [[ -n "$CREDS" ]]; then
+ [[ -f "$CREDS" ]] || { echo "Missing credentials: $CREDS" >&2; exit 2; }
+ python3 - "$CREDS" "$CURLCFG" <<'PY'
+import json,sys
+with open(sys.argv[1],encoding='utf-8-sig') as f: obj=json.load(f)
+u=obj.get('alias','');p=obj.get('secret','')
+if 'user' in obj or 'password' in obj: raise SystemExit('Old credentials keys detected. Use \"alias\" and \"secret\" instead.')
+if not isinstance(u,str) or not isinstance(p,str) or not u or not p or any(x in u+p for x in '\r\n\0'): raise SystemExit('Invalid alias credentials')
+def esc(s): return s.replace('\\','\\\\').replace('"','\\"')
+with open(sys.argv[2],'w',newline='\n') as f: f.write('user = "'+esc(u)+':'+esc(p)+'"\n')
+PY
 else
-  curl "${CURLOPTS[@]}" -b "JSESSIONID=$JSESSION" \
-    --get \
-    --data-urlencode "xsiType=$XSITYPES" \
-    --data-urlencode "format=csv" \
-    --data-urlencode "columns=xnat:experimentData/ID,xnat:subjectAssessorData/subject_id,xnat:experimentData/label" \
-    "$XNATHOST/REST/projects/$PROJECT/experiments" \
-    -o "$CFGFILE" || { echo "Request to CNDA failed." >&2; log "REQUEST_FAIL project=$PROJECT"; exit 1; }
- 
-  lineCount=$(wc -l < "$CFGFILE")
-  if [ "$lineCount" -lt 2 ]; then
-    echo "No results returned from CNDA." >&2
-    log "NO_RESULTS project=$PROJECT"
-    exit 1
-  fi
-  if grep -qi "<html>" "$CFGFILE"; then
-    echo "Your id is probably not enabled for this project, or the project id is wrong." >&2
-    log "ACCESS_DENIED project=$PROJECT"
-    exit 1
-  fi
- 
-  {
-    IFS= read -r header
-    # CNDA's REST/experiments CSV endpoint appends its own default ID,label,URI
-    # columns after whatever columns are requested, so a real row here is:
-    #   xnat:*sessionData/ID, subject_ID, ID, label, URI
-    # Field 1 (requested experiment ID) and field 3 (default ID) are the same
-    # value; field 4 (default label) is the one we actually want as the label.
-    while IFS=',' read -r exptID subjID defaultID label uri extra; do
-      exptID=$(clean_field "$exptID")
-      subjID=$(clean_field "$subjID")
-      label=$(clean_field "$label")
-      [ -z "$exptID$subjID$label" ] && continue
-      echo "[$((OK_COUNT+FAIL_COUNT+SKIP_COUNT+1))]"
-      download_session "$PROJECT" "$subjID" "$label"
-    done
-  } < "$CFGFILE"
+ [[ -n "$ALIAS" ]] || { echo 'Provide an alias token with -u' >&2; exit 2; }
+ [[ "$ALIAS" != *$'\n'* && "$ALIAS" != *$'\r'* && "$ALIAS" != *'"'* && "$ALIAS" != *'\\'* ]] || exit 2
+ read -r -s -p 'CNDA alias secret: ' PASSWORD < /dev/tty || { echo 'A terminal is required for -u; use -c instead' >&2; exit 2; }
+ echo >&2
+ # The secret is supplied on stdin, never as a process argument.
+ printf '%s\n%s\n' "$ALIAS" "$PASSWORD" | python3 -c '
+import sys
+out=sys.argv[1]
+vals=sys.stdin.read().splitlines()
+if len(vals)!=2 or not all(vals) or any(c in "\r\n\0" for v in vals for c in v):raise SystemExit("Invalid credentials")
+def esc(v):return v.replace("\\","\\\\").replace("\"","\\\"")
+with open(out,"w",newline="\n") as f:f.write("user = \""+esc(vals[0])+":"+esc(vals[1])+"\"\n")
+' "$CURLCFG"
+ unset PASSWORD
 fi
- 
-log "DONE ok=$OK_COUNT fail=$FAIL_COUNT skip=$SKIP_COUNT"
-echo "Done. OK=$OK_COUNT  FAIL=$FAIL_COUNT  SKIP=$SKIP_COUNT"
-echo "See $LOGFILE for details."
- 
-[ "$FAIL_COUNT" -gt 0 ] && exit 1
-exit 0
+chmod 600 "$CURLCFG"
+# Reuse one server session until it actually expires. Never refresh by a timer.
+login(){
+  local token status curl_rc=0
+  # One authentication attempt per login. Keep body out of logs and stdout.
+  AUTHRESP=$(mktemp "$ROOT/.cnda_login.XXXXXX") || { log 'AUTH ERROR: Cannot create secure login response file'; summary; exit 1; }
+  status=$(curl -sS --connect-timeout 20 --max-time 90 -K "$CURLCFG" \
+    -o "$AUTHRESP" -w '%{http_code}' "$HOST/REST/JSESSION") || curl_rc=$?
+  if ((curl_rc != 0)); then
+    case "$curl_rc" in
+      6) log 'NETWORK ERROR: Could not resolve CNDA hostname (DNS)' ;;
+      7) log 'NETWORK ERROR: Could not connect to CNDA' ;;
+      28) log 'NETWORK ERROR: CNDA connection or response timed out' ;;
+      35|51|60) log "TLS ERROR: Could not establish a trusted secure connection to CNDA (curl $curl_rc)" ;;
+      *) log "NETWORK/TRANSFER ERROR: Login request failed (curl $curl_rc, HTTP ${status:-000})" ;;
+    esac
+    JSESSION=''; summary; exit 1
+  fi
+  case "$status" in
+    200) ;;
+    401) log 'AUTH ERROR: CNDA rejected the alias token or secret (HTTP 401). Check credentials or token expiration.' ; JSESSION=''; summary; exit 1 ;;
+    403) log 'AUTH ERROR: CNDA refused the login (HTTP 403). Check account permissions or contact CNDA support.' ; JSESSION=''; summary; exit 1 ;;
+    500|502|503|504) log "SERVER ERROR: CNDA login endpoint returned HTTP $status. Credentials are not confirmed invalid." ; JSESSION=''; summary; exit 1 ;;
+    *) log "AUTH ERROR: Unexpected CNDA login response HTTP ${status:-000}. Credentials are not confirmed invalid." ; JSESSION=''; summary; exit 1 ;;
+  esac
+  token=$(cat "$AUTHRESP") || { log 'AUTH ERROR: Could not read login response'; summary; exit 1; }
+  token=${token//$'\r'/}; token=${token//$'\n'/}
+  [[ "$token" =~ ^[A-Za-z0-9._-]+$ ]] || {
+    JSESSION=''; log 'SERVER RESPONSE ERROR: HTTP 200 but CNDA returned an invalid session token'; summary; exit 1;
+  }
+  JSESSION=$token
+  rm -f "$AUTHRESP"
+  AUTHRESP=''
+}
+# Request stores status in HTTP_CODE in the current shell so renewed sessions persist.
+# On one HTTP 401, create one replacement session and retry that request once.
+request(){
+  local method=$1 url=$2 out=$3 attempt rc
+  HTTP_CODE=000
+  for attempt in 1 2; do
+    if [[ "$method" == POST ]]; then
+      HTTP_CODE=$(curl -sS -L --connect-timeout 20 --max-time 300 --retry 2 --retry-delay 3 \
+        -b "JSESSIONID=$JSESSION" -H 'Content-Type: application/json' -X POST \
+        --data-binary @"$BODY" -o "$out" -w '%{http_code}' "$url") || HTTP_CODE=000
+    else
+      HTTP_CODE=$(curl -sS -L --connect-timeout 20 --max-time 300 --retry 2 --retry-delay 3 \
+        -b "JSESSIONID=$JSESSION" -o "$out" -w '%{http_code}' "$url") || HTTP_CODE=000
+    fi
+    if [[ "$HTTP_CODE" != 401 ]]; then return 0; fi
+    if (( attempt == 1 )); then
+      log 'Session expired (HTTP 401); obtaining one replacement session'
+      JSESSION=''
+      login
+    fi
+  done
+  log 'AUTH ERROR: HTTP 401 persists after renewal'; summary; exit 1
+}
+login
+# Generate a tab-separated list using Python CSV/JSON parsers. Fields must be safe components.
+INPUT=$(mktemp "$ROOT/.cnda_sessions.XXXXXX") || exit 1
+BAD=$(mktemp "$ROOT/.cnda_bad.XXXXXX") || exit 1
+trap cleanup EXIT
+if [[ -n "$LIST" ]]; then
+ python3 - "$LIST" "$BAD" > "$INPUT" <<'PY'
+import csv,sys
+bad=open(sys.argv[2],'w',newline='\n')
+with open(sys.argv[1],encoding='utf-8-sig',newline='') as f:
+ for n,row in enumerate(csv.reader(f),1):
+  if not row or not any(x.strip() for x in row):continue
+  if n==1 and [x.strip().lower() for x in row] in (['project','subject','session'], ['project','subjectlabel','sessionlabel']):continue
+  if len(row)!=3 or any(not x.strip() for x in row):
+   bad.write(f'CSV line {n}: expected Project,Subject,Session\n');continue
+  print('\t'.join(x.strip() for x in row))
+PY
+else
+ URL="$HOST/REST/projects/$PROJECT/experiments?format=json&columns=ID,label,xsiType,subject_ID"
+ request GET "$URL" "$META"
+ CODE=$HTTP_CODE
+ [[ "$CODE" == 200 ]] || { log "Project listing returned HTTP $CODE"; summary; exit 1; }
+ # XNAT experiment listings can use subject_ID; fetch project subject list for labels.
+ SJSON=$(mktemp "$ROOT/.cnda_subjects.XXXXXX")
+ request GET "$HOST/REST/projects/$PROJECT/subjects?format=json" "$SJSON"
+ CODE=$HTTP_CODE
+ [[ "$CODE" == 200 ]] || { log "Subject listing returned HTTP $CODE"; rm -f "$SJSON"; summary; exit 1; }
+ python3 - "$META" "$SJSON" "$PROJECT" "$TYPE" "$BAD" > "$INPUT" <<'PY'
+import json,sys
+exps,subs,project,typ,badfile=sys.argv[1:]
+def records(p):
+ with open(p) as f: o=json.load(f)
+ return o.get('ResultSet',{}).get('Result',[])
+sm={str(s.get('ID','')):str(s.get('label') or s.get('ID','')) for s in records(subs)}
+for e in records(exps):
+ dtype=str(e.get('xsiType') or e.get('xsi:type') or '')
+ if typ:
+  if dtype!=typ:continue
+ elif not dtype.lower().endswith('sessiondata'):
+  continue
+ eid=str(e.get('ID','')).strip(); label=str(e.get('label') or eid).strip()
+ sid=str(e.get('subject_ID') or e.get('subject_id') or '').strip()
+ subject=str(e.get('subject_label') or sm.get(sid) or '').strip()
+ if not (eid and label and subject):
+  with open(badfile,'a') as bad:bad.write('Project listing missing ID, label, or subject: '+repr(e)[:160]+'\n')
+  continue
+ print('\t'.join((project,subject,label,eid)))
+PY
+ rm -f "$SJSON"
+fi
+# Enforce exact duplicates by internal ID in project mode, project+subject+label in CSV mode.
+SEEN=$(mktemp "$ROOT/.cnda_unique.XXXXXX")
+python3 - "$INPUT" "$SEEN" "$BAD" <<'PY'
+import sys,re
+seen=set(); output=[]
+for line in open(sys.argv[1]):
+ fields=line.rstrip('\n').split('\t')
+ if len(fields) not in (3,4) or not all(re.fullmatch(r'[A-Za-z0-9._-]+',x) for x in fields):
+  with open(sys.argv[3],'a') as b:b.write('Invalid session identifier: '+repr(line[:120])+'\n')
+  continue
+ key=(fields[0],fields[3]) if len(fields)==4 else tuple(fields)
+ if key not in seen:seen.add(key); output.append(line)
+with open(sys.argv[2],'w') as f:f.writelines(output)
+PY
+while IFS= read -r error || [[ -n "$error" ]]; do
+ [[ -n "$error" ]] || continue
+ ((FAIL+=1)); report '' '' '' FAILED "$error"
+done < "$BAD"
+# For CSV input, cache project listings once per project and map internal IDs to labels.
+if [[ -n "$LIST" ]]; then
+ while IFS= read -r proj || [[ -n "$proj" ]]; do
+   [[ -n "$proj" ]] || continue
+     request GET "$HOST/REST/projects/$proj/experiments?format=json&columns=ID,label,xsiType,subject_ID" "$ROOT/.cnda_cache_${RUN}_${proj}.json"
+     code=$HTTP_CODE
+   if [[ "$code" == 401 ]]; then log "AUTH ERROR HTTP 401"; summary; exit 1; fi
+   if [[ "$code" != 200 ]]; then printf %s "$code" > "$ROOT/.cnda_status_${RUN}_${proj}.txt"; log "WARNING: experiment listing for $proj returned HTTP $code"; continue; fi
+     request GET "$HOST/REST/projects/$proj/subjects?format=json" "$ROOT/.cnda_subjectcache_${RUN}_${proj}.json"
+     code=$HTTP_CODE
+   if [[ "$code" == 401 ]]; then log "AUTH ERROR HTTP 401"; summary; exit 1; fi
+   if [[ "$code" != 200 ]]; then printf %s "$code" > "$ROOT/.cnda_status_${RUN}_${proj}.txt"; log "WARNING: subject listing for $proj returned HTTP $code"; continue; fi
+ done < <(cut -f1 "$SEEN" | sort -u)
+fi
+QUEUED=$(wc -l < "$SEEN"); TOTAL=$((QUEUED+FAIL))
+if ((TOTAL == 0)); then log 'ERROR: No sessions were found'; summary; exit 1; fi
+log "Sessions queued: $QUEUED; invalid input rows: $FAIL; destination: $DEST"
+# Optional resources are discovered per session. Failure to list resources is fatal for that session,
+# rather than silently returning an incomplete resource-inclusive archive.
+get_resources(){
+ local exp=$1
+ request GET "$HOST/REST/experiments/$exp/resources?format=json" "$META"
+ RESOURCE_HTTP=$HTTP_CODE
+ [[ "$RESOURCE_HTTP" == 200 ]] || return 1
+ python3 - "$META" <<'PY'
+import sys,json
+with open(sys.argv[1]) as f:d=json.load(f)
+r=d.get('ResultSet',{}).get('Result',[])
+for x in r:
+ v=x.get('label') or x.get('xnat_abstractresource_label')
+ if v and isinstance(v,str):print(v)
+PY
+}
+# Discover scan types from the selected experiment, just as the CNDA download UI does.
+# Do not silently request an archive with no selected scan types.
+get_scan_types(){
+ local exp=$1
+ request GET "$HOST/REST/experiments/$exp/scans?format=json" "$META"
+ SCAN_HTTP=$HTTP_CODE
+ [[ "$SCAN_HTTP" == 200 ]] || return 1
+ python3 - "$META" <<'PYSCANS'
+import json,sys
+with open(sys.argv[1],encoding='utf-8') as f:data=json.load(f)
+rows=data.get('ResultSet',{}).get('Result',[])
+if not isinstance(rows,list):raise SystemExit('invalid scan listing')
+types=sorted({str(row.get('type') or row.get('xnat_imagescandata_type') or '').strip()
+              for row in rows if isinstance(row,dict)})
+types=[t for t in types if t]
+if not types:raise SystemExit('no scan types returned')
+print(json.dumps(types))
+PYSCANS
+}
+# Server returns a catalog ID as text or JSON; reject anything ambiguous.
+catalog_id(){ python3 - "$1" <<'PY'
+import json,re,sys
+s=open(sys.argv[1]).read().strip()
+try:
+ o=json.loads(s)
+ if isinstance(o,dict):s=str(o.get('id') or o.get('catalogId') or o.get('downloadId') or '')
+ elif isinstance(o,str):s=o
+except ValueError: pass
+if not re.fullmatch(r'[A-Za-z0-9._-]+',s):raise SystemExit(1)
+print(s)
+PY
+}
+# Read optional estimated archive bytes from CNDA's size-aware response.
+# Do not interpret an unknown response format as a valid estimate.
+estimated_bytes(){ python3 - "$1" <<'PYEST'
+import json,sys
+try:
+ with open(sys.argv[1],encoding='utf-8') as f: obj=json.load(f)
+except (ValueError,OSError): raise SystemExit(1)
+keys=('size','estimatedSize','estimated_size','downloadSize','download_size','totalSize','total_size','bytes','sizeInBytes')
+def visit(o,depth=0):
+ if depth>3 or not isinstance(o,dict):return None
+ for key in keys:
+  if key in o:
+   v=o[key]
+   if isinstance(v,int) and not isinstance(v,bool) and v>0:return v
+   if isinstance(v,str) and v.isdecimal() and int(v)>0:return int(v)
+ for key in ('data','result','download','catalog'):
+  if key in o:
+   v=visit(o[key],depth+1)
+   if v:return v
+ return None
+n=visit(obj)
+if not n:raise SystemExit(1)
+print(n)
+PYEST
+}
+# Print a single readable status line, using estimates only when provided.
+transfer_status(){ python3 - "$1" "$2" "$3" <<'PYSTAT'
+import sys
+received=float(sys.argv[1]);elapsed=max(float(sys.argv[2]),0.001)
+try: estimate=int(sys.argv[3])
+except ValueError:estimate=0
+def duration(sec):
+ sec=max(0,int(sec)); h,r=divmod(sec,3600);m,s=divmod(r,60)
+ return f'{h}h {m:02d}m {s:02d}s' if h else (f'{m}m {s:02d}s' if m else f'{s}s')
+def size(n):
+ for unit in ('B','KiB','MiB','GiB','TiB'):
+  if n<1024 or unit=='TiB':return f'{n:.1f} {unit}' if unit!='B' else f'{int(n)} B'
+  n/=1024
+rate=received/elapsed
+parts=[duration(elapsed)]
+if estimate>0:
+ parts.extend([f'{size(received)} / {size(estimate)}',f'~{min(100,100*received/estimate):.0f}%'])
+else:parts.append(f'{size(received)} received')
+parts.append(f'{size(rate)}/s')
+if estimate>0 and rate>0 and received<estimate:parts.append('ETA '+duration((estimate-received)/rate))
+elif estimate>0 and received>=estimate:parts.append('ETA calculating')
+print(' | '.join(parts),file=sys.stderr,flush=True)
+PYSTAT
+}
+# Determine ID when CSV supplied using per-project experiment listing; no unsafe label guessing.
+resolve_id(){
+ local p=$1 subj=$2 lab=$3 cache="$ROOT/.cnda_cache_${RUN}_${p}.json"
+ [[ -f "$cache" ]] || return 1
+ python3 - "$cache" "$ROOT/.cnda_subjectcache_${RUN}_${p}.json" "$subj" "$lab" <<'PY'
+import json,sys
+with open(sys.argv[1]) as f:d=json.load(f)
+with open(sys.argv[2]) as f:subjects=json.load(f)
+sub,lab=sys.argv[3:]
+sm={str(x.get('ID')):str(x.get('label') or x.get('ID')) for x in subjects.get('ResultSet',{}).get('Result',[])}
+candidates=[x for x in d.get('ResultSet',{}).get('Result',[]) if str(x.get('label',''))==lab and str(x.get('subject_label') or sm.get(str(x.get('subject_ID') or x.get('subject_id') or ''),'') )==sub]
+if len(candidates)!=1:raise SystemExit(1)
+print(candidates[0]['ID'])
+PY
+}
+while IFS=$'\t' read -r p sub lab eid || [[ -n "${p:-}" ]]; do
+ p=${p%$'\r'}; sub=${sub%$'\r'}; lab=${lab%$'\r'}; eid=${eid%$'\r'}
+ ((DONE+=1)); log "[$DONE/$QUEUED] $p / $sub / $lab"
+ if [[ -z "$eid" && ! -f "$ROOT/.cnda_status_${RUN}_${p}.txt" ]]; then eid=$(resolve_id "$p" "$sub" "$lab") || eid=''; fi
+ if [[ -z "$eid" ]]; then
+    reason='unable to resolve unique experiment ID'
+    if [[ -f "$ROOT/.cnda_status_${RUN}_${p}.txt" ]]; then
+      status=$(cat "$ROOT/.cnda_status_${RUN}_${p}.txt")
+      reason="project lookup HTTP $status (access denied, missing project, or server error)"
+    fi
+    log "FAILED: $reason"; ((FAIL+=1)); report "$p" "$sub" "$lab" FAILED "$reason"; continue
+  fi
+ DIR="$DEST/$p/$sub"; (umask "$ORIGINAL_UMASK"; mkdir -p "$DIR") || { ((FAIL+=1)); report "$p" "$sub" "$lab" FAILED 'cannot create directory'; continue; }
+ ZIP="$DIR/$lab.zip"; PART="$ZIP.part"
+  # Discover requested resources before checking whether an existing ZIP matches the request.
+  resources='[]'
+  if (( WITH_RES )); then
+    RLIST_FILE=$(mktemp "$ROOT/.cnda_resources.XXXXXX") || exit 1
+    if ! get_resources "$eid" > "$RLIST_FILE"; then
+      if [[ "$RESOURCE_HTTP" == 401 ]]; then log "AUTH ERROR HTTP 401"; summary; exit 1; fi
+      ((FAIL+=1)); log "FAILED: resource listing HTTP $RESOURCE_HTTP"; report "$p" "$sub" "$lab" FAILED "resource listing HTTP $RESOURCE_HTTP"; rm -f "$RLIST_FILE"; RLIST_FILE=''; continue
+    fi
+    resources=$(python3 - "$RLIST_FILE" <<'PYRES'
+import json,sys
+with open(sys.argv[1],encoding='utf-8') as f:
+ print(json.dumps(sorted(set(x.strip() for x in f if x.strip()))))
+PYRES
+) || exit 1
+    rm -f "$RLIST_FILE"; RLIST_FILE=''
+  fi
+  # Select scan types explicitly; missing this field produced empty ZIPs in testing.
+  if ! scan_types=$(get_scan_types "$eid"); then
+    ((FAIL+=1)); log "FAILED: could not discover scan types (HTTP ${SCAN_HTTP:-000})";
+    report "$p" "$sub" "$lab" FAILED "scan type discovery failed (HTTP ${SCAN_HTTP:-000})";
+    continue
+  fi
+  log "Selected $(python3 -c 'import json,sys; print(len(json.loads(sys.argv[1])))' "$scan_types") scan types"
+  MANIFEST="$ZIP.cnda.json"
+  # No manifest means an unverified/legacy ZIP: never silently reuse it.
+  # A matching manifest alone is not enough: still verify ZIP integrity.
+  if (( !FORCE )) && [[ -f "$ZIP" && -f "$MANIFEST" ]]; then
+    reuse=0
+    python3 - "$MANIFEST" "$eid" "$resources" "$ORIGINAL" <<'PYMATCH' && reuse=1 || true
+import json,sys
+try:
+ with open(sys.argv[1],encoding='utf-8') as f:m=json.load(f)
+ assert m.get('schema_version')==1
+ assert m['experiment_id']==sys.argv[2]
+ assert m['resources']==json.loads(sys.argv[3])
+ assert m['original_structure']==(sys.argv[4]=='1')
+ assert m['scan_formats']==['DICOM']
+ assert m['zip_size']==__import__('os').path.getsize(sys.argv[1][:-10])
+except (OSError,ValueError,KeyError,AssertionError,TypeError):sys.exit(1)
+PYMATCH
+    if ((reuse)) && unzip -tqq "$ZIP" >/dev/null 2>&1; then
+      ((SKIP+=1)); log 'SKIP verified ZIP matching requested mode'; report "$p" "$sub" "$lab" SKIPPED 'existing matching ZIP'; PART=''; continue
+    fi
+  fi
+ # POST expects project:subjectLabel:sessionLabel:experimentID, as seen in the CNDA browser.
+ python3 - "$BODY" "$p" "$sub" "$lab" "$eid" "$resources" "$ORIGINAL" "$scan_types" <<'PY'
+import json,sys
+path,p,s,l,e,rs,orig,scans=sys.argv[1:]
+payload={'sessions':[f'{p}:{s}:{l}:{e}'],'projectIds':[p], 'scan_formats':['DICOM'], 'scan_types':json.loads(scans), 'resources':json.loads(rs), 'options':[] if orig=='1' else ['simplified']}
+with open(path,'w') as f:json.dump(payload,f)
+PY
+ success=0; why=''; ZIP_REAUTH_USED=0
+ for attempt in 1 2 3; do
+   rm -f "$PART"
+     ESTIMATE=0
+   # Prefer one size-aware preparation request; if unsupported, use the original API.
+   request POST "$HOST/xapi/archive/downloadwithsize" "$META"
+   CODE=$HTTP_CODE
+   if [[ "$CODE" == 401 ]]; then log "AUTH ERROR HTTP 401"; summary; exit 1; fi
+   if [[ "$CODE" == 403 ]]; then why="archive inaccessible (HTTP 403)"; break; fi
+   CID=''
+   if [[ "$CODE" == 200 || "$CODE" == 201 ]]; then
+     CID=$(catalog_id "$META") || CID=''
+     if [[ -n "$CID" ]]; then ESTIMATE=$(estimated_bytes "$META") || ESTIMATE=0; fi
+   fi
+   if [[ -z "$CID" ]]; then
+     # A 404 may mean this endpoint is absent. Fall back without failing the download.
+     request POST "$HOST/xapi/archive/download" "$META"
+     CODE=$HTTP_CODE
+     if [[ "$CODE" == 401 ]]; then log "AUTH ERROR HTTP 401"; summary; exit 1; fi
+     if [[ "$CODE" == 403 || "$CODE" == 404 ]]; then why="archive inaccessible or invalid (HTTP $CODE)"; break; fi
+     if [[ "$CODE" != 200 && "$CODE" != 201 ]]; then why="archive creation HTTP $CODE"; log "Attempt $attempt: $why"; sleep 3; continue; fi
+     CID=$(catalog_id "$META") || CID=''
+   fi
+   if [[ -z "$CID" ]]; then why='invalid archive catalog ID'; log "Attempt $attempt: $why"; sleep 3; continue; fi
+   if ((ESTIMATE > 0)); then
+     python3 - "$ESTIMATE" <<'PYSIZE'
+import sys
+n=float(sys.argv[1]);unit='B'
+for u in ('B','KiB','MiB','GiB','TiB'):
+ unit=u
+ if n<1024 or u=='TiB':break
+ n/=1024
+print(f'Estimated size: {n:.1f} {unit}',file=sys.stderr)
+PYSIZE
+   else
+     log 'Estimated size: unavailable (download proceeds normally)'
+   fi
+     # Display clean periodic transfer lines; no animated terminal control characters.
+   log "Starting download (attempt $attempt)..."
+   START_TRANSFER=$(date +%s)
+   (
+     while sleep 15; do
+       [[ -f "$PART" ]] || continue
+       bytes=$(wc -c < "$PART")
+       elapsed=$(( $(date +%s) - START_TRANSFER ))
+       ((elapsed > 0)) || elapsed=1
+       transfer_status "$bytes" "$elapsed" "$ESTIMATE"
+     done
+   ) &
+   PROGRESS_PID=$!
+   TRANSFER_RESULT=$(curl -sS -L --connect-timeout 20 --speed-limit 1024 --speed-time 300 -b "JSESSIONID=$JSESSION" -o "$PART" -w '%{http_code} %{size_download} %{speed_download} %{time_total}' "$HOST/xapi/archive/download/$CID/zip") || TRANSFER_RESULT='000 0 0 0'
+   kill "$PROGRESS_PID" 2>/dev/null || true
+   wait "$PROGRESS_PID" 2>/dev/null || true
+   PROGRESS_PID=''
+   read -r CODE TRANSFER_BYTES TRANSFER_SPEED TRANSFER_SECONDS <<< "$TRANSFER_RESULT"
+   transfer_status "$TRANSFER_BYTES" "$TRANSFER_SECONDS" "$ESTIMATE"
+   log "Transfer finished: HTTP $CODE"
+   if [[ "$CODE" == 401 ]]; then
+     if ((ZIP_REAUTH_USED)); then log 'AUTH ERROR: repeated HTTP 401 on ZIP request'; summary; exit 1; fi
+     ZIP_REAUTH_USED=1
+     log 'ZIP request returned HTTP 401; obtaining one replacement session'
+     JSESSION=''
+     login
+     why='archive transfer session expired'; continue
+   fi
+   if [[ "$CODE" == 403 || "$CODE" == 404 ]]; then why="archive ZIP inaccessible (HTTP $CODE)"; break; fi
+    if [[ "$CODE" == 200 ]] && unzip -tqq "$PART" >/dev/null 2>&1; then
+      # Prepare fully verified metadata before replacing an existing ZIP.
+      M_TMP=$(mktemp "$DIR/.cnda_manifest.XXXXXX") || M_TMP=''
+      if [[ -z "$M_TMP" ]]; then
+        why='could not create download manifest'; log "Attempt $attempt: $why"; continue
+      fi
+      if ! python3 - "$M_TMP" "$eid" "$resources" "$ORIGINAL" "$PART" <<'PYMAN'
+import json,os,sys
+obj={'schema_version':1,'experiment_id':sys.argv[2],
+     'resources':json.loads(sys.argv[3]),
+     'original_structure':sys.argv[4]=='1',
+     'scan_formats':['DICOM'],'zip_size':os.path.getsize(sys.argv[5])}
+with open(sys.argv[1],'w',encoding='utf-8',newline='\n') as f:
+ json.dump(obj,f,sort_keys=True)
+ f.write('\n')
+PYMAN
+      then
+        why='could not write download manifest'; rm -f "$M_TMP"; M_TMP=''; log "Attempt $attempt: $why"; continue
+      fi
+      # Install both files transactionally; on failure restore the originals.
+      if ! install_archive "$PART" "$M_TMP" "$ZIP" "$MANIFEST"; then
+        why='unable to safely install ZIP and metadata; original restored if present'
+        rm -f "$M_TMP"; M_TMP=''; log "Attempt $attempt: $why"; continue
+      fi
+      M_TMP=''
+      if (( !SHARED )); then
+        mode=$(printf %03o "$(( 0666 & ~ (8#$ORIGINAL_UMASK) ))")
+        chmod "$mode" "$ZIP" "$MANIFEST" || log 'WARNING: could not set output permissions'
+      else
+        chmod 640 "$ZIP" "$MANIFEST" || log 'WARNING: could not set shared file permissions'
+        chmod 750 "$DIR" "$DEST/$p" || log 'WARNING: could not set shared directory permissions'
+      fi
+      success=1; break
+    else
+      why="download HTTP $CODE or ZIP integrity failure"
+    fi
+   log "Attempt $attempt: $why"; sleep 3
+ done
+ rm -f "$PART"; PART=''
+ if ((success)); then ((OK+=1)); log 'OK'; report "$p" "$sub" "$lab" DOWNLOADED 'archive validated';
+ else ((FAIL+=1)); log "FAILED: $why"; report "$p" "$sub" "$lab" FAILED "$why"; fi
+done < "$SEEN"
+rm -f "$SEEN"; summary
+(( FAIL == 0 ))
