@@ -1,366 +1,313 @@
-# Download Sessions via Script
+---
+title: CNDA Bulk Download
+description: CNDA bulk downloads on Windows, Linux, and macOS
+---
 
-Use this script when downloading many imaging sessions from CNDA. It's
-designed for large downloads that would be cumbersome through the web
-browser — it logs into CNDA for you, downloads each session as a `.zip`,
-skips anything it already downloaded, retries a failed download once
-automatically, and keeps a log of everything it did. Each session is
-downloaded as a ZIP archive containing the files stored in CNDA for that
-session.
+# CNDA Bulk Download
 
-## Before You Begin
+Use this script to download CNDA imaging sessions as verified ZIP archives. **First, find your operating system below and complete its setup.** After that, all platforms use the same CSV format and download options.
 
-You'll need:
+::: warning Requirements: check before you start
+| Platform | What you need |
+| --- | --- |
+| **Windows 10/11** | **Git for Windows (Git Bash)** and **Python 3** |
+| **Linux** | **Bash**, **Python 3**, `curl`, `unzip`, `mktemp` |
+| **macOS** | **Terminal/Bash**, **Python 3**, `curl`, `unzip`, `mktemp` |
 
-- A CNDA account with access to the project you want to download.
-- An **Alias Token** and **Secret**. API and script users must sign in with
-  these instead of their WUSTL Key password. See
-  [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
-- The project ID (for example `MRF_1234`), or a CSV listing the specific sessions you want.
-- Enough free disk space — roughly twice the size of the data you're downloading (temporary ZIPs, plus extracted data if you unzip them afterward).
+All platforms also need a CNDA account with access to the requested data, an XNAT alias token and secret, and adequate disk space. On Windows, run all commands in **Git Bash**, not Command Prompt or PowerShell. Check that `curl`, `unzip`, and `mktemp` are available in Git Bash before proceeding.
+:::
 
-**Note:** Each Alias Token and Secret lasts **90 days**. Before starting a
-large download, check when your token expires. If it expires soon, create
-a new one first so it doesn't stop working partway through.
+**Choose your operating system:** [Windows](#windows-setup) · [Linux](#linux-setup) · [macOS](#macos-setup)
 
-## Instructions
+## Windows setup
 
-1. If you only need a few sessions, use [Downloading Sessions From CNDA](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Downloading_Data/Downloading_Sessions_from_CNDA.html) instead — it's faster for a small number of sessions and doesn't require any of the setup below.
+### 1. Install the required software
 
-2. Download the script file: [cndaBulkDownload.txt](/cndaBulkDownload.txt).
-    Right-click the link and choose **Save link as...**, then save it
-    somewhere you'll remember — your Desktop or Documents folder works well.
-    The file is provided as `.txt` because browsers often flag `.sh` files
-    as potentially harmful and block the download. Once it's saved, open
-    the file and use **Save As** to save a copy of it named exactly:
+Install [Git for Windows](https://git-scm.com/downloads/win) (which includes **Git Bash**) and [Python 3 for Windows](https://www.python.org/downloads/windows/). During Python installation, enable its PATH option if offered. Open or reopen **Git Bash** after installing.
 
-    ```text
-    cndaBulkDownload.sh
-    ```
-
-    Make sure Windows doesn't save it as `cndaBulkDownload.sh.txt` — some
-    versions of Windows hide file extensions by default, so it's easy to
-    end up with `.sh.txt` without realizing it. If you're not sure, turn
-    on "File name extensions" in File Explorer's View tab so you can see
-    the full name before continuing.
-
-    As an alternative, you might also be able to copy the content of the
-    script into Notepad and save it as `cndaBulkDownload.sh`. The main point
-    is that the file should be a shell script after renaming, not a text file.
-
-3. Install Git Bash (Windows only, one-time setup). This gives Windows the
-    command-line tools (`bash`, `curl`) the script needs, which aren't
-    included by default.
-    1. Go to <https://git-scm.com/download/win> — the download starts
-      automatically. If it doesn't, click the "Click here to download"
-      link on that page.
-    2. Once downloaded, double-click the installer file (something like
-      `Git-2.xx.x-64-bit.exe`) to run it.
-    3. Windows may show a "Do you want to allow this app to make changes to
-      your device?" prompt — click **Yes**.
-    4. Click through the installer screens. The default settings on every
-      screen are fine for this script — just click **Next** on each one,
-      then **Install** on the final screen.
-    5. When it finishes, click **Finish**.
-
-    If your team already has WSL (Windows Subsystem for Linux) set up on
-    your machine, you can use that instead of Git Bash — open your Linux
-    distro from the Start menu and follow the same steps below. If you're
-    not sure whether you have WSL, Git Bash is faster to get running and
-    is all this script needs.
-
-4. Open a command line.
-    - **Windows:** click the Start menu, type `Git Bash`, and click **Git
-     Bash** in the results. A dark window with a text prompt opens — this
-     is your command line for every step below.
-    - **Mac:** press **Cmd + Space**, type `Terminal`, and press Enter.
-    - **Linux:** open your distro's terminal application from your
-     applications menu.
-
-5. Go to the folder where you saved the script. Type `cd` followed by the
-    folder path and then hit Enter. For example, if you saved it to your Desktop:
-    ```bash
-    cd ~/Desktop
-    ```
-
-    or if you saved it to Documents:
-    ```bash
-    cd ~/Documents
-    ```
-
-    In Git Bash, `~` always means your Windows user folder
-    (`C:\Users\yourname`), so `~/Desktop` and `~/Documents` work the same
-    way they do on Mac and Linux. If you saved the script somewhere else,
-    like a Downloads folder or a specific project folder, use that path
-    instead — for example `cd ~/Downloads` or `cd "/c/Users/yourname/My Folder"`.
-    You can also type `cd ` (with a trailing space) and then drag the
-    folder from File Explorer directly into the Git Bash window — it will
-    fill in the correct path for you automatically.
-
-6. Confirm the script is actually there before continuing:
-    ```bash
-    ls cndaBulkDownload.sh
-    ```
-
-    If it prints back `cndaBulkDownload.sh`, you're in the right folder.
-    If you instead see `No such file or directory`, you're either in the
-    wrong folder or the file didn't save with that exact name — check
-    step 5 and step 2 again.
-
-7. Give the script permission to run. Mac, Linux, and Git Bash all treat
-    downloaded scripts as non-executable by default as a safety measure,
-    so this tells your system it's okay to run this one. It's a one-time
-    step per copy of the script:
-    ```bash
-    chmod +x cndaBulkDownload.sh
-    ```
-
-    You won't see any output from this — that's expected. You don't need
-    to repeat it the next time you use the same copy of the script.
-
-8. Run the script. You have two ways to tell it what to download:
-
-    **Download an entire project**
-    ```bash
-    ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
-    ```
-
-    Replace `yourAliasToken` with your Alias Token and `MRF_1234` with the
-    actual project ID. When prompted for a password, type your **Secret**
-    (not your WUSTL Key password). It won't show anything on screen as you
-    type, not even dots. This is normal terminal behavior, not a freeze.
-    Type it and press Enter.
-
-    **Download a specific list of sessions**
-
-    Create a CSV file listing the sessions first — see
-    [Session List CSV Format](#session-list-csv-format) below — then run:
-    ```bash
-    ./cndaBulkDownload.sh -u yourAliasToken -s mysessions.csv
-    ```
-
-    Use one or the other, not both — the script will stop with an error if
-    you pass `-p` and `-s` together.
-
-    Large projects may take hours to complete depending on your internet
-    connection and the amount of data involved. The script prints progress
-    as it downloads each session, so as long as you see new lines
-    appearing, it's still working.
-
-9. (Optional) Choose where files are saved. By default, downloads go into
-    a new folder named after the project (or `cnda_downloads` if you used
-    a session list), created inside whatever folder you were in when you
-    ran the script. To pick your own folder instead, add `-d`:
-    ```bash
-    ./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234 -d /path/to/my/folder
-    ```
-
-
-10. **Recommended for downloads over 25 minutes: Save your credentials securely.**
-
-    CNDA login sessions expire after approximately 30 minutes. The script automatically refreshes its login after about 25 minutes. Without a credentials file, the script may pause and ask for your Secret again during a long download.
-
-    Using a credentials file allows the download to continue unattended.
-
-    **Step 1: Create a private credentials folder**
-
-    Open Git Bash (Windows) or Terminal (Mac/Linux) and run:
-
-    ```bash
-    mkdir -p ~/.cnda
-    chmod 700 ~/.cnda
-    ```
-
-    This creates a dedicated folder inside your user account for CNDA credentials.
-
-    **Step 2: Create your credentials file**
-
-    Using a text editor, create a file named `creds.json` inside the `.cnda` folder.
-
-    Enter the following, replacing the example values with your actual CNDA Alias Token and Secret:
-
-    ```json
-    {
-      "user": "yourAliasToken",
-      "password": "yourSecret"
-    }
-    ```
-
-    The field names must remain `user` and `password`. Save the file as `creds.json`, not `creds.json.txt`.
-
-    **Step 3: Restrict access to your credentials**
-
-    Run:
-
-    ```bash
-    chmod 600 ~/.cnda/creds.json
-    ```
-
-    On Mac and Linux, this restricts access to your user account. On Windows, Git Bash permissions may depend on Windows file permissions. Keep the file inside your private user folder, not in a shared location.
-
-    **Step 4: Run the download script**
-
-    From the folder containing `cndaBulkDownload.sh`, run:
-
-    ```bash
-    ./cndaBulkDownload.sh -c ~/.cnda/creds.json -p MRF_1234
-    ```
-
-    Replace `MRF_1234` with your actual project ID.
-
-    To download a specific list of sessions instead, use:
-
-    ```bash
-    ./cndaBulkDownload.sh -c ~/.cnda/creds.json -s mysessions.csv
-    ```
-
-    The script will automatically use your Alias Token and Secret whenever it needs to sign in again.
-
-    **Important Security Notes**
-
-    - Your credentials file contains your Secret in plain text.
-    - Never email, share, or upload the file to a shared drive or Git repository.
-    - Keep it in your private `.cnda` folder rather than your Desktop or a shared project folder.
-    - Delete the credentials file when you no longer need it.
-    - Alias Tokens expire after 90 days. Generate a new token and update the file when yours expires.
-    - Do not use `-u` and `-c` together. When using `-c`, the script reads both credentials from the file.
-
-## Complete Example
-
-Putting it all together, downloading a whole project on Mac or Linux
-looks like this from start to finish:
+Verify that the required commands work **inside Git Bash**:
 
 ```bash
-cd ~/Desktop
-chmod +x cndaBulkDownload.sh
-./cndaBulkDownload.sh -u yourAliasToken -p MRF_1234
+for cmd in bash curl python3 unzip mktemp; do
+  command -v "$cmd" || echo "MISSING: $cmd"
+done
+python3 --version
 ```
 
-## Session List CSV Format
+If any command is missing, resolve that installation or PATH issue before proceeding. In Git Bash, `~` refers to your home directory; Windows locations may also be written as `/c/Users/YourUser/...`.
 
-If you're downloading specific sessions instead of a whole project, create
-a plain CSV file — you can build this in Excel and use **Save As → CSV**,
-or write it directly in a plain text editor. No header row — just one
-session per line, in this order: `Project,Subject,Session`
+### 2. Download the script
 
-File: `mysessions.csv`
-```
-MRF_1234,Subj001,Subj001_MR1
-MRF_1234,Subj002,Subj002_MR1
-CCIR_5678,Subj010,Subj010_MR2
+[Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) in your browser. Save it in your home directory, then rename it to `cndaBulkDownload.sh`. Or use this command **in Git Bash** to save and rename it:
+
+```bash
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
+bash -n ~/cndaBulkDownload.sh
 ```
 
-Here's what that looks like opened in a spreadsheet — no header row, just
-three columns:
+### 3. Run a download
 
-![mysessions.csv opened in a spreadsheet](/images/csv.jpg)
+Create `~/sessions.csv` using the [CSV example](#prepare-a-session-list-and-credentials) below, and obtain your CNDA alias token. Then run in Git Bash:
 
-<div style="clear:both"></div>
-
-## What Happens While It Runs
-
-You'll see output scroll by that looks like this:
-
-```
-[1]
-Downloading Subj001_MR1 (MRF_1234/Subj001)...
-[2]
-Subj002_MR1.zip already exists, skipping
+```bash
+bash ~/cndaBulkDownload.sh -u YOUR_ALIAS -s ~/sessions.csv -d ~/cnda_downloads
 ```
 
-When it finishes, you'll see a summary line:
+Use `-c ~/creds.json` instead of `-u YOUR_ALIAS` for unattended use, as explained below.
 
+---
+
+## Linux setup
+
+### 1. Install the required software
+
+For Ubuntu or Debian:
+
+```bash
+sudo apt update
+sudo apt install -y bash curl python3 unzip
 ```
-Done. OK=42  FAIL=1  SKIP=3
-See /path/to/logs/cndaBulkDownload_20260803_143000.log for details.
+
+Other distributions can use their package managers. `mktemp` is normally installed with the core utilities. Verify:
+
+```bash
+for cmd in bash curl python3 unzip mktemp; do
+  command -v "$cmd" || echo "MISSING: $cmd"
+done
+python3 --version
 ```
 
-- **OK** — successfully downloaded.
-- **SKIP** — already downloaded in a previous run; left alone.
-- **FAIL** — something went wrong with that specific session. Open the log
-  file named in that line for details on exactly which session and why.
+### 2. Download the script
 
-The log records every session downloaded, skipped, or failed, along with
-any error messages returned by CNDA — it's the first place to look if
-something goes wrong.
+[Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) from your browser and rename it to `cndaBulkDownload.sh` in your home directory. Alternatively:
 
-**Note:** if anything fails, it's almost always safe to just run the exact
-same command again. The script automatically skips everything it already
-downloaded successfully, so a rerun only retries what actually failed.
+```bash
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
+bash -n ~/cndaBulkDownload.sh
+```
 
-## How Interruptions Are Handled
+### 3. Run a download
 
-The script is built to survive network hiccups, expired logins, and
-partial failures without losing progress or corrupting your downloads.
+After creating `~/sessions.csv` and obtaining your CNDA alias token:
 
-**Partial downloads never count as finished.** Each session downloads
-first to a temporary `.part` file. Only after the script confirms it's a
-valid ZIP archive does it rename the file to its final `.zip` name. If
-the download is interrupted for any reason — closed terminal, lost
-network connection, killed process — you're left with a `.part` file, not
-a broken `.zip`, so a later rerun won't mistake it for a completed
-download and skip it.
+```bash
+bash ~/cndaBulkDownload.sh -u YOUR_ALIAS -s ~/sessions.csv -d ~/cnda_downloads
+```
 
-**Failed downloads retry automatically, once.** If a download fails or
-comes back invalid, the script re-authenticates and tries that one
-session again before giving up and marking it FAIL in the log.
+---
 
-**Your login is refreshed automatically during long runs.** CNDA login
-sessions expire after 30 minutes. Rather than waiting for a download to
-fail and then recovering, the script checks the age of its login before
-each session and proactively re-logs in with your Alias Token and Secret
-once it's been about 25 minutes — before anything actually breaks.
+## macOS setup
 
-**This 30-minute session is different from your Alias Token's 90-day
-expiration.** The script can refresh a 30-minute session on its own, but
-it cannot renew your Alias Token. If your token expires during a run,
-every re-login after that point will fail. Create a new Alias Token,
-update `creds.json` if you use one, and rerun the same command — the
-script will skip everything already downloaded.
+### 1. Install the required software
 
-**This is why the credentials file matters for anything longer than 25
-minutes.** If you started the script with `-u` (typing your Secret), the
-automatic re-login has no Secret saved and will stop and prompt you to
-type it again, right there in the terminal — meaning an unattended long
-download can silently pause and wait for you. If you used
-`-c creds.json` instead, the re-login reads your Secret from the file
-with no prompt and no interruption. **For any download you expect to take
-more than about 20–25 minutes, use `-c creds.json`, not `-u`.**
+Open **Terminal**. Bash, `curl`, `unzip`, and `mktemp` are normally available. Install **Python 3** from [python.org](https://www.python.org/downloads/macos/) or, if you use Homebrew:
 
-**A very slow or stalled connection is caught automatically.** If a
-download's transfer rate drops too low for too long (default: under
-1024 bytes/sec for 300 seconds), the script treats it as stuck, aborts
-that download, and moves on rather than hanging indefinitely. These
-thresholds can be tuned with the `STALL_TIME` and `STALL_LIMIT`
-environment variables if needed, but the defaults work for most
-connections.
+```bash
+brew install python
+```
+
+Verify:
+
+```bash
+for cmd in bash curl python3 unzip mktemp; do
+  command -v "$cmd" || echo "MISSING: $cmd"
+done
+python3 --version
+```
+
+### 2. Download the script
+
+[Download cndaBulkDownload.txt](https://cnda-help.wustl.edu/cndaBulkDownload.txt) in your browser, then save or rename it as `~/cndaBulkDownload.sh`. Alternatively, from Terminal:
+
+```bash
+curl -fL https://cnda-help.wustl.edu/cndaBulkDownload.txt -o ~/cndaBulkDownload.txt
+mv ~/cndaBulkDownload.txt ~/cndaBulkDownload.sh
+bash -n ~/cndaBulkDownload.sh
+```
+
+### 3. Run a download
+
+After creating `~/sessions.csv` and obtaining your CNDA alias token:
+
+```bash
+bash ~/cndaBulkDownload.sh -u YOUR_ALIAS -s ~/sessions.csv -d ~/cnda_downloads
+```
+
+---
+
+## Prepare a session list and credentials
+
+All three platforms use the same CSV format. Create a UTF-8 file named `sessions.csv` in your home directory. Both `Project,Subject,Session` and `Project,SubjectLabel,SessionLabel` are accepted headers; a header is optional.
+
+```csv
+Project,SubjectLabel,SessionLabel
+KenanTestingUploader,smal_series,smal_series_MR_1
+KenanTestingUploader,tiny_series,tiny_series_MR_1
+```
+
+Replace the sample data with your **CNDA project ID, subject label, and session label**.
+
+Use an **XNAT alias token and secret**, not your WUSTL Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
+
+For unattended use, create a private `~/creds.json` file:
+
+```json
+{
+  "alias": "YOUR_ALIAS",
+  "secret": "YOUR_ALIAS_SECRET"
+}
+```
+
+On Linux and macOS, use `chmod 600 ~/creds.json` to restrict file access. On Windows, keep it in a private folder. Do not share or commit credentials.
+
+Run with the file instead of an interactive prompt:
+
+```bash
+bash ~/cndaBulkDownload.sh -c ~/creds.json -s ~/sessions.csv -d ~/cnda_downloads
+```
+
+Use either `-u` or `-c`, never both. Run the commands in **Git Bash** on Windows or **Terminal** on Linux/macOS.
+
+## Download an entire project
+
+To discover and download qualifying sessions from a CNDA project:
+
+```bash
+bash ~/cndaBulkDownload.sh \
+  -c ~/creds.json \
+  -p YOUR_PROJECT_ID \
+  -d ~/cnda_downloads
+```
+
+::: warning A project may contain large sessions
+Project mode selects **all qualifying sessions in the project** unless filtered. Check the project contents and available storage before starting. You can stop with **Ctrl+C**, but an in-progress session will need to download again on the next run.
+:::
+
+For MR sessions only:
+
+```bash
+bash ~/cndaBulkDownload.sh \
+  -c ~/creds.json \
+  -p YOUR_PROJECT_ID \
+  -t xnat:mrSessionData \
+  -d ~/cnda_downloads
+```
+
+The `-t` filter is for **project mode only**; it cannot be combined with `-s`.
+
+## Optional download settings
+
+| Option | Behavior |
+| --- | --- |
+| `-s sessions.csv` | Download sessions listed in a CSV, including across multiple projects |
+| `-p PROJECT_ID` | Discover qualifying sessions in a project |
+| `-t xnat:mrSessionData` | Filter project downloads by session datatype |
+| `-d DIR` | Set the destination directory |
+| `--include-resources` | Request discoverable session-level resources as well as DICOM scans |
+| `--original-structure` | Use CNDA's original archive directory structure instead of simplified paths |
+| `--force` | Redownload even if an existing matching ZIP is valid |
+| `--shared` | Set group-readable permissions for newly installed ZIPs and project folders |
+| `-h`, `--help` | Display command usage |
+
+Example requesting original structure:
+
+```bash
+bash ~/cndaBulkDownload.sh \
+  -c ~/creds.json \
+  -s ~/sessions.csv \
+  -d ~/cnda_downloads \
+  --original-structure
+```
+
+Example including session-level resources:
+
+```bash
+bash ~/cndaBulkDownload.sh \
+  -c ~/creds.json \
+  -s ~/sessions.csv \
+  -d ~/cnda_downloads \
+  --include-resources
+```
+
+The `--include-resources` option does not add resources if none exist at the session level. It does not promise to include every resource at other levels of the CNDA hierarchy.
+
+## Where downloads and reports are saved
+
+For a sample session, the files look like:
+
+```text
+cnda_downloads/
+└── KenanTestingUploader/
+    └── smal_series/
+        ├── smal_series_MR_1.zip
+        └── smal_series_MR_1.zip.cnda.json
+```
+
+- The `.zip` contains downloaded session data.
+- The `.zip.cnda.json` records the settings associated with the validated ZIP. Keep it alongside the ZIP so future runs can safely decide whether to skip the download.
+- A `logs/` directory is created in the terminal's **current working directory** (not necessarily under the destination). Each run generates a timestamped log and CSV report.
+
+For example, if you start the script from your home directory:
+
+```text
+~/logs/cndaBulkDownload_YYYYMMDD_HHMMSS_PID.log
+~/logs/cndaBulkDownload_YYYYMMDD_HHMMSS_PID.csv
+```
+
+A successful result might show:
+
+```text
+SKIP verified ZIP matching requested mode
+SUMMARY: OK=0 FAIL=0 SKIP=1 TOTAL=1
+```
+
+`OK` counts new successful downloads, `FAIL` counts failed or invalid items, `SKIP` counts existing matching verified downloads, and `TOTAL` is the total counted input work.
+
+::: tip Previously downloaded sessions
+The script automatically skips existing ZIP files that pass integrity checks and match the recorded download settings.
+
+If new scans or resources have been added to a CNDA session since your last download, use `--force` to download the updated session. The script does not automatically detect changes made to sessions on the CNDA server.
+:::
+
+## Verify a downloaded ZIP
+
+On Linux/macOS/Git Bash, test a specific archive:
+
+```bash
+unzip -tqq ~/cnda_downloads/YOUR_PROJECT/YOUR_SUBJECT/YOUR_SESSION.zip
+echo "ZIP check exit code: $?"
+```
+
+Exit code `0` means `unzip` did not detect an archive integrity error. It does not establish that the archive includes every expected series.
 
 ## Troubleshooting
 
-- **`command not found: ./cndaBulkDownload.sh`** — you're either not in
-  the same folder as the script, or you forgot step 7 (`chmod +x`). Run
-  `ls cndaBulkDownload.sh` to check you're in the right place.
-- **`Permission denied`** — you skipped step 7. Run
-  `chmod +x cndaBulkDownload.sh`, then try again.
-- **"Your access is probably not enabled for this project, or the project id
-  is wrong."** — double-check the project ID is typed exactly as it
-  appears in CNDA, and confirm you have access to that project.
-- **"CNDA login failed. Check your credentials and retry."** — there are
-  three common causes:
-  - The Alias Token or Secret was typed incorrectly. Run the command again.
-  - You used your WUSTL Key username or password instead of your Alias
-    Token and Secret. The script only accepts the Alias Token and Secret.
-  - Your Alias Token has expired (they last 90 days). Create a new one —
-    see [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html) —
-    and update `creds.json` if you use one.
-- **Downloads worked earlier but every session now fails at login** — your
-  Alias Token most likely expired mid-run. Create a new one, then rerun
-  the same command; completed sessions will be skipped.
-- **A session fails every time, even after rerunning** — check the log
-  file named in the "Done." summary line for the specific reason next to
-  that session.
-- **You're not sure if you're signed in for too long** — CNDA login
-  sessions expire automatically after a period of inactivity. The script
-  detects this on its own and re-logs in for you mid-run using your Alias
-  Token and Secret; you don't need to do anything, as long as the token
-  itself hasn't expired.
+| Symptom | What to check |
+| --- | --- |
+| `Missing required command: python3` | Install Python 3 and ensure `python3` is available in the terminal you are using |
+| `Missing required command: unzip` | Install or enable `unzip` in that terminal environment |
+| `Missing credentials` | Confirm the path supplied with `-c` exists |
+| `AUTH ERROR` / HTTP 401 | Verify the XNAT alias token and secret, including expiration |
+| Permission denied | Choose a destination you can write to and verify folder permissions |
+| One session fails but others work | Review that session's entry and the run's CSV report |
+| Existing ZIP downloads again | Check for missing/mismatched metadata, a corrupt ZIP, or use of `--force` |
+| ETA seems inaccurate | CNDA's estimate may not equal the compressed ZIP's final size |
+| Ctrl+C stops a download | Expected. Completed ZIPs can be skipped on the next run; partial session transfers do not resume byte-for-byte |
+| Windows command fails | Confirm that you are using **Git Bash** and that `bash`, `python3`, `curl`, `unzip`, and `mktemp` all resolve |
+
+If a session fails, preserve the terminal error and the timestamped `.csv` and `.log` report when requesting support. **Never share credentials files or alias secrets.**
+
+## Before a large download
+
+- Confirm you can access the CNDA project/session.
+- Verify your dependencies and Python 3 installation.
+- Test with one small session first.
+- Check free disk space for the expected ZIP files and temporary downloads, especially when using `--force`.
+- Keep ZIPs together with their `.cnda.json` companions.
+- Use `--force` only when you intend to redownload an existing session.
+
+::: info Release scope
+Linux operation and several failure scenarios have been tested. Windows/Git Bash, macOS, and downloads containing actual session-level resources still require platform or scenario verification.
+:::
