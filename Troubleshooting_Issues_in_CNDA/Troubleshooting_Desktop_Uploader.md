@@ -2,7 +2,6 @@
 
 This guide explains how to troubleshoot common connection, authentication, certificate, and upload problems when using XNAT Desktop Uploader with CNDA.
 
-
 ## General Prerequisites to Upload Images
 
 ### Account Activity Requirement
@@ -11,9 +10,9 @@ This guide explains how to troubleshoot common connection, authentication, certi
 
 Your CNDA account must remain active to upload images.
 
-Accounts are automatically disabled after **12 consecutive months** without signing in to [CNDA](https://cnda.wustl.edu).
+Accounts are automatically disabled after **12 consecutive months** without signing in to the CNDA website.
 
-To keep your account active, sign in to the CNDA website at least once every 12 months.
+To keep your account active, [sign in to CNDA](https://cnda.wustl.edu) at least once every 12 months.
 
 If your account has been disabled, email [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu) to request reactivation.
 
@@ -36,7 +35,6 @@ Your regular CNDA username and password cannot be used as a substitute.
 Follow the instructions in [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
 
 CNDA website sign-in uses **WashU Key SSO**. Never share your alias token password with other users or CNDA support.
-
 
 ### Correct CNDA Server Address
 
