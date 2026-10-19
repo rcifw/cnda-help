@@ -38,7 +38,7 @@ If you cannot see your CNDA projects, or your permissions were recently updated,
 #### Clear Cache in the CNDA Website
 
 1. Log in to https://cnda.wustl.edu using WashU Key SSO.
-2. Click **Logged in as <your username>** in the top-right corner.
+2. Click **Logged in as `your username`** in the top-right corner.
 3. Select **Manage Cached Resources**.
 4. Click **Reset Access Cache**.
 
