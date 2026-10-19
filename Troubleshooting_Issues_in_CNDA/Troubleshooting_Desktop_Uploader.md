@@ -238,66 +238,61 @@ If curl succeeds but XNAT Desktop Uploader still reports a certificate error, in
 
 ## Step 5 - Check the CNDA Certificate in Your Browser
 
-Some institutional networks use HTTPS inspection, which can replace certificates presented to applications. Checking the certificate before and after logging in can help identify unexpected changes.
+Some institutional networks use HTTPS inspection, which can affect how applications validate secure connections.
+
+This step checks whether your browser trusts CNDA's HTTPS connection before and after signing in.
 
 ### Check Before Logging In
 
 1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu).
 2. Do not log in yet.
 3. Click the padlock or connection information icon next to the website address.
-4. Open the certificate details.
-5. Confirm that the browser reports a secure connection.
-6. Record the certificate issuer, subject (Common Name), and validity dates.
-7. Check the **Subject Alternative Name (SAN)** field to confirm that `cnda.wustl.edu` is included.
+4. Confirm that your browser reports a secure connection.
+5. Note any certificate warnings or security errors.
 
-The certificate must be valid for `cnda.wustl.edu`, and its certificate chain must be trusted.
-
-**Important:** The Common Name may show a different hostname, such as `rcif.wustl.edu`. This is acceptable if `cnda.wustl.edu` appears in the certificate's Subject Alternative Names.
+You do not need to inspect the certificate's issuer, Common Name, or Subject Alternative Names.
 
 ### Check After Logging In
 
 1. Sign in using WashU Key SSO.
 2. Return to [https://cnda.wustl.edu](https://cnda.wustl.edu) after authentication.
-3. Open the certificate details again.
-4. Compare the issuer, subject, and validity dates with the information recorded before login.
-5. Confirm that the browser still reports a secure connection.
+3. Check the browser's connection security information again.
+4. Confirm that the connection is still reported as secure.
 
 ### Understanding the Results
 
-::: tip Certificate Remains Consistent
+::: tip Secure Connection Before and After Login
 
-The certificate presented by `cnda.wustl.edu` should normally remain the same before and after logging in when using the same network connection.
+Your browser reports a secure connection to CNDA both before and after signing in.
 
-WashU Key SSO may redirect to other websites during authentication. Compare certificates only after returning to `cnda.wustl.edu`.
+This is the expected result and indicates that your browser accepts the HTTPS certificate presented for CNDA.
 
-A trusted, consistent certificate is the expected result.
-
-:::
-
-::: warning Certificate Changes Unexpectedly
-
-If the certificate changes while visiting the same `cnda.wustl.edu` hostname, investigate possible causes:
-
-- Institutional HTTPS inspection.
-- Different proxies or network paths.
-- VPN or network connection changes.
-- Legitimate certificate renewal or load balancing.
-
-A certificate change does not automatically mean the connection is insecure.
-
-Contact institutional IT if the change is unexplained or accompanied by certificate errors.
+However, a successful browser connection does not guarantee that XNAT Desktop Uploader will accept the same certificate chain.
 
 :::
 
-### Additional Certificate Checks
+::: warning Certificate or Security Warning Appears
 
-**Browser reports an untrusted certificate:** Do not ignore the warning. Contact institutional IT with the certificate details.
+If your browser reports an insecure connection, untrusted certificate, or another HTTPS security warning:
 
-**Browser trusts the certificate, but XNAT Desktop Uploader does not:** The application may use a different certificate trust store or may be unable to validate the complete certificate chain.
+- Do not bypass the certificate warning.
+- Confirm that you are visiting `https://cnda.wustl.edu`.
+- Record the exact warning message.
+- Contact your institutional IT department or CNDA support.
 
-**Missing intermediate certificates:** A browser may successfully validate a certificate using cached or automatically retrieved intermediate certificates, while the Desktop Uploader may fail. Institutional IT should verify that the server or HTTPS-terminating proxy presents the required intermediate certificates.
+Possible causes include institutional HTTPS inspection, certificate trust problems, or an incomplete certificate chain.
 
-Continue to Step 6 if XNAT Desktop Uploader reports `SELF_SIGNED_CERT_IN_CHAIN` or another certificate validation error.
+:::
+
+### If the Browser Works but Desktop Uploader Fails
+
+XNAT Desktop Uploader may validate certificates differently from your browser.
+
+For example, a browser may successfully validate a certificate using cached or automatically retrieved intermediate certificates, while the Desktop Uploader may fail if the server does not provide the required certificate chain.
+
+If XNAT Desktop Uploader reports `SELF_SIGNED_CERT_IN_CHAIN` or another certificate validation error, continue to Step 6.
+
+CNDA support and institutional IT can investigate the certificate chain and HTTPS configuration.
 
 ## Step 6 - Troubleshoot SELF_SIGNED_CERT_IN_CHAIN
 
