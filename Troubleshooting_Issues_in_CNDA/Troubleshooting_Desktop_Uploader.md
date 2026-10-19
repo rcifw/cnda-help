@@ -248,11 +248,11 @@ Some institutional networks use HTTPS inspection, which can replace certificates
 4. Open the certificate details.
 5. Confirm that the browser reports a secure connection.
 6. Record the certificate issuer, subject (Common Name), and validity dates.
-7. If available, check the **Subject Alternative Name (SAN)** field to confirm that `cnda.wustl.edu` is included.
+7. Check the **Subject Alternative Name (SAN)** field to confirm that `cnda.wustl.edu` is included.
 
-The certificate must be valid for `cnda.wustl.edu`, and its certificate chain should be trusted.
+The certificate must be valid for `cnda.wustl.edu`, and its certificate chain must be trusted.
 
-The certificate's Common Name may show a different hostname if `cnda.wustl.edu` is included in its Subject Alternative Names.
+**Important:** The Common Name may show a different hostname, such as `rcif.wustl.edu`. This is acceptable if `cnda.wustl.edu` appears in the certificate's Subject Alternative Names.
 
 ### Check After Logging In
 
@@ -268,7 +268,7 @@ The certificate's Common Name may show a different hostname if `cnda.wustl.edu` 
 
 The certificate presented by `cnda.wustl.edu` should normally remain the same before and after logging in when using the same network connection.
 
-WashU Key SSO may redirect you to other websites during authentication, but once you return to `cnda.wustl.edu`, you should normally see the same certificate.
+WashU Key SSO may redirect to other websites during authentication. Compare certificates only after returning to `cnda.wustl.edu`.
 
 A trusted, consistent certificate is the expected result.
 
@@ -276,30 +276,28 @@ A trusted, consistent certificate is the expected result.
 
 ::: warning Certificate Changes Unexpectedly
 
-If the certificate issuer, subject, or validity dates change unexpectedly while visiting `cnda.wustl.edu`, further investigation may be needed.
-
-Possible explanations include:
+If the certificate changes while visiting the same `cnda.wustl.edu` hostname, investigate possible causes:
 
 - Institutional HTTPS inspection.
 - Different proxies or network paths.
-- A change in VPN or network connection.
+- VPN or network connection changes.
 - Legitimate certificate renewal or load balancing.
 
-An unexpected change does not automatically mean the certificate is invalid or that your connection is insecure.
+A certificate change does not automatically mean the connection is insecure.
 
-Contact your institutional IT department if the change is unexplained or accompanied by certificate errors.
+Contact institutional IT if the change is unexplained or accompanied by certificate errors.
 
 :::
 
 ### Additional Certificate Checks
 
-**Different Common Name:** A certificate may display another hostname, such as `rcif.wustl.edu`, while still being valid for CNDA. Check that `cnda.wustl.edu` appears in the Subject Alternative Names.
-
-**Certificate changes during WashU Key SSO:** This may be normal because authentication redirects to other hostnames. Compare certificates only when viewing `cnda.wustl.edu`.
-
 **Browser reports an untrusted certificate:** Do not ignore the warning. Contact institutional IT with the certificate details.
 
-**Browser trusts the certificate, but XNAT Desktop Uploader does not:** The application may use a different certificate trust store. Continue to Step 6 for troubleshooting.
+**Browser trusts the certificate, but XNAT Desktop Uploader does not:** The application may use a different certificate trust store or may be unable to validate the complete certificate chain.
+
+**Missing intermediate certificates:** A browser may successfully validate a certificate using cached or automatically retrieved intermediate certificates, while the Desktop Uploader may fail. Institutional IT should verify that the server or HTTPS-terminating proxy presents the required intermediate certificates.
+
+Continue to Step 6 if XNAT Desktop Uploader reports `SELF_SIGNED_CERT_IN_CHAIN` or another certificate validation error.
 
 ## Step 6 - Troubleshoot SELF_SIGNED_CERT_IN_CHAIN
 
