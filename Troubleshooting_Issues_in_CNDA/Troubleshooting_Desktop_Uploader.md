@@ -94,7 +94,7 @@ If you experience slow uploads, stalled progress, or file access errors while us
 
 ## Step 1 - Confirm You Can Log In to CNDA
 
-1. Open https://cnda.wustl.edu in your browser.
+1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in your browser.
 2. Sign in using WashU Key SSO.
 3. Confirm that you can access your account and projects.
 
@@ -104,10 +104,10 @@ If you experience slow uploads, stalled progress, or file access errors while us
 
 Successful website login does not guarantee that your Desktop Uploader alias token is valid.
 
-## Step 2 - Check XNAT Desktop Uploader Authentication and Configuration
+## Step 2 - Check Desktop Uploader Configuration
 
 1. Open XNAT Desktop Uploader normally.
-2. Confirm that the server address is `cnda.wustl.edu`.
+2. Confirm that the server address is `https://cnda.wustl.edu`.
 3. Log in using your current alias token credentials.
 4. Confirm that you can:
    - Log in successfully.
@@ -116,18 +116,13 @@ Successful website login does not guarantee that your Desktop Uploader alias tok
    - Reach the upload screen.
 5. A message that no anonymization configuration is available may be normal for projects without custom anonymization settings.
 
-### If Authentication Fails
+::: tip Connection Successful
 
-- Are you using alias token credentials rather than your regular CNDA password?
-- Has your alias token expired after 90 days?
-- Is your CNDA account still active?
-- Is the server address correct?
+If you can log in, see your projects, and reach the upload screen, your basic Desktop Uploader connection is working.
 
-If the alias token expired, generate a new one and reconnect.
+If the upload itself still fails or becomes stuck, continue to Step 3.
 
-**If you can browse projects normally:** Proceed to Step 3.
-
-**If you receive certificate or connection errors:** Proceed to Step 4.
+:::
 
 ## Step 3 - Verify Whether the Upload Reaches CNDA
 
