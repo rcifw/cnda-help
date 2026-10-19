@@ -162,9 +162,13 @@ A missing imaging session does not automatically mean your network is blocking P
 
 ## Step 4 - Test HTTPS Connectivity and Certificate Trust
 
-Before testing POST requests, verify that your computer can establish a trusted HTTPS connection to CNDA. These tests require no credentials.
+Before testing POST requests, verify that your computer can establish a trusted HTTPS connection to CNDA.
+
+These tests do not require your CNDA username, password, or alias token credentials.
 
 ### Windows (PowerShell)
+
+Open PowerShell and run:
 
 ```powershell
 curl.exe -sS -o NUL https://cnda.wustl.edu/; if ($LASTEXITCODE -eq 0) { "`nCERTIFICATE TRUSTED`n" } else { "`nCERTIFICATE CHECK FAILED`n" }
@@ -172,11 +176,15 @@ curl.exe -sS -o NUL https://cnda.wustl.edu/; if ($LASTEXITCODE -eq 0) { "`nCERTI
 
 ### Linux (Terminal)
 
+Open a terminal and run:
+
 ```bash
 curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
 ```
 
 ### macOS (Terminal)
+
+Open Terminal and run:
 
 ```bash
 curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
@@ -184,9 +192,32 @@ curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n
 
 ### Understanding the Results
 
-**CERTIFICATE TRUSTED:** curl established a trusted HTTPS connection to CNDA. This does not necessarily mean XNAT Desktop Uploader uses the same trust store.
+::: tip CERTIFICATE TRUSTED
 
-**CERTIFICATE CHECK FAILED:** The request failed. Read the error message to distinguish certificate validation from DNS, VPN, firewall, or other connectivity problems.
+Your computer successfully established an HTTPS connection to CNDA, and curl accepted the certificate chain.
+
+This confirms that HTTPS connectivity and certificate validation are working for curl.
+
+However, XNAT Desktop Uploader may use a different certificate trust store, so this does not guarantee the application will accept the same certificate.
+
+:::
+
+::: warning CERTIFICATE CHECK FAILED
+
+The HTTPS request failed. Check the error message displayed above the result.
+
+Possible causes include:
+
+- An untrusted certificate authority.
+- An incomplete certificate chain.
+- Institutional HTTPS inspection.
+- DNS resolution problems.
+- VPN or firewall restrictions.
+- Network connectivity problems.
+
+A failed test does not automatically mean CNDA has an invalid certificate.
+
+:::
 
 ### Common Curl Error Codes
 
@@ -199,7 +230,13 @@ curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n
 | `curl: (56)` | Connection interrupted or reset |
 | `curl: (60)` | Certificate verification failed |
 
-If you receive `curl: (60)`, investigate the certificate chain and trusted certificate authorities. If curl succeeds but the Uploader fails, investigate the application's certificate trust configuration.
+::: note Important
+
+If you receive `curl: (60)`, investigate the certificate chain and trusted certificate authorities.
+
+If curl succeeds but XNAT Desktop Uploader still reports a certificate error, investigate the application's certificate trust configuration.
+
+:::
 
 ## Step 5 - Check the CNDA Certificate in Your Browser
 
