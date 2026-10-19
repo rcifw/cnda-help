@@ -43,7 +43,7 @@ CNDA website sign-in uses **WashU Key SSO**. Never share your alias token passwo
 The server address in XNAT Desktop Uploader must be exactly:
 
 ```text
-cnda.wustl.edu
+https://cnda.wustl.edu
 ```
 
 There should be nothing after `.edu`, including slashes or additional URL paths.
@@ -80,14 +80,17 @@ Common symptoms include:
 - The application rejects alias token credentials.
 - CNDA projects do not appear in the application.
 
-## Step 0 - Ensure Data Is Saved Locally
+## Step 0 - Use Local Storage for Best Upload Performance
 
-1. Copy the imaging files to a local folder on your laptop or desktop.
-2. Avoid uploading directly from cloud-synchronized folders, network drives, or external hard drives when troubleshooting.
-3. Confirm the files are fully downloaded and accessible.
-4. Retry from the local folder.
+Uploading directly from external drives, network drives, or cloud-synchronized folders does not always fail, but using local storage generally provides better performance and helps avoid file access issues.
 
-External storage does not always fail, but local storage eliminates potential file access and performance issues.
+For the most reliable upload experience:
+
+1. Copy your imaging files to a local folder on your laptop or desktop.
+2. Make sure all files are fully downloaded and accessible.
+3. Start the upload using the files in that local folder.
+
+If you experience slow uploads, stalled progress, or file access errors while using external or network storage, try uploading from a local folder instead.
 
 ## Step 1 - Confirm You Can Log In to CNDA
 
