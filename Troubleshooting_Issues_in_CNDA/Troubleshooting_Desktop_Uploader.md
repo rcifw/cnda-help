@@ -169,23 +169,25 @@ These tests do not require your CNDA username, password, or alias token credenti
 Open PowerShell and run:
 
 ```powershell
-curl.exe -sS -o NUL https://cnda.wustl.edu/; if ($LASTEXITCODE -eq 0) { "`nCERTIFICATE TRUSTED`n" } else { "`nCERTIFICATE CHECK FAILED`n" }
+curl.exe -sS -o NUL https://cnda.wustl.edu/
+
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "CERTIFICATE TRUSTED"
+} else {
+    Write-Host "CERTIFICATE CHECK FAILED"
+}
 ```
 
-### Linux (Terminal)
+### Linux / macOS (Terminal)
 
 Open a terminal and run:
 
 ```bash
-curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
-```
-
-### macOS (Terminal)
-
-Open Terminal and run:
-
-```bash
-curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
+if curl -sS -o /dev/null https://cnda.wustl.edu/; then
+    echo "CERTIFICATE TRUSTED"
+else
+    echo "CERTIFICATE CHECK FAILED"
+fi
 ```
 
 ### Understanding the Results
@@ -228,13 +230,11 @@ A failed test does not automatically mean CNDA has an invalid certificate.
 | `curl: (56)` | Connection interrupted or reset |
 | `curl: (60)` | Certificate verification failed |
 
-::: note Important
-
 If you receive `curl: (60)`, investigate the certificate chain and trusted certificate authorities.
 
 If curl succeeds but XNAT Desktop Uploader still reports a certificate error, investigate the application's certificate trust configuration.
 
-:::
+**Do not disable certificate verification to work around a certificate error.**
 
 ## Step 5 - Check the CNDA Certificate in Your Browser
 
