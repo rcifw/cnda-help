@@ -1,217 +1,384 @@
 # Troubleshooting XNAT Desktop Uploader
 
-## General prerequisites to be able to upload images
+This guide explains how to troubleshoot common connection, authentication, certificate, and upload problems when using XNAT Desktop Uploader with CNDA.
 
-The following conditions must be met by everyone in order to upload images to CNDA.
+## General Prerequisites to Upload Images
 
 ### Account Activity Requirement
 
-You must have an active CNDA account.
+You must have an active CNDA account. CNDA accounts are automatically disabled after **12 months (1 year) of inactivity**.
 
-CNDA accounts require activity at least once every 6 months.
+If your account becomes disabled, email cnda-help@wustl.edu to request reactivation. To keep your account active, log in regularly at https://cnda.wustl.edu.
 
-Accounts that remain inactive for 6 months are automatically disabled and uploads will not be allowed with an inactive account.
+### Alias Token Authentication
 
-If your account becomes disabled, email cnda-help@wustl.edu to request reactivation.
+XNAT Desktop Uploader requires **alias token credentials** for authentication.
 
-### Seeing your CNDA Projects in the Application
+- Alias tokens are valid for **90 days**.
+- Regular CNDA usernames and passwords cannot be used to authenticate in XNAT Desktop Uploader.
+- If your alias token expires, generate a new token and reconnect.
+- CNDA website authentication uses WashU Key SSO.
 
-Some people say I cannot see my CNDA projects inside this application.
+Do not share your alias token password with other users or CNDA support.
 
-If you are missing project access, or recently had permissions updated, clearing your CNDA cache often resolves the issue.
+### Correct CNDA Server Address
 
-#### Clear cache in the CNDA website
+The server address in XNAT Desktop Uploader must be exactly:
 
-1. Log in to CNDA: https://cnda.wustl.edu
-2. Click the link in the top-right corner that says **Logged in as \<your username\>**.
-3. Select the **Manage Cached Resources** tab.
+```text
+cnda.wustl.edu
+```
+
+There should be nothing after `.edu`, including slashes or additional URL paths.
+
+### Seeing Your CNDA Projects in the Application
+
+If you cannot see your CNDA projects, or your permissions were recently updated, clearing your access cache may resolve the issue.
+
+#### Clear Cache in the CNDA Website
+
+1. Log in to https://cnda.wustl.edu using WashU Key SSO.
+2. Click **Logged in as <your username>** in the top-right corner.
+3. Select **Manage Cached Resources**.
 4. Click **Reset Access Cache**.
 
-#### Clear cache in the XNAT Desktop Client
+#### Clear Cache in XNAT Desktop Uploader
 
-1. Open the XNAT Desktop Client.  
-2. Log in using your CNDA username and password.  
-3. In the top left corner, click the large blue **MENU** button.  
+1. Open XNAT Desktop Uploader.
+2. Log in using your alias token credentials.
+3. Click the large blue **MENU** button in the top-left corner.
 4. Click **Flush XNAT User Access Cache**.
 
-After clearing the cache, log out and back in to XNAT Desktop Uploader before trying your upload again.
+After clearing the cache, log out and back in before attempting another upload. If projects remain missing, contact CNDA support to verify permissions.
 
-## **Main Symptom of Upload Problems**
+## Main Symptoms of Upload Problems
 
-Your uploads in the XNAT Desktop Client appear *stuck*.
-The progress bar does not move, and the uploaded session never appears in CNDA.
+Common symptoms include:
 
-## **Step 0 – Ensure data is saved to your local Laptop or Desktop**
+- The upload progress bar does not move.
+- The application appears stuck while uploading or archiving.
+- The uploaded session never appears in CNDA.
+- The application cannot connect to CNDA.
+- The application reports `SELF_SIGNED_CERT_IN_CHAIN` or another certificate error.
+- The application rejects alias token credentials.
+- CNDA projects do not appear in the application.
 
-1. Uploading works best when the files are on your local machine.
-2. Uploading directly from the Cloud or an External Harddrive is less reliable.
-3. That does not mean it will always fail. 
-4. But it does perform better with the files on your local machine.
+## Step 0 - Ensure Data Is Saved Locally
 
-## **Step 1 – Confirm You Can Log In to CNDA**
+1. Copy the imaging files to a local folder on your laptop or desktop.
+2. Avoid uploading directly from cloud-synchronized folders, network drives, or external hard drives when troubleshooting.
+3. Confirm the files are fully downloaded and accessible.
+4. Retry from the local folder.
 
-1. Open your browser and go to [https://cnda.wustl.edu](https://cnda.wustl.edu).
-2. Sign in using the same username and password used in XNAT Desktop Client.
-3. **If login works →** proceed to Step 2.
-4. **If login fails →** reset or confirm your CNDA password first.
+External storage does not always fail, but local storage eliminates potential file access and performance issues.
 
-## **Step 2 – Check that the Client Loads Configurations**
+## Step 1 - Confirm You Can Log In to CNDA
 
-1. Open XNAT Desktop Client, ideally by right clicking the app and pressing Run as Administrator.
-2. If you can not run as administrator, just open it normally by double clicking the app.
-3. Confirm that you can:
+1. Open https://cnda.wustl.edu in your browser.
+2. Sign in using WashU Key SSO.
+3. Confirm that you can access your account and projects.
 
-   * Log in successfully
-   * View your list of projects
-   * See configuration options load without errors
-   * Do not worry about the no anonymization popup message - that is only for people with custom anonymization set up
-   * Reach the upload screen, even if the progress bar is stuck
-4. Note: The server address when logging in to the server must be **exactly**:
+**If login works:** Proceed to Step 2.
 
+**If login fails:** Resolve the website authentication or account issue first.
+
+Successful website login does not guarantee that your Desktop Uploader alias token is valid.
+
+## Step 2 - Check XNAT Desktop Uploader Authentication and Configuration
+
+1. Open XNAT Desktop Uploader normally.
+2. Confirm that the server address is `cnda.wustl.edu`.
+3. Log in using your current alias token credentials.
+4. Confirm that you can:
+   - Log in successfully.
+   - View your CNDA projects.
+   - Load application configuration options.
+   - Reach the upload screen.
+5. A message that no anonymization configuration is available may be normal for projects without custom anonymization settings.
+
+### If Authentication Fails
+
+- Are you using alias token credentials rather than your regular CNDA password?
+- Has your alias token expired after 90 days?
+- Is your CNDA account still active?
+- Is the server address correct?
+
+If the alias token expired, generate a new one and reconnect.
+
+**If you can browse projects normally:** Proceed to Step 3.
+
+**If you receive certificate or connection errors:** Proceed to Step 4.
+
+## Step 3 - Verify Whether the Upload Reaches CNDA
+
+If the upload involves creating a new Subject:
+
+1. Open https://cnda.wustl.edu in your browser.
+2. Sign in using WashU Key SSO.
+3. Open the destination project.
+4. Look for the new Subject created by XNAT Desktop Uploader.
+5. Check whether the Subject exists and whether any imaging sessions are present.
+
+### Understanding the Results
+
+**New Subject exists, but no imaging session appears:** Subject creation succeeded. This does not prove that the imaging ZIP transfer started or completed.
+
+**No new Subject exists:** The application may have failed before Subject creation, or the upload may be using an existing Subject.
+
+**Session appears in CNDA:** Verify that the expected imaging data is present before considering the upload successful.
+
+A missing session does not automatically mean the network blocks POST requests.
+
+## Step 4 - Test HTTPS Connectivity and Certificate Trust
+
+Before testing POST requests, verify that your computer can establish a trusted HTTPS connection to CNDA. These tests require no credentials.
+
+### Windows (PowerShell)
+
+```powershell
+curl.exe -sS -o NUL https://cnda.wustl.edu/; if ($LASTEXITCODE -eq 0) { "`nCERTIFICATE TRUSTED`n" } else { "`nCERTIFICATE CHECK FAILED`n" }
+```
+
+### Linux (Terminal)
+
+```bash
+curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
+```
+
+### macOS (Terminal)
+
+```bash
+curl -sS -o /dev/null https://cnda.wustl.edu/ && printf '\nCERTIFICATE TRUSTED\n\n' || printf '\nCERTIFICATE CHECK FAILED\n\n'
+```
+
+### Understanding the Results
+
+**CERTIFICATE TRUSTED:** curl established a trusted HTTPS connection to CNDA. This does not necessarily mean XNAT Desktop Uploader uses the same trust store.
+
+**CERTIFICATE CHECK FAILED:** The request failed. Read the error message to distinguish certificate validation from DNS, VPN, firewall, or other connectivity problems.
+
+### Common Curl Error Codes
+
+| Error | Meaning |
+|---|---|
+| `curl: (6)` | DNS resolution failed |
+| `curl: (7)` | Connection could not be established |
+| `curl: (28)` | Connection timed out |
+| `curl: (35)` | SSL/TLS handshake failed |
+| `curl: (56)` | Connection interrupted or reset |
+| `curl: (60)` | Certificate verification failed |
+
+If you receive `curl: (60)`, investigate the certificate chain and trusted certificate authorities. If curl succeeds but the Uploader fails, investigate the application's certificate trust configuration.
+
+## Step 5 - Check the CNDA Certificate in Your Browser
+
+Some institutional networks use HTTPS inspection, which can replace certificates presented to applications.
+
+### Check Before Logging In
+
+1. Open https://cnda.wustl.edu.
+2. Do not log in yet.
+3. Click the padlock or connection information icon next to the website address.
+4. Open the certificate details.
+5. Confirm that the browser reports a secure connection.
+6. Record the website hostname, certificate issuer, certificate subject, and validity dates.
+
+The certificate should be valid for `cnda.wustl.edu`, and its chain should be trusted. CNDA certificates may be issued through InCommon or another trusted CA; do not assume one issuer name must always appear.
+
+### Check After Logging In
+
+1. Sign in using WashU Key SSO.
+2. Return to `https://cnda.wustl.edu` after authentication.
+3. Open the certificate details again.
+4. Compare the issuer and subject with the values recorded before login.
+
+### Understanding the Results
+
+**Certificate trusted and consistent:** Expected behavior.
+
+**Issuer changes while the hostname remains cnda.wustl.edu:** Different proxies, network paths, or security systems may be presenting different certificates. Contact institutional IT.
+
+**Certificate changes while visiting another hostname:** This may be normal because WashU Key SSO redirects to other authentication services. Compare only the same hostname.
+
+**Browser reports an untrusted certificate:** Contact institutional IT with the certificate details.
+
+## Step 6 - Troubleshoot SELF_SIGNED_CERT_IN_CHAIN
+
+The error `SELF_SIGNED_CERT_IN_CHAIN` means XNAT Desktop Uploader cannot establish a trusted certificate chain for an HTTPS connection. It does not necessarily mean CNDA uses an invalid or self-signed server certificate.
+
+### Common Causes
+
+1. An institutional firewall or proxy performs HTTPS inspection.
+2. The application does not trust the CA used by the institution.
+3. An intermediate certificate is missing or not trusted.
+4. The application's certificate trust store differs from the operating system or browser.
+
+### Recommended Troubleshooting
+
+1. Run the HTTPS test from Step 4.
+2. Inspect the certificate in the browser using Step 5.
+3. Confirm the Uploader version is current.
+4. Ask whether the institution uses HTTPS inspection.
+5. Contact institutional IT if necessary.
+
+If the browser and curl trust the certificate but the Uploader still fails, investigate the application's certificate trust configuration. Do not disable SSL verification as a permanent workaround.
+
+## Step 7 - Test HTTPS POST Requests
+
+If HTTPS connectivity and certificate validation work, test whether authenticated POST requests can reach CNDA. A POST failure does not automatically mean POST traffic is blocked.
+
+### Windows (Command Prompt)
+
+1. Press **Win + R**, type `cmd`, and press Enter.
+2. Replace `YOUR_ALIAS_USERNAME` with the username from your current alias token:
+
+   ```cmd
+   curl.exe -i -X POST -u YOUR_ALIAS_USERNAME https://cnda.wustl.edu/data/JSESSION
    ```
-   cnda.wustl.edu
-   ```
 
-   There should be nothing after `.edu` (no slashes or sub-URLs).
-5. **If you can browse projects normally →** proceed to Step 3.
-6. **If you get connection errors →** check your internet or VPN and ensure you’re targeting the correct URL. Also consider clearing cache as mentioned above.
+3. When prompted, enter the password associated with your alias token. The password will not appear as you type.
 
-## **Step 3 – Verify the Upload Actually Starts**
+### Linux / macOS (Terminal)
 
-If your upload process includes making a new Subject, one way to verify if your attempt has reached the beginning of uploading is to check if an empty Subject was made on the CNDA website.
+```bash
+curl -i -X POST -u YOUR_ALIAS_USERNAME https://cnda.wustl.edu/data/JSESSION
+```
 
-1. Open your browser and go to [https://cnda.wustl.edu](https://cnda.wustl.edu).
-2. Sign in using the same username and password used in XNAT Desktop Client.
-3. Search for your project in the top right and open it.
-4. If your XNAT Desktop app made a new Subject, the new Subject should be visible in CNDA with nothing in it.
-5. If the new Subject is visible, that means you got to the point where the uploading should begin, via **POST** request.
-6. But your uploading is stuck, so you don't see anything uploaded in the Subject.
+Enter your alias token password when prompted. Do not include the password directly in the command.
 
-If an upload never progresses past the loading screen, your network may be blocking **POST** requests (used for file transfers).
-You can test this easily in the next step.
+### Understanding the Response
 
-## **Step 4 – Test POST Requests**
-
-1. Press **⊞ Win + R** → type `cmd` → press **Enter**.
-2. In the Command Prompt window, type or copy over:
-
-   ```bash
-   curl -X POST -u yourusername https://cnda.wustl.edu/data/JSESSION
-   ```
-3. In the command above replace yourusername with your CNDA username and press Enter to run it.
-4. Enter your CNDA password when prompted (password input is invisible).
-5. Press Enter.
-
-**Normal (Post request is working) response:**
+A successful response may include a session identifier, depending on supported authentication behavior, for example:
 
 ```json
 {"JSESSIONID":"ABC1234567890XYZ"}
 ```
-   
-6. What to do:
 
-   **If you receive a good response containing a `JSESSIONID`** → POST request works → go to Step 5.
-   **If you specifically get a network or permission error** → POST requests are being blocked → skip to Step 7.
+**Important:** CNDA support should confirm that `/data/JSESSION` accepts alias token credentials and what response it returns before using this as a definitive success test.
 
-## Common error messages
+| Result | Interpretation |
+|---|---|
+| Successful authenticated response | The tested HTTPS POST was accepted |
+| `401 Unauthorized` | Authentication failed or credentials rejected |
+| `403 Forbidden` | Server or intermediary denied access |
+| `404 Not Found` | Endpoint not found |
+| `curl: (35)` | TLS handshake problem |
+| `curl: (56)` | Connection interrupted or reset |
+| `curl: (60)` | Certificate verification failed |
+| HTML security-blocking page | Proxy or gateway may have intercepted the request |
 
-These errors may appear when testing POST requests with the `curl` command given above. Not all of them mean that POST traffic is blocked. Pay attention to which category the error falls into.
+A successful POST to this endpoint does not prove large imaging uploads will work. Examine failed responses before concluding that an institutional firewall blocks POST traffic.
 
-#### Connection-level failures (network connectivity issues)
+## Step 8 - Clear XNAT Desktop Uploader Application Cache
 
-* `curl: (7) Failed to connect to cnda.wustl.edu port 443: Connection timed out`  
-  The network is blocking or dropping outbound HTTPS connections entirely.
+If authentication and connectivity tests succeed but uploading still fails, clearing the cache may help.
 
-* `curl: (7) Couldn't connect to server`  
-  A firewall or network rule is preventing the connection from being established.
+### Simple Method
 
-These errors indicate basic network connection problems, not application-level blocking.
+1. Open XNAT Desktop Uploader.
+2. Click the **Settings Cogwheel** in the top-right corner.
+3. Select **Debug**.
+4. Click **Clear Application Cache**.
+5. Completely close the application.
+6. Reopen it and retry the upload.
 
-#### TLS / certificate-related failures (SSL inspection or trust issues)
+### Alternative Method for Windows
 
-* `curl: (35) SSL connect error`  
-  The TLS handshake failed. This often occurs due to SSL inspection, proxy interference, or certificate validation issues. This does not, by itself, indicate POST blocking.
+Use this only if clearing the cache in the application does not resolve the issue.
 
-* `curl: (35) schannel: CRYPT_E_NO_REVOCATION_CHECK`  
-  Windows could not complete certificate revocation checking. The TLS handshake failed before the POST request was sent. This indicates a certificate validation or network restriction issue, not blocked POST traffic.
+1. Completely close XNAT Desktop Uploader.
+2. Press **Win + R**.
+3. Enter `%AppData%`.
+4. Locate the folder `XNAT Desktop Client`.
+5. Rename it to `XNAT Desktop Client.backup`.
+6. Reopen XNAT Desktop Uploader.
+7. Remove outdated saved server connections if they remain.
+8. Add a new server: `cnda.wustl.edu`.
+9. Log in using your current alias token credentials.
+10. Retry the upload.
 
-* `curl: (60) SSL certificate problem: unable to get local issuer certificate`  
-  The certificate chain cannot be validated. This commonly means a proxy or security appliance has replaced the server certificate.
+Renaming preserves a backup but may reset saved connections and preferences. Have your alias token credentials available.
 
-These errors occur before any POST request is processed by CNDA. They have to do with the security certificate.
+## Step 9 - If Uploads Still Fail
 
-#### Connection termination during transfer
+Gather the following before contacting CNDA support:
 
-* `curl: (56) Recv failure: Connection was reset`  
-  The connection was forcibly closed mid-request, often by a firewall, proxy, or content filter. This may indicate filtering of upload traffic but is not definitive on its own.
+1. Operating system: Windows, macOS, or Linux.
+2. XNAT Desktop Uploader version.
+3. Exact error message or screenshot.
+4. Whether the CNDA website works in a browser.
+5. Whether the alias token is current.
+6. Whether CNDA projects are visible.
+7. HTTPS certificate test result.
+8. POST test result, if performed.
+9. Whether connected through VPN, institutional network, or home network.
+10. Whether an empty Subject or partial session appears in CNDA.
 
-#### Application-level blocking (true POST rejection)
+Do not include passwords, alias token secrets, or session identifiers in screenshots or support messages.
 
-* `curl: (22) The requested URL returned error: 403 Forbidden`  
-  The request reached the server or gateway, but POST requests are explicitly being denied.
+### If the Network Appears to Be Blocking Traffic
 
-* HTML error page (e.g., “Access Denied” or “403 Forbidden”)  
-  A security gateway intercepted the request and returned a blocking page instead of JSON. This strongly indicates POST blocking.
+Contact institutional IT with the following message:
 
+> We are experiencing connectivity or upload problems with XNAT Desktop Uploader when connecting to https://cnda.wustl.edu.
+>
+> Please investigate whether institutional firewall rules, HTTPS inspection, proxy filtering, or security software are interfering with connections or file uploads to this endpoint.
+>
+> If HTTPS inspection is causing certificate validation failures, please evaluate whether an appropriate exemption can be configured for cnda.wustl.edu.
 
-## **Step 5 – If POST Requests Work, you may have to clear your Cached Data**
+### If the Problem Appears Specific to XNAT Desktop Uploader
 
-Simple method:
+If browser access and curl certificate validation succeed but the application fails, contact **cnda-help@wustl.edu**. Include the error, operating system, application version, and troubleshooting results.
 
-1. When you log in to your XNAT Desktop Client, you should see a settings Cogwheel icon on the top right.
-2. Click on that **Settings Cogwheel** to open Settings.
-3. In Settings click on **Debug**
-4. In the Debug screen you will find a button that says **Clear Application Cache**
-5. Click on that button to clear all cache.
+## Common Error Messages
 
-Alternative method to do the same thing, but a different way
+### Authentication Errors
 
-1. Press **⊞ Win + R** → type `%AppData%` → press **Enter**.
-2. Open the **Roaming** folder
-3. Delete the folder named **XNAT Desktop Client** which is located inside of the Roaming folder.
-4. Completely Close and Restart XNAT Desktop Uploader.
-5. On the home screen, remove any saved server connections by clicking on the connection and then **Remove** in the pop up window.
-6. Click **Add New XNAT Server** and enter:
+**Invalid username or password:** Confirm that you are using alias token credentials rather than regular CNDA login credentials.
 
-   ```
-   cnda.wustl.edu
-   ```
-7. Log in again and see if uploading works.
+**Authentication fails after previously working:** The alias token may have expired. Tokens are valid for 90 days. Generate a new one and reconnect.
 
-## **Step 6 – Confirm the CNDA Certificate is Valid**
+### Certificate Errors
 
-Some institutional networks replace SSL security certificates after login.
+**SELF_SIGNED_CERT_IN_CHAIN:** The application cannot establish a trusted certificate chain. Check for HTTPS inspection or differences between the application and operating system trust stores.
 
-1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in a browser.
-2. Do NOT log in yet.
-3. Click the padlock 🔒 or button right to the left of website url → **Connection is Secure** or **View Certificate**.
-4. Depending on your browser, here you may need to click on something that looks like a certificate or **Certificate is Valid**
-5. It should say:
+**curl: (60) SSL certificate problem:** Certificate verification failed; the CA or certificate chain may not be trusted.
 
-   * **Valid** and **Trusted**
-   * **Issued to:** *InCommon RSA Server CA 2*
-6. Log in to CNDA now and after login check the lock/certificate again.
+**schannel: CRYPT_E_NO_REVOCATION_CHECK:** Windows could not complete a certificate revocation check, possibly because revocation information is inaccessible. This does not establish that POST traffic is blocked.
 
-   * **If certificate stays the same →** that is good, skip ahead.
-   * **If certificate changes after login →** contact IT to whitelist `cnda.wustl.edu` so its certificate is not replaced by that of your institution.
+### Connection Errors
 
-## **Step 7 – If POST Requests Fail Everywhere**
+**curl: (6) Could not resolve host:** DNS could not resolve the server hostname.
 
-If the `curl POST` test fails, your **network firewall** is blocking POST traffic.
-Contact your institutional IT team and provide this message:
+**curl: (7) Failed to connect:** The connection could not be established.
 
-> “Outbound HTTPS POST requests to `https://cnda.wustl.edu` are being blocked when using their uploading application.
-> Please whitelist this endpoint so uploads from XNAT Desktop Client can succeed.”
+**curl: (28) Operation timed out:** Network restrictions, connectivity problems, or an unresponsive server may be responsible.
 
-## **Final Notes**
+**curl: (35) SSL connect error:** The TLS handshake failed.
 
-* Always connect to **exactly**:
+**curl: (56) Recv failure: Connection was reset:** The connection was interrupted or closed by a proxy, firewall, server, or another network component.
 
-  ```
-  cnda.wustl.edu
-  ```
-* The most common error is that institutions have strict security software that blocks POST requests.
-* Once POST requests are allowed by institution, uploads typically resume immediately.
-* Some people also have cache issues and need to clear their cache.
+### HTTP Errors
 
+**401 Unauthorized:** Authentication was not accepted.
 
+**403 Forbidden:** Access was denied by the application or an intermediary. This does not prove all POST requests are blocked.
+
+**HTML Access Denied page:** A security gateway may have intercepted the request. Record details and contact institutional IT or CNDA support.
+
+## Final Notes
+
+- Always connect to `cnda.wustl.edu`.
+- Use alias token credentials for Desktop Uploader authentication.
+- Alias tokens expire after 90 days.
+- CNDA accounts are disabled after 12 months of inactivity.
+- Use WashU Key SSO for the CNDA website.
+- Keep imaging files on local storage when troubleshooting.
+- Test HTTPS connectivity and certificate trust before investigating POST requests.
+- A successful browser connection does not guarantee the Uploader trusts the same certificate.
+- A failed POST does not automatically mean POST traffic is blocked.
+- Clear application cache after checking basic connectivity and authentication.
+- Never disable SSL verification as a permanent workaround.
+- Never share alias token passwords or session identifiers.
+
+For assistance, contact **cnda-help@wustl.edu**.
