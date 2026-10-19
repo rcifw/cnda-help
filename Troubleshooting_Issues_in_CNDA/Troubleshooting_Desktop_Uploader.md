@@ -2,24 +2,41 @@
 
 This guide explains how to troubleshoot common connection, authentication, certificate, and upload problems when using XNAT Desktop Uploader with CNDA.
 
+
 ## General Prerequisites to Upload Images
 
 ### Account Activity Requirement
 
-You must have an active CNDA account. CNDA accounts are automatically disabled after **12 months (1 year) of inactivity**.
+::: tip Keep Your CNDA Account Active
 
-If your account becomes disabled, email cnda-help@wustl.edu to request reactivation. To keep your account active, log in regularly at https://cnda.wustl.edu.
+Your CNDA account must remain active to upload images.
+
+Accounts are automatically disabled after **12 consecutive months** without signing in to [CNDA](https://cnda.wustl.edu).
+
+To keep your account active, sign in to the CNDA website at least once every 12 months.
+
+If your account has been disabled, email [cnda-help@wustl.edu](mailto:cnda-help@wustl.edu) to request reactivation.
+
+:::
 
 ### Alias Token Authentication
 
-XNAT Desktop Uploader requires **alias token credentials** for authentication.
+XNAT Desktop Uploader and API/script users must authenticate using an **XNAT alias token** instead of their regular CNDA username and password.
 
-- Alias tokens are valid for **90 days**.
-- Regular CNDA usernames and passwords cannot be used to authenticate in XNAT Desktop Uploader.
-- If your alias token expires, generate a new token and reconnect.
-- CNDA website authentication uses WashU Key SSO.
+::: warning Alias Tokens Expire After 90 Days
 
-Do not share your alias token password with other users or CNDA support.
+Alias tokens are valid for **90 days**. Once your token expires, generate a new token and update the credentials in your Desktop Uploader or scripts.
+
+Your regular CNDA username and password cannot be used as a substitute.
+
+:::
+
+**Need an alias token?**
+
+Follow the instructions in [Generate and Use an XNAT Alias Token](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html).
+
+CNDA website sign-in uses **WashU Key SSO**. Never share your alias token password with other users or CNDA support.
+
 
 ### Correct CNDA Server Address
 
