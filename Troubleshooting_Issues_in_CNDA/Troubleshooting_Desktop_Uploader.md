@@ -22,7 +22,9 @@ If your account has been disabled, email [cnda-help@wustl.edu](mailto:cnda-help@
 
 XNAT Desktop Uploader and API/script users must authenticate using an **XNAT alias token** instead of their regular CNDA username and password.
 
-::: warning Alias Tokens Expire After 90 Days
+::: warning
+
+**<span style="color: #243447;">Alias Tokens Expire After 90 Days</span>**
 
 Alias tokens are valid for **90 days**. Once your token expires, generate a new token and update the credentials in your Desktop Uploader or scripts.
 
