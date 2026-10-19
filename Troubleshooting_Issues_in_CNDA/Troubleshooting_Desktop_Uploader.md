@@ -144,13 +144,11 @@ Continue troubleshooting the upload connection and transfer process.
 
 :::
 
-::: note No New Subject Appears
-
-The application may have failed before creating the Subject, or your upload may be using an existing Subject.
-
-Check whether the intended Subject already exists before assuming the upload failed.
-
-:::
+<div style="background-color: #eaf3ff; border-left: 6px solid #3182ce; padding: 20px 24px; margin: 20px 0; border-radius: 4px;">
+  <p style="font-weight: 700; color: #243447; margin-top: 0;">No New Subject Appears</p>
+  <p>The application may have failed before creating the Subject, or your upload may be using an existing Subject.</p>
+  <p style="margin-bottom: 0;">Check whether the intended Subject already exists before assuming the upload failed.</p>
+</div>
 
 ::: tip Imaging Session Appears in CNDA
 
