@@ -124,25 +124,41 @@ If the upload itself still fails or becomes stuck, continue to Step 3.
 
 :::
 
-## Step 3 - Verify Whether the Upload Reaches CNDA
+## Step 3 - Check Whether the Upload Reaches CNDA
 
-If the upload involves creating a new Subject:
+If your upload involves creating a new Subject, you can check whether XNAT Desktop Uploader successfully created it in CNDA.
 
-1. Open https://cnda.wustl.edu in your browser.
+1. Open [https://cnda.wustl.edu](https://cnda.wustl.edu) in your browser.
 2. Sign in using WashU Key SSO.
 3. Open the destination project.
 4. Look for the new Subject created by XNAT Desktop Uploader.
-5. Check whether the Subject exists and whether any imaging sessions are present.
+5. Check whether the Subject exists and whether an imaging session is present.
 
 ### Understanding the Results
 
-**New Subject exists, but no imaging session appears:** Subject creation succeeded. This does not prove that the imaging ZIP transfer started or completed.
+::: warning Subject Exists, but No Imaging Session Appears
 
-**No new Subject exists:** The application may have failed before Subject creation, or the upload may be using an existing Subject.
+The Desktop Uploader successfully created the Subject, but this does not confirm that the imaging ZIP transfer started or completed.
 
-**Session appears in CNDA:** Verify that the expected imaging data is present before considering the upload successful.
+Continue troubleshooting the upload connection and transfer process.
 
-A missing session does not automatically mean the network blocks POST requests.
+:::
+
+::: info No New Subject Appears
+
+The application may have failed before creating the Subject, or your upload may be using an existing Subject.
+
+Check whether the intended Subject already exists before assuming the upload failed.
+
+:::
+
+::: tip Imaging Session Appears in CNDA
+
+The session is visible in CNDA. Verify that the expected imaging data is present before considering the upload successful.
+
+:::
+
+A missing imaging session does not automatically mean your network is blocking POST requests.
 
 ## Step 4 - Test HTTPS Connectivity and Certificate Trust
 
