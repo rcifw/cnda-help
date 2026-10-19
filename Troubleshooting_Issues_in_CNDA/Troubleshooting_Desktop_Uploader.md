@@ -144,7 +144,7 @@ Continue troubleshooting the upload connection and transfer process.
 
 :::
 
-::: info No New Subject Appears
+::: note No New Subject Appears
 
 The application may have failed before creating the Subject, or your upload may be using an existing Subject.
 
