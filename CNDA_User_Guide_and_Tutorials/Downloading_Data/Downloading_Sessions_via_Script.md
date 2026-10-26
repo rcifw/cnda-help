@@ -174,9 +174,29 @@ KenanTestingUploader,tiny_series,tiny_series_MR_1
 
 ![Example CNDA session list displayed in a spreadsheet](/images/sessions.png)
 
-Replace the sample data with your **CNDA project ID, subject label, and session label**. Use the **project ID shown in CNDA**, not the project’s descriptive title. Use the subject and session **labels displayed in CNDA**, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
+::: warning Important: Use the project ID, not the project name
+The `Project` column in `sessions.csv` must contain the **CNDA project ID**, **not the project’s descriptive name or title**. Project IDs are often numbers or identifiers beginning with `NP` or `CCIR`, but **not every project follows that pattern**. Check the actual project ID in CNDA rather than guessing it from the name.
+
+For the other columns, use the **subject label** and **session label** shown in CNDA, not internal experiment IDs such as `CNDA23_E03299`. Spelling and capitalization must match.
+:::
 
 Use an **XNAT alias token and secret** ([setup instructions](https://cnda-help.wustl.edu/CNDA_User_Guide_and_Tutorials/Access/Generate_and_Use_an_XNAT_Alias_Token.html)), not your WashU Key password. With `-u YOUR_ALIAS`, the script prompts once for the secret without displaying it.
+
+::: tip How to paste your alias secret into the terminal
+When the script asks for your **alias secret**, copy the secret from CNDA and paste it into the terminal. **Nothing will appear while you type or paste:** no letters, dots, or asterisks. This is normal and helps prevent someone nearby from seeing the secret. The terminal can still receive the pasted text.
+
+| Platform | Paste shortcut |
+| --- | --- |
+| **Windows (Git Bash)** | Press **Shift+Insert**, or right-click in Git Bash and choose **Paste** if available. |
+| **Linux (Terminal)** | Press **Ctrl+Shift+V** (or **Shift+Insert** in many terminals). |
+| **macOS (Terminal)** | Press **Command+V**. |
+
+1. Copy **only the alias secret**, without extra spaces or line breaks.
+2. Click inside the terminal where the script is requesting the secret and use the paste method above.
+3. **Even if the screen stays blank, press Enter once** to submit the secret.
+
+Do **not** paste the secret into the command itself or share it in a screenshot, email, or support request. If authentication fails, check that you copied the **secret** paired with the alias token, then rerun the command and try again. Ordinary **Ctrl+V** may not paste in Git Bash or Linux terminals.
+:::
 
 For unattended use, create a private `~/creds.json` file:
 
