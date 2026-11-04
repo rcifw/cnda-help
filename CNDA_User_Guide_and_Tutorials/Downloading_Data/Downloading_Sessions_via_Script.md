@@ -207,7 +207,7 @@ For unattended use, create a private `~/creds.json` file:
 }
 ```
 
-On Linux and macOS, use `chmod 600 ~/creds.json` to restrict file access. On Windows, keep it in a private folder. Do not share or commit credentials. If you use AI heavily with AI agents that have access to files on your machine, be extra careful where you store your credentials. Please be proactive to prevent any form of credential exposure.
+On Linux and macOS, use `chmod 600 ~/creds.json` to restrict file access. On Windows, keep it in a private folder. Do not share or commit credentials. If you use AI agents or other automated tools that can access files on your machine, take extra care when choosing where and how to store your credentials and delete them when no longer needed. Ensure that credential files are outside any directories those tools can access, and proactively take steps to prevent accidental credential exposure.
 
 Run with the file instead of an interactive prompt:
 
